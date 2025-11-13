@@ -10,7 +10,7 @@ namespace ToanCongTruNhanChia
 {
     public static class ConfigHelper
     {
-        private static string ConfigPath => Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config.json");
+        private static string ConfigPath => Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "settings.json");
 
         public static void SaveConfig(AppConfig config)
         {
@@ -36,41 +36,41 @@ namespace ToanCongTruNhanChia
                     ["add"] = new OperationConfig
                     {
                         Score = 0,
-                        OperatorName = "Cộng",
+                        OperatorName = "Addition",
                         OperatorSymbol = "+",
-                        Operand1Range = new RangeConfig { Min = 0, Max = 20 },
-                        Operand2Range = new RangeConfig { Min = 0, Max = 20 },
-                        ResultRange = new RangeConfig { Min = 0, Max = 40 },
+                        Operand1Range = new RangeConfig { Enabled = true, Min = 0, Max = 10 },
+                        Operand2Range = new RangeConfig { Enabled = true, Min = 0, Max = 10 },
+                        ResultRange = new RangeConfig { Enabled = true, Min = 0, Max = 10 },
                         Constraints = new ConstraintConfig { Operand1Greater = false, IntegerResult = true, NonNegativeResult = true, DivisibleOnly = false }
                     },
-                    ["subtract"] = new OperationConfig
+                    ["sub"] = new OperationConfig
                     {
                         Score = 0,
-                        OperatorName = "Trừ",
+                        OperatorName = "Subtraction",
                         OperatorSymbol = "-",
-                        Operand1Range = new RangeConfig { Min = 0, Max = 20 },
-                        Operand2Range = new RangeConfig { Min = 0, Max = 20 },
-                        ResultRange = new RangeConfig { Min = 0, Max = 20 },
+                        Operand1Range = new RangeConfig { Enabled = true, Min = 0, Max = 10 },
+                        Operand2Range = new RangeConfig { Enabled = true, Min = 0, Max = 10 },
+                        ResultRange = new RangeConfig { Enabled = true, Min = 0, Max = 10 },
                         Constraints = new ConstraintConfig { Operand1Greater = true, IntegerResult = true, NonNegativeResult = true, DivisibleOnly = false }
                     },
-                    ["multiply"] = new OperationConfig
+                    ["mul"] = new OperationConfig
                     {
                         Score = 0,
-                        OperatorName = "Nhân",
+                        OperatorName = "Multiplication",
                         OperatorSymbol = "×",
-                        Operand1Range = new RangeConfig { Min = 0, Max = 10 },
-                        Operand2Range = new RangeConfig { Min = 0, Max = 10 },
-                        ResultRange = new RangeConfig { Min = 0, Max = 100 },
+                        Operand1Range = new RangeConfig { Enabled = true, Min = 0, Max = 10 },
+                        Operand2Range = new RangeConfig { Enabled = true, Min = 0, Max = 10 },
+                        ResultRange = new RangeConfig { Enabled = true, Min = 0, Max = 100 },
                         Constraints = new ConstraintConfig { Operand1Greater = false, IntegerResult = true, NonNegativeResult = true, DivisibleOnly = false }
                     },
-                    ["divide"] = new OperationConfig
+                    ["div"] = new OperationConfig
                     {
                         Score = 0,
-                        OperatorName = "Chia",
-                        OperatorSymbol = "÷",
-                        Operand1Range = new RangeConfig { Min = 1, Max = 100 },
-                        Operand2Range = new RangeConfig { Min = 1, Max = 10 },
-                        ResultRange = new RangeConfig { Min = 0, Max = 100 },
+                        OperatorName = "Division",
+                        OperatorSymbol = ":",
+                        Operand1Range = new RangeConfig { Enabled = true, Min = 1, Max = 99 },
+                        Operand2Range = new RangeConfig { Enabled = true, Min = 1, Max = 9 },
+                        ResultRange = new RangeConfig { Enabled = true, Min = 0, Max = 99 },
                         Constraints = new ConstraintConfig { Operand1Greater = true, IntegerResult = true, NonNegativeResult = true, DivisibleOnly = true }
                     }
                 }

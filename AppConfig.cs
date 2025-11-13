@@ -10,7 +10,8 @@ namespace ToanCongTruNhanChia
     public class AppConfig
     {
         public int TotalScore { get; set; }
-        public Dictionary<string, OperationConfig> Operations { get; set; } = new Dictionary();
+        public Dictionary<string, OperationConfig> Operations { get; set; } 
+            = new Dictionary<string, OperationConfig>();
     }
 
     public class OperationConfig
@@ -26,6 +27,7 @@ namespace ToanCongTruNhanChia
 
     public class RangeConfig
     {
+        public bool Enabled { get; set; } = true;
         public int Min { get; set; }
         public int Max { get; set; }
     }

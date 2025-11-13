@@ -17,16 +17,21 @@ namespace ToanCongTruNhanChia
                 return false;
             }
 
-            if (a < op.Operand1Range.Min || a > op.Operand1Range.Max)
+            if (op.Operand1Range.Enabled)
             {
-                error = "Operand1 out of range";
-                return false;
+                if (a < op.Operand1Range.Min || a > op.Operand1Range.Max)
+                {
+                    error = "Operand1 out of range";
+                    return false;
+                }
             }
 
-            if (b < op.Operand2Range.Min || b > op.Operand2Range.Max)
-            {
-                error = "Operand2 out of range";
-                return false;
+            if (op.Operand2Range.Enabled) {
+                if (b < op.Operand2Range.Min || b > op.Operand2Range.Max)
+                {
+                    error = "Operand2 out of range";
+                    return false;
+                }
             }
 
             if (op.Constraints.Operand1Greater && a < b)
@@ -35,14 +40,31 @@ namespace ToanCongTruNhanChia
                 return false;
             }
 
-            double result = opKey switch
+            double result;
+
+            switch (opKey)
             {
-                "add" => a + b,
-                "subtract" => a - b,
-                "multiply" => a * b,
-                "divide" => b == 0 ? double.NaN : (double)a / b,
-                _ => double.NaN
-            };
+                case "add":
+                    result = a + b;
+                    break;
+
+                case "subtract":
+                    result = a - b;
+                    break;
+
+                case "multiply":
+                    result = a * b;
+                    break;
+
+                case "divide":
+                    result = (b == 0) ? double.NaN : (double)a / b;
+                    break;
+
+                default:
+                    result = double.NaN;
+                    break;
+            }
+
 
             if (double.IsNaN(result))
             {
@@ -69,10 +91,14 @@ namespace ToanCongTruNhanChia
             }
 
             int r = (int)Math.Round(result);
-            if (r < op.ResultRange.Min || r > op.ResultRange.Max)
+
+            if (op.ResultRange.Enabled)
             {
-                error = "Result out of range";
-                return false;
+                if (r < op.ResultRange.Min || r > op.ResultRange.Max)
+                {
+                    error = "Result out of range";
+                    return false;
+                }
             }
 
             return true;
