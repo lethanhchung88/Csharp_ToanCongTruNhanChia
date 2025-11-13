@@ -1,0 +1,109 @@
+{
+  "TotalScore": 0,
+  "Operations": {
+    "add": {
+      "Score": 0,
+      "OperatorName": "Addition",
+      "OperatorSymbol": "\u002B",
+      "Operand1Range": {
+        "Enabled": true,
+        "Min": 0,
+        "Max": 10
+      },
+      "Operand2Range": {
+        "Enabled": true,
+        "Min": 0,
+        "Max": 10
+      },
+      "ResultRange": {
+        "Enabled": true,
+        "Min": 0,
+        "Max": 10
+      },
+      "Constraints": {
+        "Operand1Greater": false,
+        "IntegerResult": true,
+        "NonNegativeResult": true,
+        "DivisibleOnly": false
+      }
+    },
+    "sub": {
+      "Score": 0,
+      "OperatorName": "Subtraction",
+      "OperatorSymbol": "-",
+      "Operand1Range": {
+        "Enabled": true,
+        "Min": 0,
+        "Max": 10
+      },
+      "Operand2Range": {
+        "Enabled": true,
+        "Min": 0,
+        "Max": 10
+      },
+      "ResultRange": {
+        "Enabled": true,
+        "Min": 0,
+        "Max": 10
+      },
+      "Constraints": {
+        "Operand1Greater": true,
+        "IntegerResult": true,
+        "NonNegativeResult": true,
+        "DivisibleOnly": false
+      }
+    },
+    "mul": {
+      "Score": 0,
+      "OperatorName": "Multiplication",
+      "OperatorSymbol": "\u00D7",
+      "Operand1Range": {
+        "Enabled": true,
+        "Min": 0,
+        "Max": 10
+      },
+      "Operand2Range": {
+        "Enabled": true,
+        "Min": 0,
+        "Max": 10
+      },
+      "ResultRange": {
+        "Enabled": true,
+        "Min": 0,
+        "Max": 100
+      },
+      "Constraints": {
+        "Operand1Greater": false,
+        "IntegerResult": true,
+        "NonNegativeResult": true,
+        "DivisibleOnly": false
+      }
+    },
+    "div": {
+      "Score": 0,
+      "OperatorName": "Division",
+      "OperatorSymbol": ":",
+      "Operand1Range": {
+        "Enabled": true,
+        "Min": 1,
+        "Max": 99
+      },
+      "Operand2Range": {
+        "Enabled": true,
+        "Min": 1,
+        "Max": 9
+      },
+      "ResultRange": {
+        "Enabled": true,
+        "Min": 0,
+        "Max": 99
+      },
+      "Constraints": {
+        "Operand1Greater": true,
+        "IntegerResult": true,
+        "NonNegativeResult": true,
+        "DivisibleOnly": true
+      }
+    }
+  }
+}
