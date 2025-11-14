@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
-using System.IO;
-using System.Media;
+using System.Windows.Forms;
 
 namespace ToanCongTruNhanChia
 {
@@ -14,6 +15,7 @@ namespace ToanCongTruNhanChia
 
         private static string BasePath =>
             Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "sound", "en");
+
 
         // Mapping: MENU NAME → FILE NAME
         private static readonly Dictionary<string, string> MenuSoundMap =
@@ -158,6 +160,16 @@ namespace ToanCongTruNhanChia
             };
 
 
+        // Folder chứa file khen
+        private static readonly string PraiseFolder =
+            Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "sound", "en", "praise");
+
+        // Danh sách file praise đã load (tự động lấy từ thư mục)
+        private static string[] _praiseFiles = null;
+
+        // Vị trí file hiện tại trong danh sách (round-robin)
+        private static int _praiseIndex = 0;
+
         /// <summary>
         /// Gọi khi rê chuột vào menu item.
         /// Nhận vào tên menu: menuAddition.Name
@@ -196,5 +208,85 @@ namespace ToanCongTruNhanChia
             string fullPath = Path.Combine(BasePath, file);
             Play(fullPath);
         }
+
+        /// <summary>
+        /// Phát âm thanh theo thư mục và tên file.
+        /// Ví dụ: PlayFromFolder("en", "Settings saved")
+        /// sẽ phát sound/en/Settings saved.wav
+        /// </summary>
+        public static void PlayFromFolder(string folder, string fileNameWithoutExt)
+        {
+            try
+            {
+                string basePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "sound");
+                string fullPath = Path.Combine(basePath, folder, fileNameWithoutExt + ".wav");
+
+                if (!File.Exists(fullPath))
+                    return;
+
+                _player.SoundLocation = fullPath;
+                _player.Load();
+                _player.Play();
+            }
+            catch
+            {
+                // không để app crash
+            }
+        }
+
+        private static void LoadPraiseFiles()
+        {
+            if (!Directory.Exists(PraiseFolder))
+                return;
+
+            // Lấy toàn bộ wav trong thư mục
+            _praiseFiles = Directory.GetFiles(PraiseFolder, "*.wav");
+
+            // Nếu thư mục rỗng thì _praiseFiles = null
+            if (_praiseFiles.Length == 0)
+                _praiseFiles = null;
+        }
+
+        public static bool PlayPraise(out string praiseText)
+        {
+            praiseText = string.Empty;
+
+            try
+            {
+                if (_praiseFiles == null)
+                    LoadPraiseFiles();
+
+                if (_praiseFiles == null || _praiseFiles.Length == 0)
+                    return false;
+
+                // Lấy file theo index
+                string fileToPlay = _praiseFiles[_praiseIndex];
+
+                // Tăng index theo kiểu xoay vòng
+                _praiseIndex++;
+                if (_praiseIndex >= _praiseFiles.Length)
+                    _praiseIndex = 0;
+
+                // Phát âm thanh
+                Play(fileToPlay);
+
+                // Lấy text (bỏ đuôi .wav)
+                praiseText = Path.GetFileNameWithoutExtension(fileToPlay);
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public static void PlayPraise()
+        {
+            string _;
+            PlayPraise(out _);   // gọi bản 2 nhưng bỏ text
+        }
+
+
     }
 }

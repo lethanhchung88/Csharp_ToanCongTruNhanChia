@@ -84,6 +84,12 @@
     <Compile Include="mainForm.Designer.cs">
       <DependentUpon>mainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="PracticeForm1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PracticeForm1.Designer.cs">
+      <DependentUpon>PracticeForm1.cs</DependentUpon>
+    </Compile>
     <Compile Include="ProblemValidator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -96,6 +102,9 @@
     <Compile Include="SoundManager.cs" />
     <EmbeddedResource Include="mainForm.resx">
       <DependentUpon>mainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PracticeForm1.resx">
+      <DependentUpon>PracticeForm1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -142,10 +151,38 @@
     <Content Include="sound\en\Multiplication Times.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="sound\en\praise\Amazing.wav" />
+    <Content Include="sound\en\praise\Awesome.wav" />
+    <Content Include="sound\en\praise\Brilliant.wav" />
+    <Content Include="sound\en\praise\Correct.wav" />
+    <Content Include="sound\en\praise\Excellent.wav" />
+    <Content Include="sound\en\praise\Fantastic.wav" />
+    <Content Include="sound\en\praise\Good job.wav" />
+    <Content Include="sound\en\praise\Good work.wav" />
+    <Content Include="sound\en\praise\Great job.wav" />
+    <Content Include="sound\en\praise\Great thinking.wav" />
+    <Content Include="sound\en\praise\Impressive.wav" />
+    <Content Include="sound\en\praise\Nice work.wav" />
+    <Content Include="sound\en\praise\Perfect.wav" />
+    <Content Include="sound\en\praise\Super.wav" />
+    <Content Include="sound\en\praise\Superb.wav" />
+    <Content Include="sound\en\praise\Terrific.wav" />
+    <Content Include="sound\en\praise\That’s it.wav" />
+    <Content Include="sound\en\praise\That’s right.wav" />
+    <Content Include="sound\en\praise\Very good.wav" />
+    <Content Include="sound\en\praise\Well done.wav" />
+    <Content Include="sound\en\praise\Wonderful.wav" />
+    <Content Include="sound\en\praise\You did it.wav" />
+    <Content Include="sound\en\praise\You got it.wav" />
+    <Content Include="sound\en\praise\You’re amazing.wav" />
+    <Content Include="sound\en\praise\You’re doing great.wav" />
     <Content Include="sound\en\Primary school.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="sound\en\Save Settings.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sound\en\Settings saved.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="sound\en\Settings.wav">

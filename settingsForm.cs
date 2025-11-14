@@ -153,6 +153,8 @@ namespace ToanCongTruNhanChia
             // Lưu xuống file settings.json
             ConfigHelper.SaveConfig(_config);
 
+            SoundManager.PlayFromFolder("en", "Settings saved");
+
             MessageBox.Show("Settings saved.", "Info",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
 

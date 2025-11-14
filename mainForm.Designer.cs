@@ -75,24 +75,28 @@
             this.menuAddition.Name = "menuAddition";
             this.menuAddition.Size = new System.Drawing.Size(237, 24);
             this.menuAddition.Text = "Addition (Plus) +";
+            this.menuAddition.Click += new System.EventHandler(this.menuAddition_Click);
             // 
             // menuSubtraction
             // 
             this.menuSubtraction.Name = "menuSubtraction";
             this.menuSubtraction.Size = new System.Drawing.Size(237, 24);
             this.menuSubtraction.Text = "Subtraction (Minus) -";
+            this.menuSubtraction.Click += new System.EventHandler(this.menuSubtraction_Click);
             // 
             // menuMultiplication
             // 
             this.menuMultiplication.Name = "menuMultiplication";
             this.menuMultiplication.Size = new System.Drawing.Size(237, 24);
             this.menuMultiplication.Text = "Multiplication (Times) ×";
+            this.menuMultiplication.Click += new System.EventHandler(this.menuMultiplication_Click);
             // 
             // menuDivision
             // 
             this.menuDivision.Name = "menuDivision";
             this.menuDivision.Size = new System.Drawing.Size(237, 24);
             this.menuDivision.Text = "Division :";
+            this.menuDivision.Click += new System.EventHandler(this.menuDivision_Click);
             // 
             // menuSettings
             // 
