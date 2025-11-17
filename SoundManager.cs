@@ -287,6 +287,77 @@ namespace ToanCongTruNhanChia
             PlayPraise(out _);   // gọi bản 2 nhưng bỏ text
         }
 
+        //////////////////////////////////////////////////////////////////////
+        // TRY AGAIN (âm thanh khi làm sai)
+        //////////////////////////////////////////////////////////////////////
+
+        // Thư mục chứa file tryagain
+        private static readonly string TryAgainFolder =
+            Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "sound", "en", "tryagain");
+
+        // Danh sách file tryagain (load lần đầu)
+        private static string[] _tryAgainFiles = null;
+
+        // Vị trí hiện tại (xoay vòng)
+        private static int _tryAgainIndex = 0;
+
+
+        // Load danh sách file trong thư mục tryagain
+        private static void LoadTryAgainFiles()
+        {
+            if (!Directory.Exists(TryAgainFolder))
+                return;
+
+            _tryAgainFiles = Directory.GetFiles(TryAgainFolder, "*.wav");
+
+            if (_tryAgainFiles.Length == 0)
+                _tryAgainFiles = null;
+        }
+
+
+        // Hàm phát âm thanh + trả text
+        public static bool PlayTryAgain(out string text)
+        {
+            text = string.Empty;
+
+            try
+            {
+                if (_tryAgainFiles == null)
+                    LoadTryAgainFiles();
+
+                if (_tryAgainFiles == null || _tryAgainFiles.Length == 0)
+                    return false;
+
+                // Lấy file theo index xoay vòng
+                string fileToPlay = _tryAgainFiles[_tryAgainIndex];
+
+                _tryAgainIndex++;
+                if (_tryAgainIndex >= _tryAgainFiles.Length)
+                    _tryAgainIndex = 0;
+
+                // Phát âm
+                Play(fileToPlay);
+
+                // Lấy text (bỏ .wav)
+                text = Path.GetFileNameWithoutExtension(fileToPlay);
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+
+        // Bản gọi không cần trả text
+        public static void PlayTryAgain()
+        {
+            string _;
+            PlayTryAgain(out _);
+        }
+
+
 
     }
 }

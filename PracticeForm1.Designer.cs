@@ -38,6 +38,8 @@
             this.lblScoreSub = new System.Windows.Forms.Label();
             this.lblScoreMul = new System.Windows.Forms.Label();
             this.lblScoreDiv = new System.Windows.Forms.Label();
+            this.lblAnswer = new System.Windows.Forms.Label();
+            this.lblResult = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picResult)).BeginInit();
             this.SuspendLayout();
             // 
@@ -65,7 +67,7 @@
             // 
             // picResult
             // 
-            this.picResult.Location = new System.Drawing.Point(333, 220);
+            this.picResult.Location = new System.Drawing.Point(455, 220);
             this.picResult.Name = "picResult";
             this.picResult.Size = new System.Drawing.Size(124, 116);
             this.picResult.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -148,11 +150,36 @@
             this.lblScoreDiv.TabIndex = 13;
             this.lblScoreDiv.Text = "10 điểm";
             // 
+            // lblAnswer
+            // 
+            this.lblAnswer.AutoSize = true;
+            this.lblAnswer.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAnswer.ForeColor = System.Drawing.Color.Blue;
+            this.lblAnswer.Location = new System.Drawing.Point(42, 358);
+            this.lblAnswer.Name = "lblAnswer";
+            this.lblAnswer.Size = new System.Drawing.Size(281, 55);
+            this.lblAnswer.TabIndex = 14;
+            this.lblAnswer.Text = "Keep going!";
+            // 
+            // lblResult
+            // 
+            this.lblResult.AutoSize = true;
+            this.lblResult.Font = new System.Drawing.Font("Wingdings", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
+            this.lblResult.ForeColor = System.Drawing.Color.Red;
+            this.lblResult.Location = new System.Drawing.Point(333, 225);
+            this.lblResult.Name = "lblResult";
+            this.lblResult.Size = new System.Drawing.Size(106, 106);
+            this.lblResult.TabIndex = 15;
+            this.lblResult.Text = "";
+            this.lblResult.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // PracticeForm1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1039, 543);
+            this.Controls.Add(this.lblResult);
+            this.Controls.Add(this.lblAnswer);
             this.Controls.Add(this.lblScoreDiv);
             this.Controls.Add(this.lblScoreMul);
             this.Controls.Add(this.lblScoreSub);
@@ -185,5 +212,7 @@
         private System.Windows.Forms.Label lblScoreSub;
         private System.Windows.Forms.Label lblScoreMul;
         private System.Windows.Forms.Label lblScoreDiv;
+        private System.Windows.Forms.Label lblAnswer;
+        private System.Windows.Forms.Label lblResult;
     }
 }

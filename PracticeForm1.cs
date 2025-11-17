@@ -48,6 +48,9 @@ namespace ToanCongTruNhanChia
         {
             _currentOperation = InitialOperation;
 
+            lblAnswer.Text = string.Empty;
+            lblResult.Text = string.Empty;
+
             GenerateNewQuestion();
             UpdateScoreLabels();
             ResetResultIcon();
@@ -58,6 +61,9 @@ namespace ToanCongTruNhanChia
 
         private void GenerateNewQuestion(OperationType? newOp = null)
         {
+            lblResult.Visible = false;
+            lblAnswer.Visible = false;
+
             if (newOp.HasValue)
                 _currentOperation = newOp.Value;
 
@@ -198,18 +204,48 @@ namespace ToanCongTruNhanChia
 
             if (userAnswer == _correctResult)
             {
+                // Gọi âm thanh khen + lấy text
+                string praiseText;
+                bool played = SoundManager.PlayPraise(out praiseText);
+
+                // Nếu phát được âm thanh thì hiển thị text, ngược lại có thể xóa/rỗng
+                if (played)
+                {
+                    lblAnswer.Visible = true;
+                    lblAnswer.Text = praiseText + "!";
+                }
+                else
+                {
+                    lblAnswer.Text = string.Empty;
+                }
+
                 _currentSolved = true;
                 IncreaseScore();
                 ShowCorrectIcon();
 
-                // Ví dụ (nếu sau này dùng SoundManager):
-                // SoundManager.PlayFromFolder("en", "Correct");
+                
             }
             else
             {
+                // Gọi âm thanh "try again" + lấy text
+                string tryAgainText;
+                bool played = SoundManager.PlayTryAgain(out tryAgainText);
+
+                if (played)
+                {
+                    lblAnswer.Visible = true;
+                    lblAnswer.Text = tryAgainText + "!";
+                }
+                else
+                {
+                    lblAnswer.Text = string.Empty;
+                }
+                // Nếu phát được âm thanh thì hiển thị text, ngược lại có thể xóa/rỗng
+
                 DecreaseScoreIfPossible();
                 ShowWrongIcon();
                 txtAnswer.SelectAll(); // tô đen toàn bộ để bé nhập lại
+
             }
         }
 
@@ -225,18 +261,16 @@ namespace ToanCongTruNhanChia
 
         private void ShowCorrectIcon()
         {
-            picResult.Visible = true;
-            picResult.BackColor = Color.LightGreen;
-            // Nếu có icon:
-            // picResult.Image = Properties.Resources.iconCorrect;
+            lblResult.Text = ""; // dấu check trong Wingdings
+            lblResult.ForeColor = Color.LimeGreen;
+            lblResult.Visible = true;
         }
 
         private void ShowWrongIcon()
         {
-            picResult.Visible = true;
-            picResult.BackColor = Color.LightPink;
-            // Nếu có icon:
-            // picResult.Image = Properties.Resources.iconWrong;
+            lblResult.Text = ""; // dấu X trong Wingdings
+            lblResult.ForeColor = Color.Red;
+            lblResult.Visible = true;
         }
 
         #endregion
