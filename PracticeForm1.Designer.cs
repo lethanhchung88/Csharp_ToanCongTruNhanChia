@@ -47,7 +47,7 @@
             // 
             this.lblExpression.AutoSize = true;
             this.lblExpression.Font = new System.Drawing.Font("Microsoft Sans Serif", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblExpression.Location = new System.Drawing.Point(30, 84);
+            this.lblExpression.Location = new System.Drawing.Point(30, 228);
             this.lblExpression.Name = "lblExpression";
             this.lblExpression.Size = new System.Drawing.Size(473, 108);
             this.lblExpression.TabIndex = 0;
@@ -56,7 +56,7 @@
             // txtAnswer
             // 
             this.txtAnswer.Font = new System.Drawing.Font("Microsoft Sans Serif", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAnswer.Location = new System.Drawing.Point(48, 220);
+            this.txtAnswer.Location = new System.Drawing.Point(48, 364);
             this.txtAnswer.Name = "txtAnswer";
             this.txtAnswer.Size = new System.Drawing.Size(279, 116);
             this.txtAnswer.TabIndex = 4;
@@ -67,7 +67,7 @@
             // 
             // picResult
             // 
-            this.picResult.Location = new System.Drawing.Point(455, 220);
+            this.picResult.Location = new System.Drawing.Point(455, 364);
             this.picResult.Name = "picResult";
             this.picResult.Size = new System.Drawing.Size(124, 116);
             this.picResult.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -77,19 +77,23 @@
             // 
             // btnNext
             // 
-            this.btnNext.Location = new System.Drawing.Point(952, 508);
+            this.btnNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNext.Location = new System.Drawing.Point(1389, 768);
             this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(75, 23);
+            this.btnNext.Size = new System.Drawing.Size(183, 41);
             this.btnNext.TabIndex = 7;
-            this.btnNext.Text = "Next";
+            this.btnNext.Text = "Next >> (Enter)";
             this.btnNext.UseVisualStyleBackColor = true;
             this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
+            this.btnNext.Enter += new System.EventHandler(this.btnNext_Enter);
+            this.btnNext.Leave += new System.EventHandler(this.btnNext_Leave);
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(12, 508);
+            this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClose.Location = new System.Drawing.Point(12, 768);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(75, 23);
+            this.btnClose.Size = new System.Drawing.Size(120, 41);
             this.btnClose.TabIndex = 8;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
@@ -102,16 +106,16 @@
             this.lblTotalScore.ForeColor = System.Drawing.Color.Red;
             this.lblTotalScore.Location = new System.Drawing.Point(13, 13);
             this.lblTotalScore.Name = "lblTotalScore";
-            this.lblTotalScore.Size = new System.Drawing.Size(119, 33);
+            this.lblTotalScore.Size = new System.Drawing.Size(63, 33);
             this.lblTotalScore.TabIndex = 6;
-            this.lblTotalScore.Text = "10 điểm";
+            this.lblTotalScore.Text = "10$";
             // 
             // lblScoreAdd
             // 
             this.lblScoreAdd.AutoSize = true;
             this.lblScoreAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblScoreAdd.ForeColor = System.Drawing.Color.Red;
-            this.lblScoreAdd.Location = new System.Drawing.Point(908, 9);
+            this.lblScoreAdd.Location = new System.Drawing.Point(1137, 250);
             this.lblScoreAdd.Name = "lblScoreAdd";
             this.lblScoreAdd.Size = new System.Drawing.Size(119, 33);
             this.lblScoreAdd.TabIndex = 9;
@@ -122,7 +126,7 @@
             this.lblScoreSub.AutoSize = true;
             this.lblScoreSub.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblScoreSub.ForeColor = System.Drawing.Color.Red;
-            this.lblScoreSub.Location = new System.Drawing.Point(908, 55);
+            this.lblScoreSub.Location = new System.Drawing.Point(1137, 296);
             this.lblScoreSub.Name = "lblScoreSub";
             this.lblScoreSub.Size = new System.Drawing.Size(119, 33);
             this.lblScoreSub.TabIndex = 11;
@@ -133,7 +137,7 @@
             this.lblScoreMul.AutoSize = true;
             this.lblScoreMul.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblScoreMul.ForeColor = System.Drawing.Color.Red;
-            this.lblScoreMul.Location = new System.Drawing.Point(908, 98);
+            this.lblScoreMul.Location = new System.Drawing.Point(1137, 339);
             this.lblScoreMul.Name = "lblScoreMul";
             this.lblScoreMul.Size = new System.Drawing.Size(119, 33);
             this.lblScoreMul.TabIndex = 12;
@@ -144,7 +148,7 @@
             this.lblScoreDiv.AutoSize = true;
             this.lblScoreDiv.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblScoreDiv.ForeColor = System.Drawing.Color.Red;
-            this.lblScoreDiv.Location = new System.Drawing.Point(908, 145);
+            this.lblScoreDiv.Location = new System.Drawing.Point(1137, 386);
             this.lblScoreDiv.Name = "lblScoreDiv";
             this.lblScoreDiv.Size = new System.Drawing.Size(119, 33);
             this.lblScoreDiv.TabIndex = 13;
@@ -155,7 +159,7 @@
             this.lblAnswer.AutoSize = true;
             this.lblAnswer.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAnswer.ForeColor = System.Drawing.Color.Blue;
-            this.lblAnswer.Location = new System.Drawing.Point(42, 358);
+            this.lblAnswer.Location = new System.Drawing.Point(42, 502);
             this.lblAnswer.Name = "lblAnswer";
             this.lblAnswer.Size = new System.Drawing.Size(281, 55);
             this.lblAnswer.TabIndex = 14;
@@ -166,7 +170,7 @@
             this.lblResult.AutoSize = true;
             this.lblResult.Font = new System.Drawing.Font("Wingdings", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
             this.lblResult.ForeColor = System.Drawing.Color.Red;
-            this.lblResult.Location = new System.Drawing.Point(333, 225);
+            this.lblResult.Location = new System.Drawing.Point(333, 369);
             this.lblResult.Name = "lblResult";
             this.lblResult.Size = new System.Drawing.Size(106, 106);
             this.lblResult.TabIndex = 15;
@@ -177,7 +181,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1039, 543);
+            this.ClientSize = new System.Drawing.Size(1584, 821);
             this.Controls.Add(this.lblResult);
             this.Controls.Add(this.lblAnswer);
             this.Controls.Add(this.lblScoreDiv);
