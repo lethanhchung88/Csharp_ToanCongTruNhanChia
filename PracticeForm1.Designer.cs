@@ -40,14 +40,18 @@
             this.lblScoreDiv = new System.Windows.Forms.Label();
             this.lblAnswer = new System.Windows.Forms.Label();
             this.lblResult = new System.Windows.Forms.Label();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.picResult)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblExpression
             // 
             this.lblExpression.AutoSize = true;
             this.lblExpression.Font = new System.Drawing.Font("Microsoft Sans Serif", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblExpression.Location = new System.Drawing.Point(30, 228);
+            this.lblExpression.Location = new System.Drawing.Point(31, 364);
             this.lblExpression.Name = "lblExpression";
             this.lblExpression.Size = new System.Drawing.Size(473, 108);
             this.lblExpression.TabIndex = 0;
@@ -56,7 +60,7 @@
             // txtAnswer
             // 
             this.txtAnswer.Font = new System.Drawing.Font("Microsoft Sans Serif", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAnswer.Location = new System.Drawing.Point(48, 364);
+            this.txtAnswer.Location = new System.Drawing.Point(49, 500);
             this.txtAnswer.Name = "txtAnswer";
             this.txtAnswer.Size = new System.Drawing.Size(279, 116);
             this.txtAnswer.TabIndex = 4;
@@ -67,7 +71,7 @@
             // 
             // picResult
             // 
-            this.picResult.Location = new System.Drawing.Point(455, 364);
+            this.picResult.Location = new System.Drawing.Point(446, 500);
             this.picResult.Name = "picResult";
             this.picResult.Size = new System.Drawing.Size(124, 116);
             this.picResult.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -115,7 +119,7 @@
             this.lblScoreAdd.AutoSize = true;
             this.lblScoreAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblScoreAdd.ForeColor = System.Drawing.Color.Red;
-            this.lblScoreAdd.Location = new System.Drawing.Point(1137, 250);
+            this.lblScoreAdd.Location = new System.Drawing.Point(1442, 569);
             this.lblScoreAdd.Name = "lblScoreAdd";
             this.lblScoreAdd.Size = new System.Drawing.Size(119, 33);
             this.lblScoreAdd.TabIndex = 9;
@@ -126,7 +130,7 @@
             this.lblScoreSub.AutoSize = true;
             this.lblScoreSub.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblScoreSub.ForeColor = System.Drawing.Color.Red;
-            this.lblScoreSub.Location = new System.Drawing.Point(1137, 296);
+            this.lblScoreSub.Location = new System.Drawing.Point(1442, 615);
             this.lblScoreSub.Name = "lblScoreSub";
             this.lblScoreSub.Size = new System.Drawing.Size(119, 33);
             this.lblScoreSub.TabIndex = 11;
@@ -137,7 +141,7 @@
             this.lblScoreMul.AutoSize = true;
             this.lblScoreMul.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblScoreMul.ForeColor = System.Drawing.Color.Red;
-            this.lblScoreMul.Location = new System.Drawing.Point(1137, 339);
+            this.lblScoreMul.Location = new System.Drawing.Point(1442, 658);
             this.lblScoreMul.Name = "lblScoreMul";
             this.lblScoreMul.Size = new System.Drawing.Size(119, 33);
             this.lblScoreMul.TabIndex = 12;
@@ -148,7 +152,7 @@
             this.lblScoreDiv.AutoSize = true;
             this.lblScoreDiv.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblScoreDiv.ForeColor = System.Drawing.Color.Red;
-            this.lblScoreDiv.Location = new System.Drawing.Point(1137, 386);
+            this.lblScoreDiv.Location = new System.Drawing.Point(1442, 705);
             this.lblScoreDiv.Name = "lblScoreDiv";
             this.lblScoreDiv.Size = new System.Drawing.Size(119, 33);
             this.lblScoreDiv.TabIndex = 13;
@@ -159,7 +163,7 @@
             this.lblAnswer.AutoSize = true;
             this.lblAnswer.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAnswer.ForeColor = System.Drawing.Color.Blue;
-            this.lblAnswer.Location = new System.Drawing.Point(42, 502);
+            this.lblAnswer.Location = new System.Drawing.Point(43, 638);
             this.lblAnswer.Name = "lblAnswer";
             this.lblAnswer.Size = new System.Drawing.Size(281, 55);
             this.lblAnswer.TabIndex = 14;
@@ -170,18 +174,58 @@
             this.lblResult.AutoSize = true;
             this.lblResult.Font = new System.Drawing.Font("Wingdings", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
             this.lblResult.ForeColor = System.Drawing.Color.Red;
-            this.lblResult.Location = new System.Drawing.Point(333, 369);
+            this.lblResult.Location = new System.Drawing.Point(334, 505);
             this.lblResult.Name = "lblResult";
             this.lblResult.Size = new System.Drawing.Size(106, 106);
             this.lblResult.TabIndex = 15;
             this.lblResult.Text = "";
             this.lblResult.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(12, 49);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(1560, 15);
+            this.progressBar1.TabIndex = 16;
+            this.progressBar1.Value = 20;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.tableLayoutPanel1);
+            this.panel1.Location = new System.Drawing.Point(12, 70);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1553, 291);
+            this.panel1.TabIndex = 17;
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 10;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.46955F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 79.53045F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 262F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 214F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 217F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 214F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 173F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 72F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 104F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(7, 12);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 3;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1531, 252);
+            this.tableLayoutPanel1.TabIndex = 0;
+            // 
             // PracticeForm1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1584, 821);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.lblResult);
             this.Controls.Add(this.lblAnswer);
             this.Controls.Add(this.lblScoreDiv);
@@ -199,6 +243,7 @@
             this.Load += new System.EventHandler(this.PracticeForm1_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PracticeForm1_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.picResult)).EndInit();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -218,5 +263,8 @@
         private System.Windows.Forms.Label lblScoreDiv;
         private System.Windows.Forms.Label lblAnswer;
         private System.Windows.Forms.Label lblResult;
+        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
     }
 }
