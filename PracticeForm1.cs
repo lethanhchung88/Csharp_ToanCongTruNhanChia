@@ -119,10 +119,18 @@ namespace ToanCongTruNhanChia
         {
             InitializeComponent();
             this.KeyPreview = true; // để bắt phím + - * / ở mức form
+            this.SizeChanged += PracticeForm1_SizeChanged;
+        }
+
+        private void PracticeForm1_SizeChanged(object sender, EventArgs e)
+        {
         }
 
         private void PracticeForm1_Load(object sender, EventArgs e)
         {
+            this.Location = new Point(0, 0);                // Góc trái trên màn hình
+            this.Size = new Size(1616, 876);                // Kích thước màn hình máy Helen
+
             // ẩn các object chưa dùng đến
             lblScoreAdd.Visible = false;
             lblScoreSub.Visible = false;
