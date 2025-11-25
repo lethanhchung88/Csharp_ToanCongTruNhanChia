@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PracticeForm1));
             this.lblExpression = new System.Windows.Forms.Label();
             this.txtAnswer = new System.Windows.Forms.TextBox();
             this.picResult = new System.Windows.Forms.PictureBox();
@@ -40,7 +41,12 @@
             this.lblScoreDiv = new System.Windows.Forms.Label();
             this.lblAnswer = new System.Windows.Forms.Label();
             this.lblResult = new System.Windows.Forms.Label();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.picResult)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // lblExpression
@@ -104,7 +110,7 @@
             this.lblTotalScore.AutoSize = true;
             this.lblTotalScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotalScore.ForeColor = System.Drawing.Color.Red;
-            this.lblTotalScore.Location = new System.Drawing.Point(13, 13);
+            this.lblTotalScore.Location = new System.Drawing.Point(12, 194);
             this.lblTotalScore.Name = "lblTotalScore";
             this.lblTotalScore.Size = new System.Drawing.Size(63, 33);
             this.lblTotalScore.TabIndex = 6;
@@ -177,11 +183,42 @@
             this.lblResult.Text = "";
             this.lblResult.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(8, 53);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(1580, 23);
+            this.progressBar1.TabIndex = 16;
+            this.progressBar1.Value = 20;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(150, 5);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(32, 48);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox1.TabIndex = 17;
+            this.pictureBox1.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(308, 5);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(32, 48);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox2.TabIndex = 17;
+            this.pictureBox2.TabStop = false;
+            // 
             // PracticeForm1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1198, 674);
+            this.ClientSize = new System.Drawing.Size(1600, 831);
+            this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.lblResult);
             this.Controls.Add(this.lblAnswer);
             this.Controls.Add(this.lblScoreDiv);
@@ -199,6 +236,8 @@
             this.Load += new System.EventHandler(this.PracticeForm1_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PracticeForm1_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.picResult)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -218,5 +257,8 @@
         private System.Windows.Forms.Label lblScoreDiv;
         private System.Windows.Forms.Label lblAnswer;
         private System.Windows.Forms.Label lblResult;
+        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBox2;
     }
 }
