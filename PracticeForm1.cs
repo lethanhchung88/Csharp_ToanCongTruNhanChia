@@ -182,6 +182,8 @@ namespace ToanCongTruNhanChia
                 _stickerPointStep = 10;
             }
 
+            _stickerPointStep = 2; // test nhanh;
+
             InitStickerPanels();
             InitLevelPins();
             LoadStickersFromConfig();
@@ -664,7 +666,7 @@ namespace ToanCongTruNhanChia
             prgSticker.Value = scoreInCycle;
         }
 
-        private void HandleStickerLevelUp()
+        private async void HandleStickerLevelUp()
         {
             if (_stickerPointStep <= 0)
                 _stickerPointStep = 10;
@@ -675,26 +677,31 @@ namespace ToanCongTruNhanChia
             if (step <= 0 || max <= 0)
                 return;
 
-            // luôn cập nhật thanh điểm
+            // 1) Cập nhật thanh điểm trước
             UpdateStickerProgressBar();
 
-            // Ép UI vẽ lại ngay lập tức
             if (prgSticker != null)
             {
-                prgSticker.Refresh();      // vẽ lại control
-                Application.DoEvents();    // xử lý message queue 1 lần
+                prgSticker.Refresh();    // vẽ lại ngay
             }
 
-            // chỉ xử lý khi _totalScore là bội số của step
+            // 2) Chỉ khi đủ mốc mới phát nhạc / tặng sticker
             if (_totalScore <= 0 || _totalScore % step != 0)
                 return;
 
-            int levelIndex = _totalScore / step;                 // lần thứ mấy đạt mốc
-            int levelInCycle = ((levelIndex - 1) % 10) + 1;      // 1..10 rồi lặp lại
+            int levelIndex = _totalScore / step;             // lần thứ mấy đạt mốc
+            int levelInCycle = ((levelIndex - 1) % 10) + 1;  // 1..10 rồi lặp lại
 
-            SoundManager.PlayStickerLevelUpSequence(levelInCycle);
+            // 3) Phát chuỗi nhạc level-up trên thread khác, không chặn UI
+            await Task.Run(() =>
+            {
+                SoundManager.PlayStickerLevelUpSequence(levelInCycle);
+            });
+
+            // 4) Sau khi nhạc xong, quay lại UI thread → tặng sticker
             GiveStickerForLevel(levelInCycle);
         }
+
 
         private void LoadStickersFromConfig()
         {
