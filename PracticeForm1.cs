@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics; // debug Debug.WriteLine($"_currentOperation = {_currentOperation}");
+using System.IO;
 
 namespace ToanCongTruNhanChia
 {
@@ -66,6 +67,13 @@ namespace ToanCongTruNhanChia
             public string Key { get; set; }    // key duy nhất cho (a,b)
         }
 
+        // Tag gắn vào mỗi PictureBox sticker
+        private class StickerTagInfo
+        {
+            public int Level { get; set; }
+            public string FileName { get; set; } // tên file (không có đuôi)
+        }
+
         // Tất cả các phép cộng có thể sinh ra theo cấu hình hiện tại (đã gom giao hoán)
         private List<AdditionCase> _allAdditionCases;
 
@@ -113,6 +121,10 @@ namespace ToanCongTruNhanChia
 
         private bool _currentSolved; // đã trả lời đúng câu hiện tại chưa
 
+        // Sticker / Level
+        private int _stickerPointStep; // mốc điểm lên 1 level (10,20,...)
+        private Dictionary<int, FlowLayoutPanel> _levelPanels;
+
         private AppConfig _config;
 
         public PracticeForm1()
@@ -155,6 +167,26 @@ namespace ToanCongTruNhanChia
                     _scoreDiv = cfgDiv.Score;
             }
 
+            // === Sticker config & UI ===
+            if (_config != null)
+            {
+                if (_config.Sticker == null)
+                    _config.Sticker = new StickerConfig();
+
+                _stickerPointStep = _config.Sticker.PointStep;
+                if (_stickerPointStep <= 0)
+                    _stickerPointStep = 10;
+            }
+            else
+            {
+                _stickerPointStep = 10;
+            }
+
+            InitStickerPanels();
+            InitLevelPins();
+            LoadStickersFromConfig();
+            InitStickerProgressBar();
+
             // Chuẩn bị danh sách tất cả phép CỘNG có thể sinh theo cấu hình hiện tại
             var addCfg = GetOperationConfig(OperationType.Addition);
             _allAdditionCases = BuildAllAdditionCases(addCfg);
@@ -191,6 +223,32 @@ namespace ToanCongTruNhanChia
             UpdateScoreLabels();
             ResetResultIcon();
             txtAnswer.Focus();
+        }
+
+        private void PracticeForm1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (_config == null) return;
+
+            _config.TotalScore = _totalScore;
+
+            if (_config.Operations != null)
+            {
+                if (_config.Operations.TryGetValue("add", out var cfgAdd))
+                    cfgAdd.Score = _scoreAdd;
+                if (_config.Operations.TryGetValue("sub", out var cfgSub))
+                    cfgSub.Score = _scoreSub;
+                if (_config.Operations.TryGetValue("mul", out var cfgMul))
+                    cfgMul.Score = _scoreMul;
+                if (_config.Operations.TryGetValue("div", out var cfgDiv))
+                    cfgDiv.Score = _scoreDiv;
+            }
+
+            if (_config.Sticker == null)
+                _config.Sticker = new StickerConfig();
+
+            _config.Sticker.PointStep = _stickerPointStep;
+
+            ConfigHelper.SaveConfig(_config);
         }
 
         #region Sinh câu hỏi
@@ -278,6 +336,7 @@ namespace ToanCongTruNhanChia
             }
 
             UpdateScoreLabels();
+            HandleStickerLevelUp();      // dùng _totalScore làm điểm lên level
         }
 
         private void DecreaseScoreIfPossible()
@@ -302,6 +361,7 @@ namespace ToanCongTruNhanChia
             }
 
             UpdateScoreLabels();
+            UpdateStickerProgressBar();
         }
 
         #endregion
@@ -469,6 +529,8 @@ namespace ToanCongTruNhanChia
 
         #endregion
 
+        #region Hiệu ứng nút Next
+
         private void btnNext_GotFocus(object sender, EventArgs e)
         {
             // Khi nút Next được focus → đổi màu sáng lên
@@ -500,9 +562,6 @@ namespace ToanCongTruNhanChia
             Color normalColor = SystemColors.Control;
             Color highlightColor = Color.LightYellow;
 
-            // Tạm tắt xử lý LostFocus/GotFocus, nhưng ở đây focus vẫn nằm trên btnNext
-            // nên ta có thể đổi màu trực tiếp
-
             for (int i = 0; i < 3; i++)   // nhấp nháy 3 lần
             {
                 btnNext.BackColor = highlightColor;
@@ -515,6 +574,243 @@ namespace ToanCongTruNhanChia
             // Sau khi nháy xong, để lại màu sáng (như khi đang focus)
             btnNext.BackColor = highlightColor;
         }
+
+        #endregion
+
+        #region Sticker / Level
+
+        private void InitStickerPanels()
+        {
+            // Các FlowLayoutPanel bạn đã tạo trong Designer:
+            // flpLevel1..flpLevel10
+            _levelPanels = new Dictionary<int, FlowLayoutPanel>
+            {
+                { 1, flpLevel1 },
+                { 2, flpLevel2 },
+                { 3, flpLevel3 },
+                { 4, flpLevel4 },
+                { 5, flpLevel5 },
+                { 6, flpLevel6 },
+                { 7, flpLevel7 },
+                { 8, flpLevel8 },
+                { 9, flpLevel9 },
+                { 10, flpLevel10 },
+            };
+        }
+
+        private void InitLevelPins()
+        {
+            PictureBox[] pins =
+            {
+                picPin1, picPin2, picPin3, picPin4, picPin5,
+                picPin6, picPin7, picPin8, picPin9, picPin10
+            };
+
+            for (int i = 0; i < pins.Length; i++)
+            {
+                var pb = pins[i];
+                if (pb == null) continue;
+
+                int level = i + 1;
+                pb.Tag = level;
+                pb.Cursor = Cursors.Hand;
+                pb.Click -= RedPin_Click;
+                pb.Click += RedPin_Click;
+            }
+        }
+
+        private void RedPin_Click(object sender, EventArgs e)
+        {
+            if (sender is PictureBox pb && pb.Tag is int level)
+            {
+                SoundManager.PlayLevelPin(level);
+            }
+        }
+
+        private void InitStickerProgressBar()
+        {
+            if (prgSticker == null)
+                return;
+
+            if (_stickerPointStep <= 0)
+                _stickerPointStep = 10;
+
+            prgSticker.Minimum = 0;
+            prgSticker.Maximum = _stickerPointStep * 10;
+            UpdateStickerProgressBar();
+        }
+
+        private void UpdateStickerProgressBar()
+        {
+            if (prgSticker == null)
+                return;
+
+            if (_stickerPointStep <= 0)
+                _stickerPointStep = 10;
+
+            int max = _stickerPointStep * 10;
+            if (max <= 0)
+            {
+                prgSticker.Minimum = 0;
+                prgSticker.Maximum = 1;
+                prgSticker.Value = 0;
+                return;
+            }
+
+            prgSticker.Minimum = 0;
+            prgSticker.Maximum = max;
+
+            int scoreInCycle = _totalScore % max; // sau mỗi 10 level quay lại 0
+            prgSticker.Value = scoreInCycle;
+        }
+
+        private void HandleStickerLevelUp()
+        {
+            if (_stickerPointStep <= 0)
+                _stickerPointStep = 10;
+
+            int step = _stickerPointStep;
+            int max = step * 10;
+
+            if (step <= 0 || max <= 0)
+                return;
+
+            // luôn cập nhật thanh điểm
+            UpdateStickerProgressBar();
+
+            // Ép UI vẽ lại ngay lập tức
+            if (prgSticker != null)
+            {
+                prgSticker.Refresh();      // vẽ lại control
+                Application.DoEvents();    // xử lý message queue 1 lần
+            }
+
+            // chỉ xử lý khi _totalScore là bội số của step
+            if (_totalScore <= 0 || _totalScore % step != 0)
+                return;
+
+            int levelIndex = _totalScore / step;                 // lần thứ mấy đạt mốc
+            int levelInCycle = ((levelIndex - 1) % 10) + 1;      // 1..10 rồi lặp lại
+
+            SoundManager.PlayStickerLevelUpSequence(levelInCycle);
+            GiveStickerForLevel(levelInCycle);
+        }
+
+        private void LoadStickersFromConfig()
+        {
+            if (_config?.Sticker?.EarnedStickers == null)
+                return;
+
+            foreach (var st in _config.Sticker.EarnedStickers)
+            {
+                if (!_levelPanels.TryGetValue(st.Level, out var flp) || flp == null)
+                    continue;
+
+                string stickersRoot = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "sound", "stickers");
+                string levelFolderName = $"level{st.Level:00}";
+                string levelFolderPath = Directory
+                    .GetDirectories(stickersRoot, levelFolderName + "*")
+                    .FirstOrDefault();
+
+                if (string.IsNullOrEmpty(levelFolderPath))
+                    continue;
+
+                string pngPath = Path.Combine(levelFolderPath, st.FileName);
+                if (!File.Exists(pngPath))
+                    continue;
+
+                string fileNameWithoutExt = Path.GetFileNameWithoutExtension(pngPath);
+
+                var pb = new PictureBox
+                {
+                    Width = 80,
+                    Height = 80,
+                    SizeMode = PictureBoxSizeMode.Zoom,
+                    Margin = new Padding(3),
+                    Cursor = Cursors.Hand,
+                    Image = Image.FromFile(pngPath),
+                    Tag = new StickerTagInfo
+                    {
+                        Level = st.Level,
+                        FileName = fileNameWithoutExt
+                    }
+                };
+
+                pb.Click += Sticker_Click;
+                flp.Controls.Add(pb);
+            }
+        }
+
+        private void GiveStickerForLevel(int level)
+        {
+            if (_levelPanels == null || !_levelPanels.TryGetValue(level, out var flp) || flp == null)
+                return;
+
+            string stickersRoot = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "sound", "stickers");
+            string levelFolderName = $"level{level:00}";
+            string levelFolderPath = Directory
+                .GetDirectories(stickersRoot, levelFolderName + "*")
+                .FirstOrDefault();
+
+            if (string.IsNullOrEmpty(levelFolderPath))
+                return;
+
+            string[] pngFiles = Directory.GetFiles(levelFolderPath, "*.png");
+            if (pngFiles == null || pngFiles.Length == 0)
+                return;
+
+            int index = _random.Next(0, pngFiles.Length);
+            string pngPath = pngFiles[index];
+            string fileNameWithoutExt = Path.GetFileNameWithoutExtension(pngPath);
+
+            var pb = new PictureBox
+            {
+                Width = 80,
+                Height = 80,
+                SizeMode = PictureBoxSizeMode.Zoom,
+                Margin = new Padding(3),
+                Cursor = Cursors.Hand,
+                Image = Image.FromFile(pngPath),
+                Tag = new StickerTagInfo
+                {
+                    Level = level,
+                    FileName = fileNameWithoutExt
+                }
+            };
+
+            pb.Click += Sticker_Click;
+            flp.Controls.Add(pb);
+
+            // lưu vào config
+            if (_config != null)
+            {
+                if (_config.Sticker == null)
+                    _config.Sticker = new StickerConfig();
+                if (_config.Sticker.EarnedStickers == null)
+                    _config.Sticker.EarnedStickers = new List<EarnedStickerInfo>();
+
+                _config.Sticker.EarnedStickers.Add(new EarnedStickerInfo
+                {
+                    Level = level,
+                    FileName = fileNameWithoutExt + ".png"
+                });
+            }
+
+            // Phát âm thanh sticker
+            SoundManager.PlayStickerSound(level, fileNameWithoutExt);
+        }
+
+        private void Sticker_Click(object sender, EventArgs e)
+        {
+            if (sender is PictureBox pb && pb.Tag is StickerTagInfo info)
+            {
+                SoundManager.PlayStickerSound(info.Level, info.FileName);
+            }
+        }
+
+        #endregion
+
+        #region Helper khác (key, build case…)
 
         private string GetOperationKey(OperationType op)
         {
@@ -574,7 +870,6 @@ namespace ToanCongTruNhanChia
             return cfg;
         }
 
-
         private int NextInRange(RangeConfig range, int defaultMin, int defaultMax)
         {
             int min = defaultMin;
@@ -596,6 +891,10 @@ namespace ToanCongTruNhanChia
 
             return _random.Next(min, max + 1);
         }
+
+        #endregion
+
+        #region Sinh phép cộng / trừ / nhân / chia (giữ nguyên logic cũ)
 
         private void GenerateAdditionQuestionRandomOnly(OperationConfig cfg)
         {
@@ -746,12 +1045,11 @@ namespace ToanCongTruNhanChia
                 ? cfg.ResultRange.Max
                 : 10;
 
-            if (resultMin < 0) resultMin = 0;          // cho đơn giản
+            if (resultMin < 0) resultMin = 0;
             if (resultMax < resultMin) resultMax = resultMin;
 
             _correctResult = _random.Next(resultMin, resultMax + 1);
 
-            // số chia (operand2) theo range
             int divisor = NextInRange(cfg.Operand2Range, 1, 9);
             if (divisor == 0) divisor = 1;
 
@@ -804,7 +1102,7 @@ namespace ToanCongTruNhanChia
                     : 0;
                 int op1CfgMax = (cfg.Operand1Range != null && cfg.Operand1Range.Enabled)
                     ? cfg.Operand1Range.Max
-                    : 20;    // giống logic mặc định của bạn
+                    : 20;
 
                 for (int r = resMin; r <= resMax; r++)
                 {
@@ -1332,7 +1630,6 @@ namespace ToanCongTruNhanChia
                     if (!divisibleOnly)
                     {
                         // Nếu sau này cho phép không chia hết thì xử lý thêm ở đây.
-                        // Tạm thời vẫn lấy dividend = q * d để kết quả là số nguyên.
                     }
 
                     if (dividend < op1Min || dividend > op1Max)
@@ -1418,6 +1715,6 @@ namespace ToanCongTruNhanChia
             _divisionHistorySet.Add(chosen.Key);
         }
 
-
+        #endregion
     }
 }

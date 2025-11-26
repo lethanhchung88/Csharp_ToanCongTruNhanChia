@@ -12,6 +12,7 @@ namespace ToanCongTruNhanChia
         public int TotalScore { get; set; }
         public Dictionary<string, OperationConfig> Operations { get; set; } 
             = new Dictionary<string, OperationConfig>();
+        public StickerConfig Sticker { get; set; } = new StickerConfig();
     }
 
     public class OperationConfig
@@ -38,5 +39,25 @@ namespace ToanCongTruNhanChia
         public bool IntegerResult { get; set; }
         public bool NonNegativeResult { get; set; }
         public bool DivisibleOnly { get; set; }
+    }
+
+    public class EarnedStickerInfo
+    {
+        public int Level { get; set; }      // Level 1..10
+        public string FileName { get; set; } // Tên file .png (ví dụ: "peppa_01.png")
+    }
+
+    public class StickerConfig
+    {
+        /// <summary>
+        /// Số điểm cần để lên 1 level (10, 20, ...).
+        /// Dùng chung cho cả vòng 10 level.
+        /// </summary>
+        public int PointStep { get; set; } = 10;
+
+        /// <summary>
+        /// Danh sách sticker đã được tặng, để khi mở app lại thì vẽ ra đúng.
+        /// </summary>
+        public List<EarnedStickerInfo> EarnedStickers { get; set; } = new List<EarnedStickerInfo>();
     }
 }

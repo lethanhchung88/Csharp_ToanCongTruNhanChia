@@ -17,6 +17,10 @@ namespace ToanCongTruNhanChia
             Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "sound", "en");
 
 
+        private static string StickersBasePath =>
+            Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "sound", "stickers");
+
+
         // Mapping: MENU NAME → FILE NAME
         private static readonly Dictionary<string, string> MenuSoundMap =
             new Dictionary<string, string>
@@ -67,12 +71,12 @@ namespace ToanCongTruNhanChia
         { "numAddOpe2Max",           "Maximum Value.wav" },
 
         // Result
-        { "lblAddResult",            "Result.wav" },
-        { "chkAddResultEnable",      "Enable.wav" },
-        { "lblAddResultMin",         "Minimum Value.wav" },
-        { "numAddResultMin",         "Minimum Value.wav" },
-        { "lblAddResultMax",         "Maximum Value.wav" },
-        { "numAddResultMax",         "Maximum Value.wav" },
+        { "lblAddRes",               "Result.wav" },
+        { "chkAddResEnable",         "Enable.wav" },
+        { "lblAddResMin",            "Minimum Value.wav" },
+        { "numAddResMin",            "Minimum Value.wav" },
+        { "lblAddResMax",            "Maximum Value.wav" },
+        { "numAddResMax",            "Maximum Value.wav" },
 
         //////////////////////////////////////////////////
         // SUBTRACTION (-)
@@ -95,12 +99,12 @@ namespace ToanCongTruNhanChia
         { "numSubOpe2Max",           "Maximum Value.wav" },
 
         // Result
-        { "lblSubResult",            "Result.wav" },
-        { "chkSubResultEnable",      "Enable.wav" },
-        { "lblSubResultMin",         "Minimum Value.wav" },
-        { "numSubResultMin",         "Minimum Value.wav" },
-        { "lblSubResultMax",         "Maximum Value.wav" },
-        { "numSubResultMax",         "Maximum Value.wav" },
+        { "lblSubRes",               "Result.wav" },
+        { "chkSubResEnable",         "Enable.wav" },
+        { "lblSubResMin",            "Minimum Value.wav" },
+        { "numSubResMin",            "Minimum Value.wav" },
+        { "lblSubResMax",            "Maximum Value.wav" },
+        { "numSubResMax",            "Maximum Value.wav" },
 
         //////////////////////////////////////////////////
         // MULTIPLICATION (×)
@@ -123,63 +127,88 @@ namespace ToanCongTruNhanChia
         { "numMulOpe2Max",           "Maximum Value.wav" },
 
         // Result
-        { "lblMulResult",            "Result.wav" },
-        { "chkMulResultEnable",      "Enable.wav" },
-        { "lblMulResultMin",         "Minimum Value.wav" },
-        { "numMulResultMin",         "Minimum Value.wav" },
-        { "lblMulResultMax",         "Maximum Value.wav" },
-        { "numMulResultMax",         "Maximum Value.wav" },
+        { "lblMulRes",               "Result.wav" },
+        { "chkMulResEnable",         "Enable.wav" },
+        { "lblMulResMin",            "Minimum Value.wav" },
+        { "numMulResMin",            "Minimum Value.wav" },
+        { "lblMulResMax",            "Maximum Value.wav" },
+        { "numMulResMax",            "Maximum Value.wav" },
 
         //////////////////////////////////////////////////
         // DIVISION (÷)
         //////////////////////////////////////////////////
 
-        // Operand 1
-        { "lblDivOpe1",              "Operand One.wav" },
+        // Operand 1 (Dividend)
+        { "lblDivOpe1",              "Dividend.wav" },
         { "chkDivOpe1Enable",        "Enable.wav" },
         { "lblDivOpe1Min",           "Minimum Value.wav" },
-        { "numDivOOpe1Min",          "Minimum Value.wav" },
+        { "numDivOpe1Min",           "Minimum Value.wav" },
         { "lblDivOpe1Max",           "Maximum Value.wav" },
         { "numDivOpe1Max",           "Maximum Value.wav" },
 
-        // Operand 2
-        { "lblDivOpe2",              "Operand Two.wav" },
+        // Operand 2 (Divisor)
+        { "lblDivOpe2",              "Divisor.wav" },
         { "chkDivOpe2Enable",        "Enable.wav" },
         { "lblDivOpe2Min",           "Minimum Value.wav" },
         { "numDivOpe2Min",           "Minimum Value.wav" },
         { "lblDivOpe2Max",           "Maximum Value.wav" },
         { "numDivOpe2Max",           "Maximum Value.wav" },
 
-        // Result
-        { "lblDivResult",            "Result.wav" },
-        { "chkDivResultEnable",      "Enable.wav" },
-        { "lblDivResultMin",         "Minimum Value.wav" },
-        { "numDivResultMin",         "Minimum Value.wav" },
-        { "lblDivResultMax",         "Maximum Value.wav" },
-        { "numDivResultMax",         "Maximum Value.wav" }
+        // Result (Quotient)
+        { "lblDivRes",               "Quotient.wav" },
+        { "chkDivResEnable",         "Enable.wav" },
+        { "lblDivResMin",            "Minimum Value.wav" },
+        { "numDivResMin",            "Minimum Value.wav" },
+        { "lblDivResMax",            "Maximum Value.wav" },
+        { "numDivResMax",            "Maximum Value.wav" },
+
+        //////////////////////////////////////////////////
+        // CONSTRAINTS
+        //////////////////////////////////////////////////
+        { "chkSubNonNegative",       "Non Negative Result.wav" },
+        { "chkDivExact",             "Exact Division.wav" },
             };
 
+        private static readonly Dictionary<string, string> PracticeFormSoundMap =
+            new Dictionary<string, string>
+            {
+                // Add các mapping cho PracticeForm1 nếu cần
+            };
 
-        // Folder chứa file khen
-        private static readonly string PraiseFolder =
-            Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "sound", "en", "praise");
-
-        // Danh sách file praise đã load (tự động lấy từ thư mục)
-        private static string[] _praiseFiles = null;
-
-        // Vị trí file hiện tại trong danh sách (round-robin)
-        private static int _praiseIndex = 0;
-
-        /// <summary>
-        /// Gọi khi rê chuột vào menu item.
-        /// Nhận vào tên menu: menuAddition.Name
-        /// </summary>
-        public static void PlayMenu(string menuName)
+        public static void PlayMenuHover(string menuName)
         {
             if (!MenuSoundMap.TryGetValue(menuName, out string file))
                 return;
 
             string fullPath = Path.Combine(BasePath, file);
+            Play(fullPath);
+        }
+
+        public static void PlaySettingsHover(string controlName)
+        {
+            if (!SettingsSoundMap.TryGetValue(controlName, out string file))
+                return;
+
+            string fullPath = Path.Combine(BasePath,
+                Path.Combine("settings", file));
+
+            Play(fullPath);
+        }
+
+        public static void PlayPracticeHover(string controlName)
+        {
+            if (!PracticeFormSoundMap.TryGetValue(controlName, out string file))
+                return;
+
+            string fullPath = Path.Combine(BasePath,
+                Path.Combine("practice", file));
+
+            Play(fullPath);
+        }
+
+        public static void PlayFile(string relativePath)
+        {
+            string fullPath = Path.Combine(BasePath, relativePath);
             Play(fullPath);
         }
 
@@ -198,42 +227,42 @@ namespace ToanCongTruNhanChia
             {
                 // Không để app bị crash nếu không phát được âm thanh
             }
+
         }
 
-        public static void PlaySettingsHover(string controlName)
-        {
-            if (!SettingsSoundMap.TryGetValue(controlName, out string file))
-                return;
-
-            string fullPath = Path.Combine(BasePath, file);
-            Play(fullPath);
-        }
-
-        /// <summary>
-        /// Phát âm thanh theo thư mục và tên file.
-        /// Ví dụ: PlayFromFolder("en", "Settings saved")
-        /// sẽ phát sound/en/Settings saved.wav
-        /// </summary>
-        public static void PlayFromFolder(string folder, string fileNameWithoutExt)
+        private static void PlaySyncSafe(string path)
         {
             try
             {
-                string basePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "sound");
-                string fullPath = Path.Combine(basePath, folder, fileNameWithoutExt + ".wav");
-
-                if (!File.Exists(fullPath))
+                if (!File.Exists(path))
                     return;
 
-                _player.SoundLocation = fullPath;
-                _player.Load();
-                _player.Play();
+                using (var player = new SoundPlayer(path))
+                {
+                    player.Load();
+                    player.PlaySync();
+                }
             }
             catch
             {
-                // không để app crash
+                // Không để app bị crash nếu không phát được âm thanh
             }
         }
 
+        //////////////////////////////////////////////////
+        // PRAISE (sound/en/praise)
+        //////////////////////////////////////////////////
+
+        private static string PraiseFolder =>
+            Path.Combine(BasePath, "praise");
+
+        // Danh sách file khen thưởng
+        private static string[] _praiseFiles = null;
+
+        // Index hiện tại để phát (theo kiểu xoay vòng)
+        private static int _praiseIndex = 0;
+
+        // Load danh sách file trong thư mục praise
         private static void LoadPraiseFiles()
         {
             if (!Directory.Exists(PraiseFolder))
@@ -284,23 +313,19 @@ namespace ToanCongTruNhanChia
         public static void PlayPraise()
         {
             string _;
-            PlayPraise(out _);   // gọi bản 2 nhưng bỏ text
+            PlayPraise(out _);
         }
 
-        //////////////////////////////////////////////////////////////////////
-        // TRY AGAIN (âm thanh khi làm sai)
-        //////////////////////////////////////////////////////////////////////
 
-        // Thư mục chứa file tryagain
-        private static readonly string TryAgainFolder =
-            Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "sound", "en", "tryagain");
+        //////////////////////////////////////////////////
+        // TRY AGAIN (sound/en/tryagain)
+        //////////////////////////////////////////////////
 
-        // Danh sách file tryagain (load lần đầu)
+        private static string TryAgainFolder =>
+            Path.Combine(BasePath, "tryagain");
+
         private static string[] _tryAgainFiles = null;
-
-        // Vị trí hiện tại (xoay vòng)
         private static int _tryAgainIndex = 0;
-
 
         // Load danh sách file trong thư mục tryagain
         private static void LoadTryAgainFiles()
@@ -314,11 +339,9 @@ namespace ToanCongTruNhanChia
                 _tryAgainFiles = null;
         }
 
-
-        // Hàm phát âm thanh + trả text
-        public static bool PlayTryAgain(out string text)
+        public static bool PlayTryAgain(out string tryAgainText)
         {
-            text = string.Empty;
+            tryAgainText = string.Empty;
 
             try
             {
@@ -328,18 +351,19 @@ namespace ToanCongTruNhanChia
                 if (_tryAgainFiles == null || _tryAgainFiles.Length == 0)
                     return false;
 
-                // Lấy file theo index xoay vòng
+                // Lấy file theo index
                 string fileToPlay = _tryAgainFiles[_tryAgainIndex];
 
+                // Tăng index theo kiểu xoay vòng
                 _tryAgainIndex++;
                 if (_tryAgainIndex >= _tryAgainFiles.Length)
                     _tryAgainIndex = 0;
 
-                // Phát âm
+                // Phát âm thanh
                 Play(fileToPlay);
 
-                // Lấy text (bỏ .wav)
-                text = Path.GetFileNameWithoutExtension(fileToPlay);
+                // Lấy text (bỏ đuôi .wav)
+                tryAgainText = Path.GetFileNameWithoutExtension(fileToPlay);
 
                 return true;
             }
@@ -356,6 +380,103 @@ namespace ToanCongTruNhanChia
             string _;
             PlayTryAgain(out _);
         }
+
+        //////////////////////////////////////////////////
+        // STICKERS (Level up & click)
+        //////////////////////////////////////////////////
+
+        public static void PlayStickerLevelUpSequence(int level)
+        {
+            // 1) Nhạc hiệu level up chung
+            string music = Path.Combine(StickersBasePath, "level-up-music.wav");
+            PlaySyncSafe(music);
+
+            // 2) Congratulations...
+            string congrats = Path.Combine(StickersBasePath, "Congratulations Level Up.wav");
+            PlaySyncSafe(congrats);
+
+            // 3) levelXX.wav và 4) levelXX-intro.wav trong thư mục levelXX*
+            string levelFolderName = $"level{level:00}";
+            string levelFolderPath = Directory
+                .GetDirectories(StickersBasePath, levelFolderName + "*")
+                .FirstOrDefault();
+
+            if (string.IsNullOrEmpty(levelFolderPath))
+                return;
+
+            string levelWav = Path.Combine(levelFolderPath, $"level{level:00}.wav");
+            string introWav = Path.Combine(levelFolderPath, $"level{level:00}-intro.wav");
+
+            PlaySyncSafe(levelWav);
+            PlaySyncSafe(introWav);
+        }
+
+        public static void PlayLevelPin(int level)
+        {
+            string levelFolderName = $"level{level:00}";
+            string levelFolderPath = Directory
+                .GetDirectories(StickersBasePath, levelFolderName + "*")
+                .FirstOrDefault();
+
+            if (string.IsNullOrEmpty(levelFolderPath))
+                return;
+
+            string wavPath = Path.Combine(levelFolderPath, $"level{level:00}.wav");
+            Play(wavPath);
+        }
+
+        public static void PlayStickerSound(int level, string fileNameWithoutExt)
+        {
+            string levelFolderName = $"level{level:00}";
+            string levelFolderPath = Directory
+                .GetDirectories(StickersBasePath, levelFolderName + "*")
+                .FirstOrDefault();
+
+            if (string.IsNullOrEmpty(levelFolderPath))
+                return;
+
+            string wavPath = Path.Combine(levelFolderPath, fileNameWithoutExt + ".wav");
+            Play(wavPath);
+        }
+
+        /// <summary>
+        /// Gọi khi rê chuột vào menu item.
+        /// Nhận vào tên menu, ví dụ: menuAddition.Name
+        /// </summary>
+        public static void PlayMenu(string menuName)
+        {
+            if (!MenuSoundMap.TryGetValue(menuName, out string file))
+                return;
+
+            string fullPath = Path.Combine(BasePath, file);
+            Play(fullPath);
+        }
+
+        /// <summary>
+        /// Phát âm thanh theo thư mục và tên file (không cần .wav).
+        /// Ví dụ:
+        ///   PlayFromFolder("en", "Settings saved")
+        /// sẽ phát: sound/en/Settings saved.wav
+        /// </summary>
+        public static void PlayFromFolder(string folder, string fileNameWithoutExt)
+        {
+            try
+            {
+                string basePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "sound");
+                string fullPath = Path.Combine(basePath, folder, fileNameWithoutExt + ".wav");
+
+                if (!File.Exists(fullPath))
+                    return;
+
+                // dùng hàm Play chung để phát
+                Play(fullPath);
+            }
+            catch
+            {
+                // Không để app bị crash nếu lỗi
+            }
+        }
+
 
 
 
