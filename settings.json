@@ -105,5 +105,9 @@
         "DivisibleOnly": true
       }
     }
+  },
+  "Sticker": {
+    "PointStep": 10,
+    "EarnedStickers": []
   }
 }

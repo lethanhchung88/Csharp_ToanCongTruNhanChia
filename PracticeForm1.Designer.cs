@@ -1,6 +1,6 @@
 ﻿namespace ToanCongTruNhanChia
 {
-    partial class PracticeForm1
+    partial class grpOperations
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PracticeForm1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(grpOperations));
             this.lblExpression = new System.Windows.Forms.Label();
             this.txtAnswer = new System.Windows.Forms.TextBox();
             this.btnNext = new System.Windows.Forms.Button();
@@ -51,19 +51,27 @@
             this.picPin7 = new System.Windows.Forms.PictureBox();
             this.picPin8 = new System.Windows.Forms.PictureBox();
             this.picPin9 = new System.Windows.Forms.PictureBox();
-            this.picResult = new System.Windows.Forms.PictureBox();
             this.pnlStickers = new System.Windows.Forms.Panel();
             this.tblStickers = new System.Windows.Forms.TableLayoutPanel();
-            this.flpLevel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.flpLevel2 = new System.Windows.Forms.FlowLayoutPanel();
-            this.flpLevel3 = new System.Windows.Forms.FlowLayoutPanel();
-            this.flpLevel4 = new System.Windows.Forms.FlowLayoutPanel();
-            this.flpLevel5 = new System.Windows.Forms.FlowLayoutPanel();
-            this.flpLevel6 = new System.Windows.Forms.FlowLayoutPanel();
-            this.flpLevel7 = new System.Windows.Forms.FlowLayoutPanel();
-            this.flpLevel8 = new System.Windows.Forms.FlowLayoutPanel();
-            this.flpLevel9 = new System.Windows.Forms.FlowLayoutPanel();
             this.flpLevel10 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flpLevel9 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flpLevel8 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flpLevel7 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flpLevel6 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flpLevel5 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flpLevel4 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flpLevel3 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flpLevel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flpLevel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.lblStickerSound = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblMode = new System.Windows.Forms.Label();
+            this.cmbMode = new System.Windows.Forms.ComboBox();
+            this.chkDiv = new System.Windows.Forms.CheckBox();
+            this.chkMul = new System.Windows.Forms.CheckBox();
+            this.chkSub = new System.Windows.Forms.CheckBox();
+            this.chkAdd = new System.Windows.Forms.CheckBox();
+            this.btnSkip = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.picPin1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picPin2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picPin3)).BeginInit();
@@ -74,39 +82,39 @@
             ((System.ComponentModel.ISupportInitialize)(this.picPin7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picPin8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picPin9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picResult)).BeginInit();
             this.pnlStickers.SuspendLayout();
             this.tblStickers.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblExpression
             // 
             this.lblExpression.AutoSize = true;
-            this.lblExpression.Font = new System.Drawing.Font("Microsoft Sans Serif", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblExpression.Location = new System.Drawing.Point(433, 645);
+            this.lblExpression.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblExpression.Location = new System.Drawing.Point(397, 43);
             this.lblExpression.Name = "lblExpression";
-            this.lblExpression.Size = new System.Drawing.Size(473, 108);
+            this.lblExpression.Size = new System.Drawing.Size(240, 55);
             this.lblExpression.TabIndex = 0;
-            this.lblExpression.Text = "99 + 98 = ";
+            this.lblExpression.Text = "99 + 99 = ";
             // 
             // txtAnswer
             // 
-            this.txtAnswer.Font = new System.Drawing.Font("Microsoft Sans Serif", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAnswer.Location = new System.Drawing.Point(912, 639);
+            this.txtAnswer.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAnswer.Location = new System.Drawing.Point(618, 40);
             this.txtAnswer.Name = "txtAnswer";
-            this.txtAnswer.Size = new System.Drawing.Size(279, 116);
+            this.txtAnswer.Size = new System.Drawing.Size(115, 62);
             this.txtAnswer.TabIndex = 4;
-            this.txtAnswer.Text = "9999";
+            this.txtAnswer.Text = "99";
             this.txtAnswer.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtAnswer.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtAnswer_KeyDown);
             this.txtAnswer.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAnswer_KeyPress);
             // 
             // btnNext
             // 
-            this.btnNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNext.Location = new System.Drawing.Point(1507, 778);
+            this.btnNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNext.Location = new System.Drawing.Point(1432, 12);
             this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(81, 41);
+            this.btnNext.Size = new System.Drawing.Size(75, 31);
             this.btnNext.TabIndex = 7;
             this.btnNext.Text = "Next";
             this.btnNext.UseVisualStyleBackColor = true;
@@ -116,10 +124,10 @@
             // 
             // btnClose
             // 
-            this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClose.Location = new System.Drawing.Point(12, 778);
+            this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClose.Location = new System.Drawing.Point(1353, 12);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(99, 41);
+            this.btnClose.Size = new System.Drawing.Size(73, 31);
             this.btnClose.TabIndex = 8;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
@@ -128,84 +136,80 @@
             // lblTotalScore
             // 
             this.lblTotalScore.AutoSize = true;
-            this.lblTotalScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalScore.Font = new System.Drawing.Font("Segoe UI Emoji", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotalScore.ForeColor = System.Drawing.Color.Red;
-            this.lblTotalScore.Location = new System.Drawing.Point(12, 9);
+            this.lblTotalScore.Location = new System.Drawing.Point(2, 46);
             this.lblTotalScore.Name = "lblTotalScore";
-            this.lblTotalScore.Size = new System.Drawing.Size(63, 33);
+            this.lblTotalScore.Size = new System.Drawing.Size(105, 38);
             this.lblTotalScore.TabIndex = 6;
-            this.lblTotalScore.Text = "10$";
+            this.lblTotalScore.Text = "999⭐";
             // 
             // lblScoreAdd
             // 
             this.lblScoreAdd.AutoSize = true;
-            this.lblScoreAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblScoreAdd.ForeColor = System.Drawing.Color.Red;
-            this.lblScoreAdd.Location = new System.Drawing.Point(1436, 730);
+            this.lblScoreAdd.Font = new System.Drawing.Font("Segoe UI Emoji", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblScoreAdd.Location = new System.Drawing.Point(99, 23);
             this.lblScoreAdd.Name = "lblScoreAdd";
-            this.lblScoreAdd.Size = new System.Drawing.Size(65, 20);
+            this.lblScoreAdd.Size = new System.Drawing.Size(34, 15);
             this.lblScoreAdd.TabIndex = 9;
-            this.lblScoreAdd.Text = "10 điểm";
+            this.lblScoreAdd.Text = "999★";
             // 
             // lblScoreSub
             // 
             this.lblScoreSub.AutoSize = true;
-            this.lblScoreSub.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblScoreSub.ForeColor = System.Drawing.Color.Red;
-            this.lblScoreSub.Location = new System.Drawing.Point(1436, 752);
+            this.lblScoreSub.Font = new System.Drawing.Font("Segoe UI Emoji", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblScoreSub.Location = new System.Drawing.Point(99, 46);
             this.lblScoreSub.Name = "lblScoreSub";
-            this.lblScoreSub.Size = new System.Drawing.Size(65, 20);
+            this.lblScoreSub.Size = new System.Drawing.Size(34, 15);
             this.lblScoreSub.TabIndex = 11;
-            this.lblScoreSub.Text = "10 điểm";
+            this.lblScoreSub.Text = "999★";
             // 
             // lblScoreMul
             // 
             this.lblScoreMul.AutoSize = true;
-            this.lblScoreMul.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblScoreMul.ForeColor = System.Drawing.Color.Red;
-            this.lblScoreMul.Location = new System.Drawing.Point(1436, 778);
+            this.lblScoreMul.Font = new System.Drawing.Font("Segoe UI Emoji", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblScoreMul.Location = new System.Drawing.Point(99, 71);
             this.lblScoreMul.Name = "lblScoreMul";
-            this.lblScoreMul.Size = new System.Drawing.Size(65, 20);
+            this.lblScoreMul.Size = new System.Drawing.Size(34, 15);
             this.lblScoreMul.TabIndex = 12;
-            this.lblScoreMul.Text = "10 điểm";
+            this.lblScoreMul.Text = "999★";
             // 
             // lblScoreDiv
             // 
             this.lblScoreDiv.AutoSize = true;
-            this.lblScoreDiv.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblScoreDiv.ForeColor = System.Drawing.Color.Red;
-            this.lblScoreDiv.Location = new System.Drawing.Point(1436, 802);
+            this.lblScoreDiv.Font = new System.Drawing.Font("Segoe UI Emoji", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblScoreDiv.Location = new System.Drawing.Point(99, 92);
             this.lblScoreDiv.Name = "lblScoreDiv";
-            this.lblScoreDiv.Size = new System.Drawing.Size(65, 20);
+            this.lblScoreDiv.Size = new System.Drawing.Size(34, 15);
             this.lblScoreDiv.TabIndex = 13;
-            this.lblScoreDiv.Text = "10 điểm";
+            this.lblScoreDiv.Text = "999★";
             // 
             // lblAnswer
             // 
             this.lblAnswer.AutoSize = true;
-            this.lblAnswer.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAnswer.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAnswer.ForeColor = System.Drawing.Color.Blue;
-            this.lblAnswer.Location = new System.Drawing.Point(667, 766);
+            this.lblAnswer.Location = new System.Drawing.Point(798, 54);
             this.lblAnswer.Name = "lblAnswer";
-            this.lblAnswer.Size = new System.Drawing.Size(281, 55);
+            this.lblAnswer.Size = new System.Drawing.Size(187, 37);
             this.lblAnswer.TabIndex = 14;
             this.lblAnswer.Text = "Keep going!";
             // 
             // lblResult
             // 
             this.lblResult.AutoSize = true;
-            this.lblResult.Font = new System.Drawing.Font("Wingdings", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
+            this.lblResult.Font = new System.Drawing.Font("Wingdings", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
             this.lblResult.ForeColor = System.Drawing.Color.Red;
-            this.lblResult.Location = new System.Drawing.Point(1208, 644);
+            this.lblResult.Location = new System.Drawing.Point(739, 45);
             this.lblResult.Name = "lblResult";
-            this.lblResult.Size = new System.Drawing.Size(106, 106);
+            this.lblResult.Size = new System.Drawing.Size(53, 53);
             this.lblResult.TabIndex = 15;
             this.lblResult.Text = "";
             this.lblResult.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // prgSticker
             // 
-            this.prgSticker.Location = new System.Drawing.Point(8, 53);
+            this.prgSticker.Location = new System.Drawing.Point(8, 235);
             this.prgSticker.Name = "prgSticker";
             this.prgSticker.Size = new System.Drawing.Size(1580, 23);
             this.prgSticker.TabIndex = 16;
@@ -214,7 +218,7 @@
             // picPin1
             // 
             this.picPin1.Image = ((System.Drawing.Image)(resources.GetObject("picPin1.Image")));
-            this.picPin1.Location = new System.Drawing.Point(150, 5);
+            this.picPin1.Location = new System.Drawing.Point(150, 187);
             this.picPin1.Name = "picPin1";
             this.picPin1.Size = new System.Drawing.Size(32, 48);
             this.picPin1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -224,7 +228,7 @@
             // picPin2
             // 
             this.picPin2.Image = ((System.Drawing.Image)(resources.GetObject("picPin2.Image")));
-            this.picPin2.Location = new System.Drawing.Point(308, 5);
+            this.picPin2.Location = new System.Drawing.Point(308, 187);
             this.picPin2.Name = "picPin2";
             this.picPin2.Size = new System.Drawing.Size(32, 48);
             this.picPin2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -234,7 +238,7 @@
             // picPin3
             // 
             this.picPin3.Image = ((System.Drawing.Image)(resources.GetObject("picPin3.Image")));
-            this.picPin3.Location = new System.Drawing.Point(466, 5);
+            this.picPin3.Location = new System.Drawing.Point(466, 187);
             this.picPin3.Name = "picPin3";
             this.picPin3.Size = new System.Drawing.Size(32, 48);
             this.picPin3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -244,7 +248,7 @@
             // picPin4
             // 
             this.picPin4.Image = ((System.Drawing.Image)(resources.GetObject("picPin4.Image")));
-            this.picPin4.Location = new System.Drawing.Point(624, 5);
+            this.picPin4.Location = new System.Drawing.Point(624, 187);
             this.picPin4.Name = "picPin4";
             this.picPin4.Size = new System.Drawing.Size(32, 48);
             this.picPin4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -254,7 +258,7 @@
             // picPin5
             // 
             this.picPin5.Image = ((System.Drawing.Image)(resources.GetObject("picPin5.Image")));
-            this.picPin5.Location = new System.Drawing.Point(782, 5);
+            this.picPin5.Location = new System.Drawing.Point(782, 187);
             this.picPin5.Name = "picPin5";
             this.picPin5.Size = new System.Drawing.Size(32, 48);
             this.picPin5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -264,7 +268,7 @@
             // picPin10
             // 
             this.picPin10.Image = ((System.Drawing.Image)(resources.GetObject("picPin10.Image")));
-            this.picPin10.Location = new System.Drawing.Point(1572, 5);
+            this.picPin10.Location = new System.Drawing.Point(1572, 187);
             this.picPin10.Name = "picPin10";
             this.picPin10.Size = new System.Drawing.Size(32, 48);
             this.picPin10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -274,7 +278,7 @@
             // picPin6
             // 
             this.picPin6.Image = ((System.Drawing.Image)(resources.GetObject("picPin6.Image")));
-            this.picPin6.Location = new System.Drawing.Point(940, 5);
+            this.picPin6.Location = new System.Drawing.Point(940, 187);
             this.picPin6.Name = "picPin6";
             this.picPin6.Size = new System.Drawing.Size(32, 48);
             this.picPin6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -284,7 +288,7 @@
             // picPin7
             // 
             this.picPin7.Image = ((System.Drawing.Image)(resources.GetObject("picPin7.Image")));
-            this.picPin7.Location = new System.Drawing.Point(1098, 5);
+            this.picPin7.Location = new System.Drawing.Point(1098, 187);
             this.picPin7.Name = "picPin7";
             this.picPin7.Size = new System.Drawing.Size(32, 48);
             this.picPin7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -294,7 +298,7 @@
             // picPin8
             // 
             this.picPin8.Image = ((System.Drawing.Image)(resources.GetObject("picPin8.Image")));
-            this.picPin8.Location = new System.Drawing.Point(1256, 5);
+            this.picPin8.Location = new System.Drawing.Point(1256, 187);
             this.picPin8.Name = "picPin8";
             this.picPin8.Size = new System.Drawing.Size(32, 48);
             this.picPin8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -304,29 +308,19 @@
             // picPin9
             // 
             this.picPin9.Image = ((System.Drawing.Image)(resources.GetObject("picPin9.Image")));
-            this.picPin9.Location = new System.Drawing.Point(1414, 5);
+            this.picPin9.Location = new System.Drawing.Point(1414, 187);
             this.picPin9.Name = "picPin9";
             this.picPin9.Size = new System.Drawing.Size(32, 48);
             this.picPin9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picPin9.TabIndex = 17;
             this.picPin9.TabStop = false;
             // 
-            // picResult
-            // 
-            this.picResult.Location = new System.Drawing.Point(12, 656);
-            this.picResult.Name = "picResult";
-            this.picResult.Size = new System.Drawing.Size(124, 116);
-            this.picResult.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picResult.TabIndex = 5;
-            this.picResult.TabStop = false;
-            this.picResult.Visible = false;
-            // 
             // pnlStickers
             // 
             this.pnlStickers.Controls.Add(this.tblStickers);
-            this.pnlStickers.Location = new System.Drawing.Point(8, 90);
+            this.pnlStickers.Location = new System.Drawing.Point(8, 272);
             this.pnlStickers.Name = "pnlStickers";
-            this.pnlStickers.Size = new System.Drawing.Size(1580, 526);
+            this.pnlStickers.Size = new System.Drawing.Size(1580, 556);
             this.pnlStickers.TabIndex = 18;
             // 
             // tblStickers
@@ -357,94 +351,209 @@
             this.tblStickers.Name = "tblStickers";
             this.tblStickers.RowCount = 1;
             this.tblStickers.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tblStickers.Size = new System.Drawing.Size(1580, 526);
+            this.tblStickers.Size = new System.Drawing.Size(1580, 556);
             this.tblStickers.TabIndex = 0;
-            // 
-            // flpLevel1
-            // 
-            this.flpLevel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flpLevel1.Location = new System.Drawing.Point(3, 3);
-            this.flpLevel1.Name = "flpLevel1";
-            this.flpLevel1.Size = new System.Drawing.Size(152, 520);
-            this.flpLevel1.TabIndex = 0;
-            // 
-            // flpLevel2
-            // 
-            this.flpLevel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flpLevel2.Location = new System.Drawing.Point(161, 3);
-            this.flpLevel2.Name = "flpLevel2";
-            this.flpLevel2.Size = new System.Drawing.Size(152, 520);
-            this.flpLevel2.TabIndex = 1;
-            // 
-            // flpLevel3
-            // 
-            this.flpLevel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flpLevel3.Location = new System.Drawing.Point(319, 3);
-            this.flpLevel3.Name = "flpLevel3";
-            this.flpLevel3.Size = new System.Drawing.Size(152, 520);
-            this.flpLevel3.TabIndex = 2;
-            // 
-            // flpLevel4
-            // 
-            this.flpLevel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flpLevel4.Location = new System.Drawing.Point(477, 3);
-            this.flpLevel4.Name = "flpLevel4";
-            this.flpLevel4.Size = new System.Drawing.Size(152, 520);
-            this.flpLevel4.TabIndex = 3;
-            // 
-            // flpLevel5
-            // 
-            this.flpLevel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flpLevel5.Location = new System.Drawing.Point(635, 3);
-            this.flpLevel5.Name = "flpLevel5";
-            this.flpLevel5.Size = new System.Drawing.Size(152, 520);
-            this.flpLevel5.TabIndex = 4;
-            // 
-            // flpLevel6
-            // 
-            this.flpLevel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flpLevel6.Location = new System.Drawing.Point(793, 3);
-            this.flpLevel6.Name = "flpLevel6";
-            this.flpLevel6.Size = new System.Drawing.Size(152, 520);
-            this.flpLevel6.TabIndex = 5;
-            // 
-            // flpLevel7
-            // 
-            this.flpLevel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flpLevel7.Location = new System.Drawing.Point(951, 3);
-            this.flpLevel7.Name = "flpLevel7";
-            this.flpLevel7.Size = new System.Drawing.Size(152, 520);
-            this.flpLevel7.TabIndex = 6;
-            // 
-            // flpLevel8
-            // 
-            this.flpLevel8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flpLevel8.Location = new System.Drawing.Point(1109, 3);
-            this.flpLevel8.Name = "flpLevel8";
-            this.flpLevel8.Size = new System.Drawing.Size(152, 520);
-            this.flpLevel8.TabIndex = 7;
-            // 
-            // flpLevel9
-            // 
-            this.flpLevel9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flpLevel9.Location = new System.Drawing.Point(1267, 3);
-            this.flpLevel9.Name = "flpLevel9";
-            this.flpLevel9.Size = new System.Drawing.Size(152, 520);
-            this.flpLevel9.TabIndex = 8;
             // 
             // flpLevel10
             // 
             this.flpLevel10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flpLevel10.Location = new System.Drawing.Point(1425, 3);
             this.flpLevel10.Name = "flpLevel10";
-            this.flpLevel10.Size = new System.Drawing.Size(152, 520);
+            this.flpLevel10.Size = new System.Drawing.Size(152, 550);
             this.flpLevel10.TabIndex = 9;
             // 
-            // PracticeForm1
+            // flpLevel9
+            // 
+            this.flpLevel9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flpLevel9.Location = new System.Drawing.Point(1267, 3);
+            this.flpLevel9.Name = "flpLevel9";
+            this.flpLevel9.Size = new System.Drawing.Size(152, 550);
+            this.flpLevel9.TabIndex = 8;
+            // 
+            // flpLevel8
+            // 
+            this.flpLevel8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flpLevel8.Location = new System.Drawing.Point(1109, 3);
+            this.flpLevel8.Name = "flpLevel8";
+            this.flpLevel8.Size = new System.Drawing.Size(152, 550);
+            this.flpLevel8.TabIndex = 7;
+            // 
+            // flpLevel7
+            // 
+            this.flpLevel7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flpLevel7.Location = new System.Drawing.Point(951, 3);
+            this.flpLevel7.Name = "flpLevel7";
+            this.flpLevel7.Size = new System.Drawing.Size(152, 550);
+            this.flpLevel7.TabIndex = 6;
+            // 
+            // flpLevel6
+            // 
+            this.flpLevel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flpLevel6.Location = new System.Drawing.Point(793, 3);
+            this.flpLevel6.Name = "flpLevel6";
+            this.flpLevel6.Size = new System.Drawing.Size(152, 550);
+            this.flpLevel6.TabIndex = 5;
+            // 
+            // flpLevel5
+            // 
+            this.flpLevel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flpLevel5.Location = new System.Drawing.Point(635, 3);
+            this.flpLevel5.Name = "flpLevel5";
+            this.flpLevel5.Size = new System.Drawing.Size(152, 550);
+            this.flpLevel5.TabIndex = 4;
+            // 
+            // flpLevel4
+            // 
+            this.flpLevel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flpLevel4.Location = new System.Drawing.Point(477, 3);
+            this.flpLevel4.Name = "flpLevel4";
+            this.flpLevel4.Size = new System.Drawing.Size(152, 550);
+            this.flpLevel4.TabIndex = 3;
+            // 
+            // flpLevel3
+            // 
+            this.flpLevel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flpLevel3.Location = new System.Drawing.Point(319, 3);
+            this.flpLevel3.Name = "flpLevel3";
+            this.flpLevel3.Size = new System.Drawing.Size(152, 550);
+            this.flpLevel3.TabIndex = 2;
+            // 
+            // flpLevel2
+            // 
+            this.flpLevel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flpLevel2.Location = new System.Drawing.Point(161, 3);
+            this.flpLevel2.Name = "flpLevel2";
+            this.flpLevel2.Size = new System.Drawing.Size(152, 550);
+            this.flpLevel2.TabIndex = 1;
+            // 
+            // flpLevel1
+            // 
+            this.flpLevel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flpLevel1.Location = new System.Drawing.Point(3, 3);
+            this.flpLevel1.Name = "flpLevel1";
+            this.flpLevel1.Size = new System.Drawing.Size(152, 550);
+            this.flpLevel1.TabIndex = 0;
+            // 
+            // lblStickerSound
+            // 
+            this.lblStickerSound.AutoSize = true;
+            this.lblStickerSound.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStickerSound.Location = new System.Drawing.Point(745, 140);
+            this.lblStickerSound.Name = "lblStickerSound";
+            this.lblStickerSound.Size = new System.Drawing.Size(179, 31);
+            this.lblStickerSound.TabIndex = 19;
+            this.lblStickerSound.Text = "Sticker sound";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.lblMode);
+            this.groupBox1.Controls.Add(this.cmbMode);
+            this.groupBox1.Controls.Add(this.chkDiv);
+            this.groupBox1.Controls.Add(this.chkMul);
+            this.groupBox1.Controls.Add(this.chkSub);
+            this.groupBox1.Controls.Add(this.chkAdd);
+            this.groupBox1.Controls.Add(this.lblScoreAdd);
+            this.groupBox1.Controls.Add(this.lblScoreSub);
+            this.groupBox1.Controls.Add(this.lblScoreMul);
+            this.groupBox1.Controls.Add(this.lblTotalScore);
+            this.groupBox1.Controls.Add(this.lblScoreDiv);
+            this.groupBox1.Location = new System.Drawing.Point(12, 12);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(349, 121);
+            this.groupBox1.TabIndex = 20;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Math operations";
+            // 
+            // lblMode
+            // 
+            this.lblMode.AutoSize = true;
+            this.lblMode.Location = new System.Drawing.Point(247, 23);
+            this.lblMode.Name = "lblMode";
+            this.lblMode.Size = new System.Drawing.Size(73, 13);
+            this.lblMode.TabIndex = 23;
+            this.lblMode.Text = "Change mode";
+            // 
+            // cmbMode
+            // 
+            this.cmbMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbMode.FormattingEnabled = true;
+            this.cmbMode.Items.AddRange(new object[] {
+            "Manual",
+            "Sequential",
+            "Random"});
+            this.cmbMode.Location = new System.Drawing.Point(250, 42);
+            this.cmbMode.Name = "cmbMode";
+            this.cmbMode.Size = new System.Drawing.Size(88, 21);
+            this.cmbMode.TabIndex = 22;
+            this.cmbMode.SelectedIndexChanged += new System.EventHandler(this.cmbMode_SelectedIndexChanged);
+            // 
+            // chkDiv
+            // 
+            this.chkDiv.AutoSize = true;
+            this.chkDiv.Location = new System.Drawing.Point(139, 92);
+            this.chkDiv.Name = "chkDiv";
+            this.chkDiv.Size = new System.Drawing.Size(81, 17);
+            this.chkDiv.TabIndex = 0;
+            this.chkDiv.Text = "Division ( : )";
+            this.chkDiv.UseVisualStyleBackColor = true;
+            this.chkDiv.CheckedChanged += new System.EventHandler(this.OperationCheckBox_CheckedChanged);
+            // 
+            // chkMul
+            // 
+            this.chkMul.AutoSize = true;
+            this.chkMul.Location = new System.Drawing.Point(139, 69);
+            this.chkMul.Name = "chkMul";
+            this.chkMul.Size = new System.Drawing.Size(102, 17);
+            this.chkMul.TabIndex = 0;
+            this.chkMul.Text = "Multiplication (×)";
+            this.chkMul.UseVisualStyleBackColor = true;
+            this.chkMul.CheckedChanged += new System.EventHandler(this.OperationCheckBox_CheckedChanged);
+            // 
+            // chkSub
+            // 
+            this.chkSub.AutoSize = true;
+            this.chkSub.Location = new System.Drawing.Point(139, 46);
+            this.chkSub.Name = "chkSub";
+            this.chkSub.Size = new System.Drawing.Size(92, 17);
+            this.chkSub.TabIndex = 0;
+            this.chkSub.Text = "Subtraction (-)";
+            this.chkSub.UseVisualStyleBackColor = true;
+            this.chkSub.CheckedChanged += new System.EventHandler(this.OperationCheckBox_CheckedChanged);
+            // 
+            // chkAdd
+            // 
+            this.chkAdd.AutoSize = true;
+            this.chkAdd.Location = new System.Drawing.Point(139, 23);
+            this.chkAdd.Name = "chkAdd";
+            this.chkAdd.Size = new System.Drawing.Size(79, 17);
+            this.chkAdd.TabIndex = 0;
+            this.chkAdd.Text = "Addition (+)";
+            this.chkAdd.UseVisualStyleBackColor = true;
+            this.chkAdd.CheckedChanged += new System.EventHandler(this.OperationCheckBox_CheckedChanged);
+            // 
+            // btnSkip
+            // 
+            this.btnSkip.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSkip.Location = new System.Drawing.Point(1513, 12);
+            this.btnSkip.Name = "btnSkip";
+            this.btnSkip.Size = new System.Drawing.Size(75, 31);
+            this.btnSkip.TabIndex = 21;
+            this.btnSkip.Text = "Skip";
+            this.btnSkip.UseVisualStyleBackColor = true;
+            this.btnSkip.Click += new System.EventHandler(this.btnSkip_Click);
+            // 
+            // grpOperations
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1600, 831);
+            this.Controls.Add(this.btnSkip);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.lblStickerSound);
+            this.Controls.Add(this.lblResult);
+            this.Controls.Add(this.lblAnswer);
+            this.Controls.Add(this.txtAnswer);
+            this.Controls.Add(this.lblExpression);
             this.Controls.Add(this.pnlStickers);
             this.Controls.Add(this.picPin9);
             this.Controls.Add(this.picPin8);
@@ -457,19 +566,9 @@
             this.Controls.Add(this.picPin2);
             this.Controls.Add(this.picPin1);
             this.Controls.Add(this.prgSticker);
-            this.Controls.Add(this.lblResult);
-            this.Controls.Add(this.lblAnswer);
-            this.Controls.Add(this.lblScoreDiv);
-            this.Controls.Add(this.lblScoreMul);
-            this.Controls.Add(this.lblScoreSub);
-            this.Controls.Add(this.lblScoreAdd);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnNext);
-            this.Controls.Add(this.lblTotalScore);
-            this.Controls.Add(this.picResult);
-            this.Controls.Add(this.txtAnswer);
-            this.Controls.Add(this.lblExpression);
-            this.Name = "PracticeForm1";
+            this.Name = "grpOperations";
             this.Text = "Practice";
             this.Load += new System.EventHandler(this.PracticeForm1_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PracticeForm1_KeyDown);
@@ -483,9 +582,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.picPin7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picPin8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picPin9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picResult)).EndInit();
             this.pnlStickers.ResumeLayout(false);
             this.tblStickers.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -515,7 +615,6 @@
         private System.Windows.Forms.PictureBox picPin7;
         private System.Windows.Forms.PictureBox picPin8;
         private System.Windows.Forms.PictureBox picPin9;
-        private System.Windows.Forms.PictureBox picResult;
         private System.Windows.Forms.Panel pnlStickers;
         private System.Windows.Forms.TableLayoutPanel tblStickers;
         private System.Windows.Forms.FlowLayoutPanel flpLevel1;
@@ -528,5 +627,14 @@
         private System.Windows.Forms.FlowLayoutPanel flpLevel4;
         private System.Windows.Forms.FlowLayoutPanel flpLevel3;
         private System.Windows.Forms.FlowLayoutPanel flpLevel2;
+        private System.Windows.Forms.Label lblStickerSound;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.CheckBox chkDiv;
+        private System.Windows.Forms.CheckBox chkMul;
+        private System.Windows.Forms.CheckBox chkSub;
+        private System.Windows.Forms.CheckBox chkAdd;
+        private System.Windows.Forms.Label lblMode;
+        private System.Windows.Forms.ComboBox cmbMode;
+        private System.Windows.Forms.Button btnSkip;
     }
 }

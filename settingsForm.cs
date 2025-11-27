@@ -105,6 +105,13 @@ namespace ToanCongTruNhanChia
                 chkDivOpe2Enable, numDivOpe2Min, numDivOpe2Max,
                 chkDivResultEnable, numDivResultMin, numDivResultMax);
 
+            // 4) Load cấu hình Sticker
+            if (_config.Sticker == null)
+                _config.Sticker = new StickerConfig();
+
+            numPointStep.Value = _config.Sticker.PointStep;
+
+
             // 3) Gắn hover sound cho toàn bộ control trên form
             WireHoverSoundRecursive(this);
         }
@@ -149,6 +156,12 @@ namespace ToanCongTruNhanChia
                 chkDivOpe1Enable, numDivOpe1Min, numDivOpe1Max,
                 chkDivOpe2Enable, numDivOpe2Min, numDivOpe2Max,
                 chkDivResultEnable, numDivResultMin, numDivResultMax);
+
+            // Lưu Sticker config
+            if (_config.Sticker == null)
+                _config.Sticker = new StickerConfig();
+
+            _config.Sticker.PointStep = (int)numPointStep.Value;
 
             // Lưu xuống file settings.json
             ConfigHelper.SaveConfig(_config);

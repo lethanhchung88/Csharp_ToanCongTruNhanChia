@@ -106,6 +106,9 @@
             this.chkDivOpe1Enable = new System.Windows.Forms.CheckBox();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblPointStep = new System.Windows.Forms.Label();
+            this.numPointStep = new System.Windows.Forms.NumericUpDown();
             this.grpAdd.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numAddResultMax)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numAddResultMin)).BeginInit();
@@ -134,6 +137,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.numDivOpe2Min)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numDivOpe1Max)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numDivOpe1Min)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numPointStep)).BeginInit();
             this.SuspendLayout();
             // 
             // grpAdd
@@ -870,7 +875,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(828, 334);
+            this.btnCancel.Location = new System.Drawing.Point(828, 379);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 4;
@@ -878,9 +883,9 @@
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // button1
+            // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(909, 334);
+            this.btnSave.Location = new System.Drawing.Point(909, 379);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(107, 23);
             this.btnSave.TabIndex = 5;
@@ -888,11 +893,44 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.numPointStep);
+            this.groupBox1.Controls.Add(this.lblPointStep);
+            this.groupBox1.Location = new System.Drawing.Point(12, 334);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(494, 68);
+            this.groupBox1.TabIndex = 6;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Sticker";
+            // 
+            // lblPointStep
+            // 
+            this.lblPointStep.AutoSize = true;
+            this.lblPointStep.Location = new System.Drawing.Point(10, 29);
+            this.lblPointStep.Name = "lblPointStep";
+            this.lblPointStep.Size = new System.Drawing.Size(111, 13);
+            this.lblPointStep.TabIndex = 0;
+            this.lblPointStep.Text = "Số điểm để tăng level";
+            // 
+            // numPointStep
+            // 
+            this.numPointStep.Location = new System.Drawing.Point(127, 27);
+            this.numPointStep.Name = "numPointStep";
+            this.numPointStep.Size = new System.Drawing.Size(71, 20);
+            this.numPointStep.TabIndex = 5;
+            this.numPointStep.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            // 
             // settingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1030, 369);
+            this.ClientSize = new System.Drawing.Size(1041, 415);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.grpDiv);
@@ -934,6 +972,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.numDivOpe2Min)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numDivOpe1Max)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numDivOpe1Min)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numPointStep)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1018,5 +1059,8 @@
         private System.Windows.Forms.CheckBox chkDivOpe1Enable;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.NumericUpDown numPointStep;
+        private System.Windows.Forms.Label lblPointStep;
     }
 }

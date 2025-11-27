@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics; // debug Debug.WriteLine($"_currentOperation = {_currentOperation}");
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Diagnostics; // debug Debug.WriteLine($"_currentOperation = {_currentOperation}");
-using System.IO;
 
 namespace ToanCongTruNhanChia
 {
-    public partial class PracticeForm1 : Form
+    public partial class grpOperations : Form
     {
         public enum OperationType
         {
@@ -127,7 +127,16 @@ namespace ToanCongTruNhanChia
 
         private AppConfig _config;
 
-        public PracticeForm1()
+        public enum OperationChangeMode
+        {
+            Manual,     // Thủ công – dùng phím + - * / sau khi làm đúng
+            Sequential, // Xoay vòng tuần tự
+            Random      // Ngẫu nhiên
+        }
+
+        private OperationChangeMode _changeMode = OperationChangeMode.Manual;
+
+        public grpOperations()
         {
             InitializeComponent();
             this.KeyPreview = true; // để bắt phím + - * / ở mức form
@@ -144,12 +153,25 @@ namespace ToanCongTruNhanChia
             this.Size = new Size(1616, 876);                // Kích thước màn hình máy Helen
 
             // ẩn các object chưa dùng đến
-            lblScoreAdd.Visible = false;
-            lblScoreSub.Visible = false;
-            lblScoreMul.Visible = false;
-            lblScoreDiv.Visible = false;
+            //lblScoreAdd.Visible = false;
+            //lblScoreSub.Visible = false;
+            //lblScoreMul.Visible = false;
+            //lblScoreDiv.Visible = false;
+
+            // ⭐ Tổng điểm: font to, nổi bật
+            lblTotalScore.Font = new Font("Segoe UI Emoji", 22f, FontStyle.Bold);
+
+            // ★ Điểm từng phép toán: font nhỏ hơn, đơn giản
+            lblScoreAdd.Font = new Font("Segoe UI", 8f, FontStyle.Regular);
+            lblScoreSub.Font = new Font("Segoe UI", 8f, FontStyle.Regular);
+            lblScoreMul.Font = new Font("Segoe UI", 8f, FontStyle.Regular);
+            lblScoreDiv.Font = new Font("Segoe UI", 8f, FontStyle.Regular);
+
+            lblStickerSound.Text = "";
 
             _currentOperation = InitialOperation;
+
+            InitOperationModeUI();
 
             _config = ConfigHelper.LoadConfig();
 
@@ -181,8 +203,6 @@ namespace ToanCongTruNhanChia
             {
                 _stickerPointStep = 10;
             }
-
-            _stickerPointStep = 2; // test nhanh;
 
             InitStickerPanels();
             InitLevelPins();
@@ -318,11 +338,14 @@ namespace ToanCongTruNhanChia
 
         private void UpdateScoreLabels()
         {
-            lblTotalScore.Text = _totalScore.ToString() + "$";
-            lblScoreAdd.Text = _scoreAdd.ToString();
-            lblScoreSub.Text = _scoreSub.ToString();
-            lblScoreMul.Text = _scoreMul.ToString();
-            lblScoreDiv.Text = _scoreDiv.ToString();
+            // Tổng điểm: dùng icon sao nổi bật (⭐)
+            lblTotalScore.Text = $"{_totalScore}⭐";
+
+            // Điểm từng phép toán: dùng sao đơn giản (★)
+            lblScoreAdd.Text = $"{_scoreAdd}★";
+            lblScoreSub.Text = $"{_scoreSub}★";
+            lblScoreMul.Text = $"{_scoreMul}★";
+            lblScoreDiv.Text = $"{_scoreDiv}★";
         }
 
         private void IncreaseScore()
@@ -437,8 +460,7 @@ namespace ToanCongTruNhanChia
 
         private void ResetResultIcon()
         {
-            picResult.Visible = false;
-            picResult.BackColor = SystemColors.Control;
+
         }
 
         private void ShowCorrectIcon()
@@ -471,6 +493,15 @@ namespace ToanCongTruNhanChia
         // Enter để chấm / qua câu tiếp theo
         private void txtAnswer_KeyDown(object sender, KeyEventArgs e)
         {
+            // Không xử lý Enter/Space ở đây nữa.
+            // Tất cả Enter/Space đã được xử lý ở PracticeForm1_KeyDown (Form KeyDown).
+        }
+
+        // Phím + - * / để đổi phép toán & qua câu mới (chỉ khi đã trả lời đúng)
+        private void PracticeForm1_KeyDown(object sender, KeyEventArgs e)
+        {
+            // 1) Enter / Space: luôn chấm và/hoặc qua câu tiếp theo,
+            //    bất kể hiện đang focus ở control nào.
             if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Space)
             {
                 if (!_currentSolved)
@@ -479,20 +510,22 @@ namespace ToanCongTruNhanChia
                 }
                 else
                 {
-                    // đã đúng rồi → Enter qua câu mới cùng phép toán
-                    GenerateNewQuestion();
+                    GoToNextQuestionByMode();
                 }
 
                 e.Handled = true;
                 e.SuppressKeyPress = true;
+                return; // không xử lý tiếp các phím khác nữa
             }
-        }
 
-        // Phím + - * / để đổi phép toán & qua câu mới (chỉ khi đã trả lời đúng)
-        private void PracticeForm1_KeyDown(object sender, KeyEventArgs e)
-        {
+            // 2) Phím + - * / để đổi phép toán & qua câu mới (chỉ khi đã trả lời đúng)
+            // Phải làm đúng câu hiện tại mới được đổi phép toán
             if (!_currentSolved)
-                return; // phải làm đúng câu hiện tại trước
+                return;
+
+            // Chỉ cho dùng phím + - * / khi ở chế độ Manual
+            if (_changeMode != OperationChangeMode.Manual)
+                return;
 
             OperationType? newOp = null;
 
@@ -507,10 +540,15 @@ namespace ToanCongTruNhanChia
 
             if (newOp.HasValue)
             {
-                GenerateNewQuestion(newOp.Value);
-                e.Handled = true;
+                // Chỉ cho đổi sang phép toán đã được check
+                if (IsOperationEnabled(newOp.Value))
+                {
+                    GenerateNewQuestion(newOp.Value);
+                    e.Handled = true;
+                }
             }
         }
+
 
         private void btnNext_Click(object sender, EventArgs e)
         {
@@ -520,7 +558,7 @@ namespace ToanCongTruNhanChia
             }
             else
             {
-                GenerateNewQuestion();
+                GoToNextQuestionByMode();
             }
         }
 
@@ -682,7 +720,7 @@ namespace ToanCongTruNhanChia
 
             if (prgSticker != null)
             {
-                prgSticker.Refresh();    // vẽ lại ngay
+                prgSticker.Refresh(); // vẽ lại ngay
             }
 
             // 2) Chỉ khi đủ mốc mới phát nhạc / tặng sticker
@@ -811,9 +849,15 @@ namespace ToanCongTruNhanChia
         {
             if (sender is PictureBox pb && pb.Tag is StickerTagInfo info)
             {
-                SoundManager.PlayStickerSound(info.Level, info.FileName);
+                // 1) Hiện text NGAY LẬP TỨC
+                lblStickerSound.Visible = true;
+                lblStickerSound.Text = info.FileName;   // hoặc "🎵 " + info.FileName
+
+                // 2) Phát âm thanh sau (không block)
+                SoundManager.PlayStickerSoundAsync(info.Level, info.FileName);
             }
         }
+
 
         #endregion
 
@@ -1723,5 +1767,172 @@ namespace ToanCongTruNhanChia
         }
 
         #endregion
+
+        private void InitOperationModeUI()
+        {
+            // Mặc định: chỉ tick phép toán được chọn từ menu
+            chkAdd.Checked = (InitialOperation == OperationType.Addition);
+            chkSub.Checked = (InitialOperation == OperationType.Subtraction);
+            chkMul.Checked = (InitialOperation == OperationType.Multiplication);
+            chkDiv.Checked = (InitialOperation == OperationType.Division);
+
+            // Nếu lỡ tất cả đều false (trường hợp nào đó), đảm bảo luôn có ít nhất 1 phép
+            if (!chkAdd.Checked && !chkSub.Checked && !chkMul.Checked && !chkDiv.Checked)
+            {
+                chkAdd.Checked = true;
+                _currentOperation = OperationType.Addition;
+            }
+
+            // Mặc định chế độ: Manual (Thủ công)
+            cmbMode.Items.Clear();
+            cmbMode.Items.Add("Manual");
+            cmbMode.Items.Add("Sequential");
+            cmbMode.Items.Add("Random");
+
+            cmbMode.SelectedIndex = 0; // Manual
+            _changeMode = OperationChangeMode.Manual;
+        }
+
+        private void cmbMode_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (cmbMode.SelectedIndex)
+            {
+                case 0: _changeMode = OperationChangeMode.Manual; break;
+                case 1: _changeMode = OperationChangeMode.Sequential; break;
+                case 2: _changeMode = OperationChangeMode.Random; break;
+                default: _changeMode = OperationChangeMode.Manual; break;
+            }
+        }
+
+        private void OperationCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            // Không cho trạng thái "tắt hết" – nếu người dùng uncheck hết thì bật lại phép hiện tại
+            if (!chkAdd.Checked && !chkSub.Checked && !chkMul.Checked && !chkDiv.Checked)
+            {
+                // Bật lại phép hiện tại
+                switch (_currentOperation)
+                {
+                    case OperationType.Addition: chkAdd.Checked = true; break;
+                    case OperationType.Subtraction: chkSub.Checked = true; break;
+                    case OperationType.Multiplication: chkMul.Checked = true; break;
+                    case OperationType.Division: chkDiv.Checked = true; break;
+                }
+            }
+        }
+
+        private bool IsOperationEnabled(OperationType op)
+        {
+            switch (op)
+            {
+                case OperationType.Addition: return chkAdd.Checked;
+                case OperationType.Subtraction: return chkSub.Checked;
+                case OperationType.Multiplication: return chkMul.Checked;
+                case OperationType.Division: return chkDiv.Checked;
+                default: return false;
+            }
+        }
+
+        private OperationType GetNextSequentialOperation()
+        {
+            var list = new List<OperationType>();
+            if (chkAdd.Checked) list.Add(OperationType.Addition);
+            if (chkSub.Checked) list.Add(OperationType.Subtraction);
+            if (chkMul.Checked) list.Add(OperationType.Multiplication);
+            if (chkDiv.Checked) list.Add(OperationType.Division);
+
+            if (list.Count == 0)
+                return _currentOperation; // an toàn
+
+            int idx = list.IndexOf(_currentOperation);
+            if (idx == -1)
+            {
+                // Nếu phép hiện tại không còn được check nữa → về phép đầu tiên trong list
+                return list[0];
+            }
+
+            idx = (idx + 1) % list.Count;
+            return list[idx];
+        }
+
+        private OperationType GetRandomOperation()
+        {
+            var list = new List<OperationType>();
+            if (chkAdd.Checked) list.Add(OperationType.Addition);
+            if (chkSub.Checked) list.Add(OperationType.Subtraction);
+            if (chkMul.Checked) list.Add(OperationType.Multiplication);
+            if (chkDiv.Checked) list.Add(OperationType.Division);
+
+            if (list.Count == 0)
+                return _currentOperation;
+
+            if (list.Count == 1)
+                return list[0];
+
+            // Cố gắng random khác phép hiện tại (nếu có thể)
+            OperationType chosen;
+            int safe = 0;
+            do
+            {
+                int idx = _random.Next(0, list.Count);
+                chosen = list[idx];
+                safe++;
+                if (safe > 10) break;
+            } while (chosen == _currentOperation);
+
+            return chosen;
+        }
+
+        private void GoToNextQuestionByMode()
+        {
+            switch (_changeMode)
+            {
+                case OperationChangeMode.Manual:
+                    // Giữ phép toán hiện tại, giống hiện nay
+                    GenerateNewQuestion();
+                    break;
+
+                case OperationChangeMode.Sequential:
+                    var nextOp = GetNextSequentialOperation();
+                    GenerateNewQuestion(nextOp);
+                    break;
+
+                case OperationChangeMode.Random:
+                    var randOp = GetRandomOperation();
+                    GenerateNewQuestion(randOp);
+                    break;
+            }
+        }
+
+        private void DecreaseScore(int amount)
+        {
+            if (amount <= 0) return;
+            for (int i = 0; i < amount; i++)
+            {
+                DecreaseScoreIfPossible();
+            }
+        }
+
+        private void btnSkip_Click(object sender, EventArgs e)
+        {
+            // Nếu đã làm đúng rồi mà vẫn bấm Skip → coi như qua câu mới, KHÔNG trừ điểm
+            if (_currentSolved)
+            {
+                GoToNextQuestionByMode();
+                return;
+            }
+
+            // Chưa làm đúng mà bấm Skip:
+            // 1) Trừ 2 điểm
+            DecreaseScore(2);
+
+            // 2) Hiện icon sai (cho bé biết là câu này bị mất điểm)
+            ShowWrongIcon();
+
+            // 3) Bỏ qua luôn, qua câu mới theo chế độ
+            _currentSolved = true; // đánh dấu là đã xử lý câu hiện tại
+            GoToNextQuestionByMode();
+        }
+
+
     }
 }

@@ -395,7 +395,7 @@ namespace ToanCongTruNhanChia
             string congrats = Path.Combine(StickersBasePath, "Congratulations Level Up.wav");
             PlaySyncSafe(congrats);
 
-            // 3) levelXX.wav và 4) levelXX-intro.wav trong thư mục levelXX*
+            // 3) Tìm thư mục levelXX*
             string levelFolderName = $"level{level:00}";
             string levelFolderPath = Directory
                 .GetDirectories(StickersBasePath, levelFolderName + "*")
@@ -404,11 +404,23 @@ namespace ToanCongTruNhanChia
             if (string.IsNullOrEmpty(levelFolderPath))
                 return;
 
+            // 4) levelXX.wav (file chính)
             string levelWav = Path.Combine(levelFolderPath, $"level{level:00}.wav");
-            string introWav = Path.Combine(levelFolderPath, $"level{level:00}-intro.wav");
-
             PlaySyncSafe(levelWav);
-            PlaySyncSafe(introWav);
+
+            // 5) Tìm file intro: levelXX-intro*.wav
+            string[] introCandidates = Directory.GetFiles(
+                levelFolderPath,
+                $"level{level:00}-intro*.wav",
+                SearchOption.TopDirectoryOnly
+            );
+
+            if (introCandidates.Length > 0)
+            {
+                // Lấy file đầu tiên tìm thấy
+                string introFile = introCandidates[0];
+                PlaySyncSafe(introFile);
+            }
         }
 
         public static void PlayLevelPin(int level)
@@ -438,6 +450,27 @@ namespace ToanCongTruNhanChia
             string wavPath = Path.Combine(levelFolderPath, fileNameWithoutExt + ".wav");
             Play(wavPath);
         }
+
+        public static string PlayStickerSoundAndReturnText(int level, string fileNameWithoutExt)
+        {
+            string stickersRoot = StickersBasePath;
+            string levelFolderName = $"level{level:00}";
+            string levelFolderPath = Directory
+                .GetDirectories(stickersRoot, levelFolderName + "*")
+                .FirstOrDefault();
+
+            if (string.IsNullOrEmpty(levelFolderPath))
+                return "";
+
+            string wavPath = Path.Combine(levelFolderPath, fileNameWithoutExt + ".wav");
+
+            // Phát âm thanh như bình thường
+            PlaySyncSafe(wavPath);
+
+            // Trả về text để hiển thị
+            return fileNameWithoutExt;
+        }
+
 
         /// <summary>
         /// Gọi khi rê chuột vào menu item.
@@ -477,6 +510,32 @@ namespace ToanCongTruNhanChia
             }
         }
 
+        public static void PlayStickerSoundAsync(int level, string fileNameWithoutExt)
+        {
+            Task.Run(() =>
+            {
+                try
+                {
+                    string stickersRoot = StickersBasePath;
+                    string levelFolderName = $"level{level:00}";
+                    string levelFolderPath = Directory
+                        .GetDirectories(stickersRoot, levelFolderName + "*")
+                        .FirstOrDefault();
+
+                    if (string.IsNullOrEmpty(levelFolderPath))
+                        return;
+
+                    string wavPath = Path.Combine(levelFolderPath, fileNameWithoutExt + ".wav");
+
+                    if (File.Exists(wavPath))
+                    {
+                        using (var p = new SoundPlayer(wavPath))
+                            p.PlaySync();
+                    }
+                }
+                catch { }
+            });
+        }
 
 
 
