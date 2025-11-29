@@ -51,29 +51,29 @@ namespace ToanCongTruNhanChia
 
         private void menuAddition_Click(object sender, EventArgs e)
         {
-            var f = new grpOperations();
-            f.InitialOperation = grpOperations.OperationType.Addition;
+            var f = new PracticeForm1();
+            f.InitialOperation = PracticeForm1.OperationType.Addition;
             f.ShowDialog(this);
         }
 
         private void menuSubtraction_Click(object sender, EventArgs e)
         {
-            var f = new grpOperations();
-            f.InitialOperation = grpOperations.OperationType.Subtraction;
+            var f = new PracticeForm1();
+            f.InitialOperation = PracticeForm1.OperationType.Subtraction;
             f.ShowDialog(this);
         }
 
         private void menuMultiplication_Click(object sender, EventArgs e)
         {
-            var f = new grpOperations();
-            f.InitialOperation = grpOperations.OperationType.Multiplication;
+            var f = new PracticeForm1();
+            f.InitialOperation = PracticeForm1.OperationType.Multiplication;
             f.ShowDialog(this);
         }
 
         private void menuDivision_Click(object sender, EventArgs e)
         {
-            var f = new grpOperations();
-            f.InitialOperation = grpOperations.OperationType.Division;
+            var f = new PracticeForm1();
+            f.InitialOperation = PracticeForm1.OperationType.Division;
             f.ShowDialog(this);
         }
     }

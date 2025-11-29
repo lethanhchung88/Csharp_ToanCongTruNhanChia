@@ -13,6 +13,10 @@ namespace ToanCongTruNhanChia
     {
         private static readonly SoundPlayer _player = new SoundPlayer();
 
+        // 👇 THÊM 2 DÒNG NÀY
+        private static readonly SoundPlayer _stickerPlayer = new SoundPlayer();
+        private static readonly object _stickerLock = new object();
+
         private static string BasePath =>
             Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "sound", "en");
 
@@ -512,30 +516,36 @@ namespace ToanCongTruNhanChia
 
         public static void PlayStickerSoundAsync(int level, string fileNameWithoutExt)
         {
-            Task.Run(() =>
+            try
             {
-                try
+                string stickersRoot = StickersBasePath;
+                string levelFolderName = $"level{level:00}";
+                string levelFolderPath = Directory
+                    .GetDirectories(stickersRoot, levelFolderName + "*")
+                    .FirstOrDefault();
+
+                if (string.IsNullOrEmpty(levelFolderPath))
+                    return;
+
+                string wavPath = Path.Combine(levelFolderPath, fileNameWithoutExt + ".wav");
+                if (!File.Exists(wavPath))
+                    return;
+
+                // 🔑 Chỉ dùng 1 player cho sticker và luôn dừng tiếng cũ trước khi phát lại
+                lock (_stickerLock)
                 {
-                    string stickersRoot = StickersBasePath;
-                    string levelFolderName = $"level{level:00}";
-                    string levelFolderPath = Directory
-                        .GetDirectories(stickersRoot, levelFolderName + "*")
-                        .FirstOrDefault();
-
-                    if (string.IsNullOrEmpty(levelFolderPath))
-                        return;
-
-                    string wavPath = Path.Combine(levelFolderPath, fileNameWithoutExt + ".wav");
-
-                    if (File.Exists(wavPath))
-                    {
-                        using (var p = new SoundPlayer(wavPath))
-                            p.PlaySync();
-                    }
+                    _stickerPlayer.Stop();                // dừng tiếng đang phát (nếu có)
+                    _stickerPlayer.SoundLocation = wavPath;
+                    _stickerPlayer.Load();
+                    _stickerPlayer.Play();               // Play() là async, không block UI
                 }
-                catch { }
-            });
+            }
+            catch
+            {
+                // nuốt lỗi, tránh crash app
+            }
         }
+
 
 
 

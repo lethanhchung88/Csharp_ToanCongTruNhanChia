@@ -6,13 +6,14 @@ using System.Diagnostics; // debug Debug.WriteLine($"_currentOperation = {_curre
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ToanCongTruNhanChia
 {
-    public partial class grpOperations : Form
+    public partial class PracticeForm1 : Form
     {
         public enum OperationType
         {
@@ -37,6 +38,10 @@ namespace ToanCongTruNhanChia
 
         // Số lần gần nhất không được trùng phép chia
         private const int MaxDivisionHistory = 242;
+
+        // 🔧 TEST: số sticker tặng mỗi lần đạt 1 mốc level (cấu hình test)
+        // Để test nhanh, bạn chỉnh giá trị này: 1 (như cũ), 3, 5, 10,...
+        private const int StickersPerLevelTest = 1;
 
         // Đại diện cho 1 phép cộng
         private class AdditionCase
@@ -119,13 +124,26 @@ namespace ToanCongTruNhanChia
         private int _scoreMul;
         private int _scoreDiv;
 
+        // Previous states for protected controls
+        private bool _prevChkAdd;
+        private bool _prevChkSub;
+        private bool _prevChkMul;
+        private bool _prevChkDiv;
+        private int _prevModeIndex;
+
         private bool _currentSolved; // đã trả lời đúng câu hiện tại chưa
+
+        // Điểm cao nhất từng đạt (dùng để tránh “farm” sticker bằng cách cố tình làm sai rồi làm đúng lại)
+        private int _maxTotalScoreEver;
 
         // Sticker / Level
         private int _stickerPointStep; // mốc điểm lên 1 level (10,20,...)
         private Dictionary<int, FlowLayoutPanel> _levelPanels;
 
         private AppConfig _config;
+
+        // Prevent recursive events when we change controls in code
+        private bool _isInternalOperationChange = true;
 
         public enum OperationChangeMode
         {
@@ -136,7 +154,7 @@ namespace ToanCongTruNhanChia
 
         private OperationChangeMode _changeMode = OperationChangeMode.Manual;
 
-        public grpOperations()
+        public PracticeForm1()
         {
             InitializeComponent();
             this.KeyPreview = true; // để bắt phím + - * / ở mức form
@@ -146,6 +164,42 @@ namespace ToanCongTruNhanChia
         private void PracticeForm1_SizeChanged(object sender, EventArgs e)
         {
         }
+
+        private void ConfigureStickerTable()
+        {
+            // 1 hàng, 10 cột
+            tblStickers.RowCount = 1;
+            tblStickers.ColumnCount = 10;
+
+            // Table tự giãn chiều CAO theo nội dung
+            tblStickers.AutoSize = true;
+            tblStickers.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            tblStickers.Dock = DockStyle.Top;     // Nằm trên cùng trong pnlStickers
+
+            // Đặt ở trên cùng trong pnlStickers, để khi nó cao hơn panel thì panel sẽ cuộn
+            tblStickers.Dock = DockStyle.Top;
+
+            // ❗ Bỏ viền và khe hở của bảng
+            tblStickers.CellBorderStyle = TableLayoutPanelCellBorderStyle.None;
+            tblStickers.Margin = new Padding(0);
+            tblStickers.Padding = new Padding(0);
+            tblStickers.BorderStyle = BorderStyle.None;   // nếu muốn không có viền ngoài luôn
+
+            // Xóa style cũ, set 10 cột đều nhau
+            tblStickers.ColumnStyles.Clear();
+            for (int i = 0; i < 10; i++)
+            {
+                tblStickers.ColumnStyles.Add(
+                    new ColumnStyle(SizeType.Percent, 10f) // 10 cột, mỗi cột 10%
+                );
+            }
+
+            tblStickers.RowStyles.Clear();
+            tblStickers.RowStyles.Add(
+                new RowStyle(SizeType.AutoSize) // HÀNG: rất quan trọng – phải để AutoSize (mới xuất hiện thanh cuộn), KHÔNG để Percent
+            );
+        }
+
 
         private void PracticeForm1_Load(object sender, EventArgs e)
         {
@@ -189,6 +243,9 @@ namespace ToanCongTruNhanChia
                     _scoreDiv = cfgDiv.Score;
             }
 
+            // Điểm cao nhất từng đạt, ban đầu = tổng điểm hiện tại load từ config
+            _maxTotalScoreEver = _totalScore;
+
             // === Sticker config & UI ===
             if (_config != null)
             {
@@ -204,7 +261,32 @@ namespace ToanCongTruNhanChia
                 _stickerPointStep = 10;
             }
 
+            // Remember initial state of checkboxes and mode
+            _prevChkAdd = chkAdd.Checked;
+            _prevChkSub = chkSub.Checked;
+            _prevChkMul = chkMul.Checked;
+            _prevChkDiv = chkDiv.Checked;
+            _prevModeIndex = cmbMode.SelectedIndex;
+
+            _isInternalOperationChange = false;
+
+            // Form ngoài cùng
+            this.BackColor = Color.LightGray; // màu nền form
+
+            // Panel bao ngoài chịu trách nhiệm cuộn
+            pnlStickers.AutoScroll = true;
+            pnlStickers.BackColor = Color.LightGreen;   // màu Panel bao ngoài vùng sticker
+            pnlStickers.BorderStyle = BorderStyle.FixedSingle;
+
+            tblStickers.BackColor = Color.LightYellow;  // TableLayoutPanel chứa 10 cột
+            tblStickers.BorderStyle = BorderStyle.FixedSingle;
+
+            // Table bên trong Panel, cấu hình số dòng, số cột, ... table
+            ConfigureStickerTable();
+
+            // Các FlowLayoutPanel chứa sticker trong mỗi ô
             InitStickerPanels();
+
             InitLevelPins();
             LoadStickersFromConfig();
             InitStickerProgressBar();
@@ -350,7 +432,17 @@ namespace ToanCongTruNhanChia
 
         private void IncreaseScore()
         {
+            // Lưu lại “điểm cao nhất trước khi cộng thêm”
+            int previousMaxScore = _maxTotalScoreEver;
+
+            // Tăng điểm hiện tại
             _totalScore++;
+
+            // Nếu vừa lập kỷ lục mới thì cập nhật lại max
+            if (_totalScore > _maxTotalScoreEver)
+            {
+                _maxTotalScoreEver = _totalScore;
+            }
 
             switch (_currentOperation)
             {
@@ -361,8 +453,11 @@ namespace ToanCongTruNhanChia
             }
 
             UpdateScoreLabels();
-            HandleStickerLevelUp();      // dùng _totalScore làm điểm lên level
+
+            // Xử lý sticker với thông tin “max cũ”
+            HandleStickerLevelUp(previousMaxScore);
         }
+
 
         private void DecreaseScoreIfPossible()
         {
@@ -621,22 +716,78 @@ namespace ToanCongTruNhanChia
 
         private void InitStickerPanels()
         {
-            // Các FlowLayoutPanel bạn đã tạo trong Designer:
-            // flpLevel1..flpLevel10
             _levelPanels = new Dictionary<int, FlowLayoutPanel>
+    {
+        { 1, flpLevel1 },
+        { 2, flpLevel2 },
+        { 3, flpLevel3 },
+        { 4, flpLevel4 },
+        { 5, flpLevel5 },
+        { 6, flpLevel6 },
+        { 7, flpLevel7 },
+        { 8, flpLevel8 },
+        { 9, flpLevel9 },
+        { 10, flpLevel10 },
+    };
+
+            // 🎨 10 màu pastel cho 10 level
+            Color[] levelColors =
             {
-                { 1, flpLevel1 },
-                { 2, flpLevel2 },
-                { 3, flpLevel3 },
-                { 4, flpLevel4 },
-                { 5, flpLevel5 },
-                { 6, flpLevel6 },
-                { 7, flpLevel7 },
-                { 8, flpLevel8 },
-                { 9, flpLevel9 },
-                { 10, flpLevel10 },
-            };
+        Color.FromArgb(255, 235, 238), // 1 - hồng nhạt
+        Color.FromArgb(255, 243, 224), // 2 - cam kem
+        Color.FromArgb(255, 253, 231), // 3 - vàng kem
+        Color.FromArgb(232, 245, 233), // 4 - xanh lá nhạt
+        Color.FromArgb(225, 245, 254), // 5 - xanh cyan nhạt
+        Color.FromArgb(227, 242, 253), // 6 - xanh dương nhạt
+        Color.FromArgb(232, 234, 246), // 7 - tím indigo nhạt
+        Color.FromArgb(248, 240, 255), // 8 - tím lavender
+        Color.FromArgb(255, 236, 239), // 9 - hồng đào
+        Color.FromArgb(241, 248, 233), // 10 - xanh lá non
+    };
+
+            int i = 0;
+
+            // Duyệt theo Key/Value để biết được level
+            foreach (var kvp in _levelPanels)
+            {
+                int level = kvp.Key;
+                var flp = kvp.Value;
+
+                // Cho flp tự cao lên theo số sticker
+                flp.AutoSize = true;
+                flp.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+
+                flp.AutoScroll = false;                 // không cuộn ở đây
+                flp.WrapContents = true;                // hết ngang thì xuống dòng
+                flp.FlowDirection = FlowDirection.LeftToRight;
+                flp.Dock = DockStyle.Fill;              // chiếm trọn ô trong TableLayoutPanel
+
+                // ❗ Không chừa khe hở / viền giữa các cột
+                flp.Margin = new Padding(0);
+                flp.Padding = new Padding(0);
+                flp.BorderStyle = BorderStyle.None;
+
+                // Màu nền cho từng cột
+                flp.BackColor = levelColors[i % levelColors.Length];
+
+                // đường viền
+                flp.BorderStyle = BorderStyle.FixedSingle; 
+
+                // Luôn thấy rõ vùng màu kể cả khi chưa có sticker
+                flp.MinimumSize = new Size(0, 676);     // bạn có thể tăng/giảm chiều cao này
+
+                // Gắn level để sau này cần dùng (nếu muốn)
+                flp.Tag = level;
+
+                // 👉 Cho phép double–click vào vùng này để đổi màu
+                flp.DoubleClick -= FlpSticker_DoubleClick; // tránh gắn trùng nếu gọi lại
+                flp.DoubleClick += FlpSticker_DoubleClick;
+
+                i++;
+            }
         }
+
+
 
         private void InitLevelPins()
         {
@@ -704,7 +855,7 @@ namespace ToanCongTruNhanChia
             prgSticker.Value = scoreInCycle;
         }
 
-        private async void HandleStickerLevelUp()
+        private async void HandleStickerLevelUp(int previousMaxScore)
         {
             if (_stickerPointStep <= 0)
                 _stickerPointStep = 10;
@@ -715,7 +866,7 @@ namespace ToanCongTruNhanChia
             if (step <= 0 || max <= 0)
                 return;
 
-            // 1) Cập nhật thanh điểm trước
+            // 1) Cập nhật thanh progress trước
             UpdateStickerProgressBar();
 
             if (prgSticker != null)
@@ -723,23 +874,40 @@ namespace ToanCongTruNhanChia
                 prgSticker.Refresh(); // vẽ lại ngay
             }
 
-            // 2) Chỉ khi đủ mốc mới phát nhạc / tặng sticker
+            // 2) Chỉ xem xét khi điểm đang nằm đúng mốc (10,20,30,...)
             if (_totalScore <= 0 || _totalScore % step != 0)
                 return;
 
-            int levelIndex = _totalScore / step;             // lần thứ mấy đạt mốc
-            int levelInCycle = ((levelIndex - 1) % 10) + 1;  // 1..10 rồi lặp lại
+            // 🔴 Quan trọng: chỉ thưởng nếu mốc này LỚN HƠN mọi điểm từng đạt trước đó
+            // → tránh trường hợp 10 → (sai) 9 → (đúng) 10 rồi ăn thêm sticker
+            if (_totalScore <= previousMaxScore)
+                return;
 
-            // 3) Phát chuỗi nhạc level-up trên thread khác, không chặn UI
+            int levelIndex = _totalScore / step;              // lần thứ mấy đạt mốc
+            int levelInCycle = ((levelIndex - 1) % 10) + 1;     // 1..10 rồi lặp lại
+
+            // 3) Phát nhạc level-up
             await Task.Run(() =>
             {
                 SoundManager.PlayStickerLevelUpSequence(levelInCycle);
             });
 
-            // 4) Sau khi nhạc xong, quay lại UI thread → tặng sticker
-            GiveStickerForLevel(levelInCycle);
-        }
+            // 4) Tặng sticker(s)
+            int stickersPerLevel = StickersPerLevelTest;
 
+            // Nếu cấu hình <= 1 thì giữ hành vi cũ
+            if (stickersPerLevel <= 1)
+            {
+                GiveStickerForLevel(levelInCycle);
+            }
+            else
+            {
+                for (int i = 0; i < stickersPerLevel; i++)
+                {
+                    GiveStickerForLevel(levelInCycle);
+                }
+            }
+        }
 
         private void LoadStickersFromConfig()
         {
@@ -813,7 +981,6 @@ namespace ToanCongTruNhanChia
                 Width = 80,
                 Height = 80,
                 SizeMode = PictureBoxSizeMode.Zoom,
-                Margin = new Padding(3),
                 Cursor = Cursors.Hand,
                 Image = Image.FromFile(pngPath),
                 Tag = new StickerTagInfo
@@ -823,8 +990,26 @@ namespace ToanCongTruNhanChia
                 }
             };
 
+            // 👉 TÍNH MARGIN ĐỂ CANH GIỮA THEO CHIỀU NGANG
+            // Giả sử flp đang: FlowDirection = TopDown, WrapContents = false
+            int leftMargin = 0;
+            if (flp.ClientSize.Width > pb.Width)
+            {
+                leftMargin = (flp.ClientSize.Width - pb.Width) / 2;
+            }
+            // Margin: trái = leftMargin, trên/dưới = 3, phải = 3 (tuỳ chỉnh thêm được)
+            pb.Margin = new Padding(leftMargin, 3, 3, 3);
+
             pb.Click += Sticker_Click;
             flp.Controls.Add(pb);
+
+            // 🟢 GỌI ANIMATION KHI STICKER VỪA ĐƯỢC TẶNG
+            AnimateStickerAward(pb);
+
+            //// Nếu muốn debug thì bật lại:
+            //Debug.WriteLine(
+            //    $"[GiveStickerForLevel] Level={level}, flpWidth={flp.ClientSize.Width}, leftMargin={leftMargin}, Height={flp.Height}, StickerCount={flp.Controls.Count}"
+            //);
 
             // lưu vào config
             if (_config != null)
@@ -845,15 +1030,20 @@ namespace ToanCongTruNhanChia
             SoundManager.PlayStickerSound(level, fileNameWithoutExt);
         }
 
+
         private void Sticker_Click(object sender, EventArgs e)
         {
+
             if (sender is PictureBox pb && pb.Tag is StickerTagInfo info)
             {
-                // 1) Hiện text NGAY LẬP TỨC
+                // 1) Animation khi click (nhúc nhích + viền nổi)
+                AnimateStickerClick(pb);
+
+                // 2) Hiện text NGAY LẬP TỨC
                 lblStickerSound.Visible = true;
                 lblStickerSound.Text = info.FileName;   // hoặc "🎵 " + info.FileName
 
-                // 2) Phát âm thanh sau (không block)
+                // 3) Phát âm thanh (đã sửa SoundManager để click nhiều lần là restart)
                 SoundManager.PlayStickerSoundAsync(info.Level, info.FileName);
             }
         }
@@ -1783,18 +1973,45 @@ namespace ToanCongTruNhanChia
                 _currentOperation = OperationType.Addition;
             }
 
+            chkAdd.Checked = true;
+            chkSub.Checked = true;
+            chkMul.Checked = false;
+            chkDiv.Checked = false;
+
             // Mặc định chế độ: Manual (Thủ công)
             cmbMode.Items.Clear();
             cmbMode.Items.Add("Manual");
             cmbMode.Items.Add("Sequential");
             cmbMode.Items.Add("Random");
 
-            cmbMode.SelectedIndex = 0; // Manual
+            cmbMode.SelectedIndex = 1; // Manual
             _changeMode = OperationChangeMode.Manual;
         }
 
         private void cmbMode_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (_isInternalOperationChange)
+                return;
+
+            int newIndex = cmbMode.SelectedIndex;
+
+            // No actual change
+            if (newIndex == _prevModeIndex)
+                return;
+
+            // Ask for password
+            if (!ConfirmOperationChangeWithPassword())
+            {
+                // Revert to previous mode
+                _isInternalOperationChange = true;
+                cmbMode.SelectedIndex = _prevModeIndex;
+                _isInternalOperationChange = false;
+                return;
+            }
+
+            // Password OK -> accept new mode
+            _prevModeIndex = newIndex;
+
             switch (cmbMode.SelectedIndex)
             {
                 case 0: _changeMode = OperationChangeMode.Manual; break;
@@ -1806,6 +2023,43 @@ namespace ToanCongTruNhanChia
 
         private void OperationCheckBox_CheckedChanged(object sender, EventArgs e)
         {
+            if (_isInternalOperationChange)
+                return;
+
+            var chk = sender as CheckBox;
+            if (chk == null)
+                return;
+
+            // Determine previous value for this checkbox
+            bool previousValue = false;
+
+            if (chk == chkAdd) previousValue = _prevChkAdd;
+            else if (chk == chkSub) previousValue = _prevChkSub;
+            else if (chk == chkMul) previousValue = _prevChkMul;
+            else if (chk == chkDiv) previousValue = _prevChkDiv;
+
+            bool newValue = chk.Checked;
+
+            // No actual change
+            if (previousValue == newValue)
+                return;
+
+            // Ask for password
+            if (!ConfirmOperationChangeWithPassword())
+            {
+                // Wrong password or cancel -> revert to previous value
+                _isInternalOperationChange = true;
+                chk.Checked = previousValue;
+                _isInternalOperationChange = false;
+                return;
+            }
+
+            // Password OK -> accept new value & update previous states
+            if (chk == chkAdd) _prevChkAdd = newValue;
+            else if (chk == chkSub) _prevChkSub = newValue;
+            else if (chk == chkMul) _prevChkMul = newValue;
+            else if (chk == chkDiv) _prevChkDiv = newValue;
+
             // Không cho trạng thái "tắt hết" – nếu người dùng uncheck hết thì bật lại phép hiện tại
             if (!chkAdd.Checked && !chkSub.Checked && !chkMul.Checked && !chkDiv.Checked)
             {
@@ -1932,6 +2186,141 @@ namespace ToanCongTruNhanChia
             _currentSolved = true; // đánh dấu là đã xử lý câu hiện tại
             GoToNextQuestionByMode();
         }
+
+        /// <summary>
+        /// Ask for admin password before applying changes to operations/mode.
+        /// Returns true if password is correct and change is allowed; false otherwise.
+        /// </summary>
+        private bool ConfirmOperationChangeWithPassword()
+        {
+            // 0) Make sure _config is not null
+            if (_config == null)
+            {
+                _config = ConfigHelper.LoadConfig();
+
+                // If still null (e.g. no settings file), create default config
+                if (_config == null)
+                {
+                    _config = new AppConfig();
+                }
+            }
+
+            // 1) Ensure there is always a default password
+            if (string.IsNullOrEmpty(_config.AdminPassword))
+            {
+                _config.AdminPassword = "Lisa&Helen";
+            }
+
+            while (true)
+            {
+                using (var dlg = new EditPasswordForm())
+                {
+                    var result = dlg.ShowDialog(this);
+                    if (result != DialogResult.OK)
+                    {
+                        // User cancelled -> do not apply change
+                        return false;
+                    }
+
+                    if (dlg.EnteredPassword == _config.AdminPassword)
+                    {
+                        // Correct password
+                        return true;
+                    }
+
+                    // Wrong password -> ask again
+                    MessageBox.Show(
+                        "Wrong password. Please try again.",
+                        "Invalid password",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
+                }
+            }
+        }
+
+
+
+        private void FlpSticker_DoubleClick(object sender, EventArgs e)
+        {
+            var flp = sender as FlowLayoutPanel;
+            if (flp == null)
+                return;
+
+            using (var dlg = new ColorDialog())
+            {
+                dlg.FullOpen = true;
+                dlg.Color = flp.BackColor;   // màu hiện tại làm mặc định
+
+                if (dlg.ShowDialog(this) == DialogResult.OK)
+                {
+                    flp.BackColor = dlg.Color;
+                }
+            }
+        }
+
+
+        // Hiệu ứng khi sticker mới được tặng (thêm vào FlowLayoutPanel)
+        private async void AnimateStickerAward(PictureBox pb)
+        {
+            if (pb == null) return;
+
+            try
+            {
+                // Kích thước gốc
+                int baseW = pb.Width;
+                int baseH = pb.Height;
+
+                // Kích thước to hơn chút (%)
+                int bigW = (int)(baseW * 1.5);
+                int bigH = (int)(baseH * 1.5);
+
+                // Pop: phóng to nhanh rồi thu lại
+                pb.Width = bigW;
+                pb.Height = bigH;
+                await Task.Delay(250);   // ms
+
+                pb.Width = baseW;
+                pb.Height = baseH;
+            }
+            catch
+            {
+                // nuốt lỗi, tránh làm crash app vì animation
+            }
+        }
+
+        // Hiệu ứng khi click sticker (nhúc nhích + viền nổi)
+        private async void AnimateStickerClick(PictureBox pb)
+        {
+            if (pb == null) return;
+
+            try
+            {
+                int baseW = pb.Width;
+                int baseH = pb.Height;
+                int bigW = (int)(baseW * 1.2); // to hơn ~10%
+                int bigH = (int)(baseH * 1.2);
+
+                var oldBorder = pb.BorderStyle;
+
+                // Làm nổi sticker: viền + phóng to nhẹ
+                //pb.BorderStyle = BorderStyle.FixedSingle;
+                pb.Width = bigW;
+                pb.Height = bigH;
+
+                await Task.Delay(250); // giữ hiệu ứng trong ms
+
+                // Trả về trạng thái ban đầu
+                pb.Width = baseW;
+                pb.Height = baseH;
+                pb.BorderStyle = oldBorder;
+            }
+            catch
+            {
+            }
+        }
+
+
 
 
     }

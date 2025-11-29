@@ -78,11 +78,23 @@
   <ItemGroup>
     <Compile Include="AppConfig.cs" />
     <Compile Include="ConfigHelper.cs" />
+    <Compile Include="EditPasswordForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditPasswordForm.Designer.cs">
+      <DependentUpon>EditPasswordForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="mainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="mainForm.Designer.cs">
       <DependentUpon>mainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PasswordPromptForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PasswordPromptForm.Designer.cs">
+      <DependentUpon>PasswordPromptForm.cs</DependentUpon>
     </Compile>
     <Compile Include="PracticeForm1.cs">
       <SubType>Form</SubType>
@@ -976,8 +988,14 @@
     <Content Include="sound\stickers\level10\Winton.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="EditPasswordForm.resx">
+      <DependentUpon>EditPasswordForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="mainForm.resx">
       <DependentUpon>mainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PasswordPromptForm.resx">
+      <DependentUpon>PasswordPromptForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PracticeForm1.resx">
       <DependentUpon>PracticeForm1.cs</DependentUpon>

@@ -13,6 +13,13 @@ namespace ToanCongTruNhanChia
         public Dictionary<string, OperationConfig> Operations { get; set; } 
             = new Dictionary<string, OperationConfig>();
         public StickerConfig Sticker { get; set; } = new StickerConfig();
+
+        /// <summary>
+        /// Password to unlock edit mode in Settings.
+        /// Stored as plain text in settings.json.
+        /// Default: "Lisa&Helen"
+        /// </summary>
+        public string AdminPassword { get; set; } = "Lisa&Helen";
     }
 
     public class OperationConfig
