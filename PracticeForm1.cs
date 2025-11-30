@@ -39,9 +39,17 @@ namespace ToanCongTruNhanChia
         // Số lần gần nhất không được trùng phép chia
         private const int MaxDivisionHistory = 242;
 
-        // 🔧 TEST: số sticker tặng mỗi lần đạt 1 mốc level (cấu hình test)
-        // Để test nhanh, bạn chỉnh giá trị này: 1 (như cũ), 3, 5, 10,...
-        private const int StickersPerLevelTest = 1;
+        // 🔧 DEBUG sticker mode: bật/tắt chế độ test
+        // true  = dùng giá trị cứng trong code (test nhanh)
+        // false = dùng config bình thường
+        private const bool DEBUG_STICKER_MODE = true;   // <-- khi test để true, chạy thật để false
+
+        // Khi DEBUG_STICKER_MODE = true:
+        // 1) Mốc điểm để lên 1 level sticker (ví dụ 5 điểm là lên level 1 lần)
+        private const int DEBUG_STICKER_POINT_STEP = 1;
+
+        // 2) Số sticker được tặng mỗi lần lên 1 level
+        private const int DEBUG_STICKERS_PER_LEVEL = 20;
 
         // Đại diện cho 1 phép cộng
         private class AdditionCase
@@ -225,8 +233,10 @@ namespace ToanCongTruNhanChia
 
             _currentOperation = InitialOperation;
 
+            // Khởi tạo UI cho mode (Manual / Sequential / Random)
             InitOperationModeUI();
 
+            // Đọc config
             _config = ConfigHelper.LoadConfig();
 
             if (_config != null && _config.Operations != null)
@@ -247,28 +257,28 @@ namespace ToanCongTruNhanChia
             _maxTotalScoreEver = _totalScore;
 
             // === Sticker config & UI ===
-            if (_config != null)
+            if (DEBUG_STICKER_MODE)
             {
-                if (_config.Sticker == null)
-                    _config.Sticker = new StickerConfig();
-
-                _stickerPointStep = _config.Sticker.PointStep;
-                if (_stickerPointStep <= 0)
-                    _stickerPointStep = 10;
+                // 🔧 DEBUG: luôn dùng giá trị cứng trong code
+                _stickerPointStep = DEBUG_STICKER_POINT_STEP;
             }
             else
             {
-                _stickerPointStep = 10;
+                // Chế độ bình thường: đọc từ config
+                if (_config != null)
+                {
+                    if (_config.Sticker == null)
+                        _config.Sticker = new StickerConfig();
+
+                    _stickerPointStep = _config.Sticker.PointStep;
+                    if (_stickerPointStep <= 0)
+                        _stickerPointStep = 10;
+                }
+                else
+                {
+                    _stickerPointStep = 10;
+                }
             }
-
-            // Remember initial state of checkboxes and mode
-            _prevChkAdd = chkAdd.Checked;
-            _prevChkSub = chkSub.Checked;
-            _prevChkMul = chkMul.Checked;
-            _prevChkDiv = chkDiv.Checked;
-            _prevModeIndex = cmbMode.SelectedIndex;
-
-            _isInternalOperationChange = false;
 
             // Form ngoài cùng
             this.BackColor = Color.LightGray; // màu nền form
@@ -287,9 +297,21 @@ namespace ToanCongTruNhanChia
             // Các FlowLayoutPanel chứa sticker trong mỗi ô
             InitStickerPanels();
 
-            InitLevelPins();
             LoadStickersFromConfig();
             InitStickerProgressBar();
+
+            // ✅ Sau khi Panel & Sticker đã sẵn sàng → khôi phục trạng thái PracticeForm
+            LoadPracticeStateFromConfig();
+
+            // Bây giờ mới "chốt" trạng thái ban đầu để cơ chế hỏi password hoạt động đúng
+            _prevChkAdd = chkAdd.Checked;
+            _prevChkSub = chkSub.Checked;
+            _prevChkMul = chkMul.Checked;
+            _prevChkDiv = chkDiv.Checked;
+            _prevModeIndex = cmbMode.SelectedIndex;
+
+            // Từ đây trở đi, mọi thay đổi của user mới bị kiểm soát hỏi pass
+            _isInternalOperationChange = false;
 
             // Chuẩn bị danh sách tất cả phép CỘNG có thể sinh theo cấu hình hiện tại
             var addCfg = GetOperationConfig(OperationType.Addition);
@@ -300,22 +322,22 @@ namespace ToanCongTruNhanChia
             _additionHistorySet.Clear();
 
             // Chuẩn bị danh sách tất cả phép TRỪ có thể sinh theo cấu hình hiện tại
-            var subCfg = GetOperationConfig(OperationType.Subtraction);
-            _allSubtractionCases = BuildAllSubtractionCases(subCfg);
+            var subCfg2 = GetOperationConfig(OperationType.Subtraction);
+            _allSubtractionCases = BuildAllSubtractionCases(subCfg2);
             _subtractionTotalCases = _allSubtractionCases?.Count ?? 0;
             _subtractionHistoryQueue.Clear();
             _subtractionHistorySet.Clear();
 
             // Chuẩn bị danh sách tất cả phép NHÂN có thể sinh theo cấu hình hiện tại
-            var mulCfg = GetOperationConfig(OperationType.Multiplication);
-            _allMultiplicationCases = BuildAllMultiplicationCases(mulCfg);
+            var mulCfg2 = GetOperationConfig(OperationType.Multiplication);
+            _allMultiplicationCases = BuildAllMultiplicationCases(mulCfg2);
             _multiplicationTotalCases = _allMultiplicationCases?.Count ?? 0;
             _multiplicationHistoryQueue.Clear();
             _multiplicationHistorySet.Clear();
 
             // Chuẩn bị danh sách tất cả phép CHIA có thể sinh theo cấu hình hiện tại
-            var divCfg = GetOperationConfig(OperationType.Division);
-            _allDivisionCases = BuildAllDivisionCases(divCfg);
+            var divCfg2 = GetOperationConfig(OperationType.Division);
+            _allDivisionCases = BuildAllDivisionCases(divCfg2);
             _divisionTotalCases = _allDivisionCases?.Count ?? 0;
             _divisionHistoryQueue.Clear();
             _divisionHistorySet.Clear();
@@ -329,10 +351,13 @@ namespace ToanCongTruNhanChia
             txtAnswer.Focus();
         }
 
-        private void PracticeForm1_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (_config == null) return;
 
+        private void SavePracticeStateToConfig()
+        {
+            if (_config == null)
+                return;
+
+            // 1) Lưu điểm tổng và điểm từng phép toán
             _config.TotalScore = _totalScore;
 
             if (_config.Operations != null)
@@ -340,7 +365,7 @@ namespace ToanCongTruNhanChia
                 if (_config.Operations.TryGetValue("add", out var cfgAdd))
                     cfgAdd.Score = _scoreAdd;
                 if (_config.Operations.TryGetValue("sub", out var cfgSub))
-                    cfgSub.Score = _scoreSub;
+                    _scoreSub = cfgSub.Score = _scoreSub;
                 if (_config.Operations.TryGetValue("mul", out var cfgMul))
                     cfgMul.Score = _scoreMul;
                 if (_config.Operations.TryGetValue("div", out var cfgDiv))
@@ -350,9 +375,116 @@ namespace ToanCongTruNhanChia
             if (_config.Sticker == null)
                 _config.Sticker = new StickerConfig();
 
-            _config.Sticker.PointStep = _stickerPointStep;
+            // Chỉ lưu PointStep nếu KHÔNG ở debug mode
+            if (!DEBUG_STICKER_MODE)
+            {
+                _config.Sticker.PointStep = _stickerPointStep;
+            }
+
+            // 2) Lưu trạng thái phép toán + mode + màu cột sticker
+            if (_config.PracticeState == null)
+                _config.PracticeState = new PracticeStateConfig();
+
+            // 2.1. Checkboxes
+            _config.PracticeState.ChkAdd = chkAdd.Checked;
+            _config.PracticeState.ChkSub = chkSub.Checked;
+            _config.PracticeState.ChkMul = chkMul.Checked;
+            _config.PracticeState.ChkDiv = chkDiv.Checked;
+
+            // 2.2. Mode (Manual / Sequential / Random)
+            _config.PracticeState.Mode = _changeMode.ToString();
+
+            // 2.3. Màu nền 10 cột sticker
+            if (_levelPanels != null)
+            {
+                _config.PracticeState.StickerColumns = new List<StickerColumnColorConfig>();
+
+                foreach (var kvp in _levelPanels)
+                {
+                    int level = kvp.Key;
+                    var flp = kvp.Value;
+                    if (flp == null) continue;
+
+                    _config.PracticeState.StickerColumns.Add(new StickerColumnColorConfig
+                    {
+                        Level = level,
+                        BackColorArgb = flp.BackColor.ToArgb()
+                    });
+                }
+            }
+
+            // 3) Các sticker đã tặng:
+            // Mỗi lần tặng bạn đã add vào _config.Sticker.EarnedStickers rồi,
+            // nên ở đây không cần làm thêm.
 
             ConfigHelper.SaveConfig(_config);
+        }
+
+
+        private void LoadPracticeStateFromConfig()
+        {
+            if (_config?.PracticeState == null)
+                return;
+
+            // Không để việc set Checked bằng code làm bật cửa sổ hỏi pass
+            _isInternalOperationChange = true;
+
+            // 1) Khôi phục checkbox
+            chkAdd.Checked = _config.PracticeState.ChkAdd;
+            chkSub.Checked = _config.PracticeState.ChkSub;
+            chkMul.Checked = _config.PracticeState.ChkMul;
+            chkDiv.Checked = _config.PracticeState.ChkDiv;
+
+            // Nếu vì lý do gì tất cả false thì bật ít nhất phép cộng
+            if (!chkAdd.Checked && !chkSub.Checked && !chkMul.Checked && !chkDiv.Checked)
+            {
+                chkAdd.Checked = true;
+            }
+
+            // 2) Khôi phục mode
+            string mode = _config.PracticeState.Mode ?? "Sequential";
+            switch (mode)
+            {
+                case "Manual":
+                    cmbMode.SelectedIndex = 0;
+                    _changeMode = OperationChangeMode.Manual;
+                    break;
+                case "Random":
+                    cmbMode.SelectedIndex = 2;
+                    _changeMode = OperationChangeMode.Random;
+                    break;
+                default:
+                    cmbMode.SelectedIndex = 1;
+                    _changeMode = OperationChangeMode.Sequential;
+                    break;
+            }
+
+            // 3) Khôi phục màu nền 10 cột sticker
+            if (_config.PracticeState.StickerColumns != null && _levelPanels != null)
+            {
+                foreach (var col in _config.PracticeState.StickerColumns)
+                {
+                    if (_levelPanels.TryGetValue(col.Level, out var flp) && flp != null)
+                    {
+                        try
+                        {
+                            flp.BackColor = Color.FromArgb(col.BackColorArgb);
+                        }
+                        catch
+                        {
+                            // Nếu dữ liệu cũ bị lỗi màu, bỏ qua
+                        }
+                    }
+                }
+            }
+
+            _isInternalOperationChange = false;
+        }
+
+
+        private void PracticeForm1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            SavePracticeStateToConfig();
         }
 
         #region Sinh câu hỏi
@@ -787,29 +919,6 @@ namespace ToanCongTruNhanChia
             }
         }
 
-
-
-        private void InitLevelPins()
-        {
-            PictureBox[] pins =
-            {
-                picPin1, picPin2, picPin3, picPin4, picPin5,
-                picPin6, picPin7, picPin8, picPin9, picPin10
-            };
-
-            for (int i = 0; i < pins.Length; i++)
-            {
-                var pb = pins[i];
-                if (pb == null) continue;
-
-                int level = i + 1;
-                pb.Tag = level;
-                pb.Cursor = Cursors.Hand;
-                pb.Click -= RedPin_Click;
-                pb.Click += RedPin_Click;
-            }
-        }
-
         private void RedPin_Click(object sender, EventArgs e)
         {
             if (sender is PictureBox pb && pb.Tag is int level)
@@ -893,20 +1002,19 @@ namespace ToanCongTruNhanChia
             });
 
             // 4) Tặng sticker(s)
-            int stickersPerLevel = StickersPerLevelTest;
+            // - DEBUG_STICKER_MODE = true  → dùng DEBUG_STICKERS_PER_LEVEL
+            // - DEBUG_STICKER_MODE = false → luôn 1 sticker mỗi mốc level
+            int stickersPerLevel = DEBUG_STICKER_MODE ? DEBUG_STICKERS_PER_LEVEL : 1;
 
-            // Nếu cấu hình <= 1 thì giữ hành vi cũ
-            if (stickersPerLevel <= 1)
+            // Nếu vì lý do nào đó giá trị <= 0 thì an toàn gán lại = 1
+            if (stickersPerLevel <= 0)
+                stickersPerLevel = 1;
+
+            for (int i = 0; i < stickersPerLevel; i++)
             {
                 GiveStickerForLevel(levelInCycle);
             }
-            else
-            {
-                for (int i = 0; i < stickersPerLevel; i++)
-                {
-                    GiveStickerForLevel(levelInCycle);
-                }
-            }
+
         }
 
         private void LoadStickersFromConfig()
@@ -949,6 +1057,8 @@ namespace ToanCongTruNhanChia
                     }
                 };
 
+                CenterStickerInColumn(flp, pb);
+
                 pb.Click += Sticker_Click;
                 flp.Controls.Add(pb);
             }
@@ -990,15 +1100,7 @@ namespace ToanCongTruNhanChia
                 }
             };
 
-            // 👉 TÍNH MARGIN ĐỂ CANH GIỮA THEO CHIỀU NGANG
-            // Giả sử flp đang: FlowDirection = TopDown, WrapContents = false
-            int leftMargin = 0;
-            if (flp.ClientSize.Width > pb.Width)
-            {
-                leftMargin = (flp.ClientSize.Width - pb.Width) / 2;
-            }
-            // Margin: trái = leftMargin, trên/dưới = 3, phải = 3 (tuỳ chỉnh thêm được)
-            pb.Margin = new Padding(leftMargin, 3, 3, 3);
+            CenterStickerInColumn(flp, pb);
 
             pb.Click += Sticker_Click;
             flp.Controls.Add(pb);
@@ -1984,8 +2086,8 @@ namespace ToanCongTruNhanChia
             cmbMode.Items.Add("Sequential");
             cmbMode.Items.Add("Random");
 
-            cmbMode.SelectedIndex = 1; // Manual
-            _changeMode = OperationChangeMode.Manual;
+            cmbMode.SelectedIndex = 1; // Sequential
+            _changeMode = OperationChangeMode.Sequential;
         }
 
         private void cmbMode_SelectedIndexChanged(object sender, EventArgs e)
@@ -2263,57 +2365,37 @@ namespace ToanCongTruNhanChia
         // Hiệu ứng khi sticker mới được tặng (thêm vào FlowLayoutPanel)
         private async void AnimateStickerAward(PictureBox pb)
         {
-            if (pb == null) return;
+            if (pb == null || pb.IsDisposed)
+                return;
 
             try
             {
-                // Kích thước gốc
-                int baseW = pb.Width;
-                int baseH = pb.Height;
+                // 1) Pop nhẹ (phóng to rồi thu lại)
+                await PulseAsync(pb, scale: 1.2f, durationMs: 80);
 
-                // Kích thước to hơn chút (%)
-                int bigW = (int)(baseW * 1.5);
-                int bigH = (int)(baseH * 1.5);
-
-                // Pop: phóng to nhanh rồi thu lại
-                pb.Width = bigW;
-                pb.Height = bigH;
-                await Task.Delay(250);   // ms
-
-                pb.Width = baseW;
-                pb.Height = baseH;
+                // 2) Rung nhẹ cho vui
+                await ShakeAsync(pb, amplitude: 3, cycles: 6, delayMs: 22);
             }
             catch
             {
-                // nuốt lỗi, tránh làm crash app vì animation
             }
         }
+
 
         // Hiệu ứng khi click sticker (nhúc nhích + viền nổi)
         private async void AnimateStickerClick(PictureBox pb)
         {
-            if (pb == null) return;
+            if (pb == null || pb.IsDisposed)
+                return;
 
             try
             {
-                int baseW = pb.Width;
-                int baseH = pb.Height;
-                int bigW = (int)(baseW * 1.2); // to hơn ~10%
-                int bigH = (int)(baseH * 1.2);
+                //var borderTask = BorderFlashAsync(pb, BorderStyle.FixedSingle, durationMs: 180); // Hiệu ứng viền
+                //var bounceTask = BounceAsync(pb, amplitude: 5, cycles: 6, delayMs: 20); // nhúng
+                //var shakeTask = ShakeAsync(pb, amplitude: 4, cycles: 5, delayMs: 32); // rung
 
-                var oldBorder = pb.BorderStyle;
-
-                // Làm nổi sticker: viền + phóng to nhẹ
-                //pb.BorderStyle = BorderStyle.FixedSingle;
-                pb.Width = bigW;
-                pb.Height = bigH;
-
-                await Task.Delay(250); // giữ hiệu ứng trong ms
-
-                // Trả về trạng thái ban đầu
-                pb.Width = baseW;
-                pb.Height = baseH;
-                pb.BorderStyle = oldBorder;
+                var shakeTask = ShakeHorizontalAsync(pb, amplitude: 6, cycles: 6, delayMs: 100); // Rung ngang nhẹ khi click
+                await Task.WhenAll(shakeTask);
             }
             catch
             {
@@ -2321,7 +2403,203 @@ namespace ToanCongTruNhanChia
         }
 
 
+        #region Các hàm tạo hiệu ứng hình ảnh stickers
+        // Hiệu ứng rung ngang (shake)
+        private async Task ShakeAsync(PictureBox pb, int amplitude = 4, int cycles = 6, int delayMs = 25)
+        {
+            if (pb == null || pb.IsDisposed)
+                return;
 
+            var originalMargin = pb.Margin;
+
+            try
+            {
+                for (int i = 0; i < cycles; i++)
+                {
+                    int offset = (i % 2 == 0) ? amplitude : -amplitude;
+
+                    pb.Margin = new Padding(
+                        originalMargin.Left + offset,
+                        originalMargin.Top,
+                        originalMargin.Right,
+                        originalMargin.Bottom
+                    );
+
+                    await Task.Delay(delayMs);
+                }
+            }
+            catch
+            {
+            }
+            finally
+            {
+                if (!pb.IsDisposed)
+                {
+                    pb.Margin = originalMargin;
+                }
+            }
+        }
+
+        // Hiệu ứng phóng to rồi thu lại (pulse)
+        private async Task PulseAsync(PictureBox pb, float scale = 1.15f, int durationMs = 120)
+        {
+            if (pb == null || pb.IsDisposed)
+                return;
+
+            int baseW = pb.Width;
+            int baseH = pb.Height;
+
+            int bigW = (int)(baseW * scale);
+            int bigH = (int)(baseH * scale);
+
+            try
+            {
+                pb.Width = bigW;
+                pb.Height = bigH;
+
+                await Task.Delay(durationMs);
+
+                pb.Width = baseW;
+                pb.Height = baseH;
+            }
+            catch
+            {
+                if (!pb.IsDisposed)
+                {
+                    pb.Width = baseW;
+                    pb.Height = baseH;
+                }
+            }
+        }
+
+        // Hiệu ứng làm nổi viền trong thời gian ngắn (glow border)
+        private async Task BorderFlashAsync(PictureBox pb, BorderStyle highlightStyle, int durationMs = 150)
+        {
+            if (pb == null || pb.IsDisposed)
+                return;
+
+            var originalBorder = pb.BorderStyle;
+
+            try
+            {
+                pb.BorderStyle = highlightStyle;
+                await Task.Delay(durationMs);
+            }
+            catch
+            {
+            }
+            finally
+            {
+                if (!pb.IsDisposed)
+                {
+                    pb.BorderStyle = originalBorder;
+                }
+            }
+        }
+
+        // Hiệu ứng “nhún lên xuống” (bounce theo chiều dọc)
+        private async Task BounceAsync(PictureBox pb, int amplitude = 4, int cycles = 4, int delayMs = 30)
+        {
+            if (pb == null || pb.IsDisposed)
+                return;
+
+            var originalMargin = pb.Margin;
+
+            try
+            {
+                for (int i = 0; i < cycles; i++)
+                {
+                    int offset = (i % 2 == 0) ? -amplitude : amplitude;
+
+                    pb.Margin = new Padding(
+                        originalMargin.Left,
+                        originalMargin.Top + offset,
+                        originalMargin.Right,
+                        originalMargin.Bottom
+                    );
+
+                    await Task.Delay(delayMs);
+                }
+            }
+            catch
+            {
+            }
+            finally
+            {
+                if (!pb.IsDisposed)
+                {
+                    pb.Margin = originalMargin;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Hiệu ứng nhúc nhích trái-phải (shake ngang).
+        /// Không ảnh hưởng sticker khác vì chỉ thay đổi Location.
+        /// </summary>
+        private async Task ShakeHorizontalAsync(PictureBox pb, int amplitude = 6, int cycles = 6, int delayMs = 22)
+        {
+            if (pb == null || pb.IsDisposed)
+                return;
+
+            // Lưu vị trí ban đầu
+            var original = pb.Location;
+
+            try
+            {
+                for (int i = 0; i < cycles; i++)
+                {
+                    // rung qua lại: +amplitude rồi -amplitude
+                    int offset = (i % 2 == 0) ? amplitude : -amplitude;
+
+                    pb.Location = new Point(
+                        original.X + offset,
+                        original.Y
+                    );
+
+                    await Task.Delay(delayMs);
+                }
+            }
+            catch
+            {
+                // tránh crash nếu control đã dispose
+            }
+            finally
+            {
+                if (!pb.IsDisposed)
+                {
+                    pb.Location = original;
+                }
+            }
+        }
+
+
+
+
+        #endregion
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            SavePracticeStateToConfig();
+
+            // Optional: thông báo nhỏ cho Lisa/Helen biết là đã lưu
+            MessageBox.Show(
+                "Đã lưu điểm, phép toán, sticker và màu sắc.",
+                "Saved",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information
+            );
+        }
+
+        private void CenterStickerInColumn(FlowLayoutPanel flp, PictureBox pb)
+        {
+            int leftMargin = 0;
+            if (flp.ClientSize.Width > pb.Width)
+            {
+                leftMargin = (flp.ClientSize.Width - pb.Width) / 2;
+            }
+            pb.Margin = new Padding(leftMargin, 3, 3, 3);
+        }
 
     }
 }

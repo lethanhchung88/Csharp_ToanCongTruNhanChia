@@ -20,6 +20,9 @@ namespace ToanCongTruNhanChia
         /// Default: "Lisa&Helen"
         /// </summary>
         public string AdminPassword { get; set; } = "Lisa&Helen";
+
+        // ✅ mới thêm:
+        public PracticeStateConfig PracticeState { get; set; }
     }
 
     public class OperationConfig
@@ -54,6 +57,8 @@ namespace ToanCongTruNhanChia
         public string FileName { get; set; } // Tên file .png (ví dụ: "peppa_01.png")
     }
 
+
+
     public class StickerConfig
     {
         /// <summary>
@@ -67,4 +72,26 @@ namespace ToanCongTruNhanChia
         /// </summary>
         public List<EarnedStickerInfo> EarnedStickers { get; set; } = new List<EarnedStickerInfo>();
     }
+
+    public class StickerColumnColorConfig
+    {
+        public int Level { get; set; }        // 1..10
+        public int BackColorArgb { get; set; } // Color.ToArgb()
+    }
+
+    public class PracticeStateConfig
+    {
+        // Trạng thái check các phép toán
+        public bool ChkAdd { get; set; }
+        public bool ChkSub { get; set; }
+        public bool ChkMul { get; set; }
+        public bool ChkDiv { get; set; }
+
+        // Chế độ đổi phép toán: "Manual", "Sequential", "Random"
+        public string Mode { get; set; }
+
+        // Màu nền từng cột sticker
+        public List<StickerColumnColorConfig> StickerColumns { get; set; }
+    }
+
 }
