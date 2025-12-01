@@ -42,7 +42,7 @@ namespace ToanCongTruNhanChia
         // 🔧 DEBUG sticker mode: bật/tắt chế độ test
         // true  = dùng giá trị cứng trong code (test nhanh)
         // false = dùng config bình thường
-        private const bool DEBUG_STICKER_MODE = true;   // <-- khi test để true, chạy thật để false
+        private const bool DEBUG_STICKER_MODE = false;   // <-- khi test để true, chạy thật để false
 
         // Khi DEBUG_STICKER_MODE = true:
         // 1) Mốc điểm để lên 1 level sticker (ví dụ 5 điểm là lên level 1 lần)

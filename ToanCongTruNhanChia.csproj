@@ -418,6 +418,18 @@
     <Content Include="sound\stickers\level02\Madame Gazelle.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="sound\stickers\level02\Miss Rabbit.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sound\stickers\level02\Miss Rabbit.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sound\stickers\level02\Mr Potato.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sound\stickers\level02\Mr Potato.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="sound\stickers\level02\Mummy Pig.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -430,34 +442,94 @@
     <Content Include="sound\stickers\level02\Peppa Pig.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level03\Ben Elf.png">
+    <Content Include="sound\stickers\level02\Rebecca.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level03\Ben Elf.wav">
+    <Content Include="sound\stickers\level02\Rebecca.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level03\Daisy Thistle.png">
+    <Content Include="sound\stickers\level02\Richard.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level03\Daisy Thistle.wav">
+    <Content Include="sound\stickers\level02\Richard.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level03\Gaston the Ladybird.png">
+    <Content Include="sound\stickers\level02\Suzy.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level03\Gaston the Ladybird.wav">
+    <Content Include="sound\stickers\level02\Suzy.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level03\King Thistle.png">
+    <Content Include="sound\stickers\level02\Zoe.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level03\King Thistle.wav">
+    <Content Include="sound\stickers\level02\Zoe.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level03\level03-intro.wav">
+    <Content Include="sound\stickers\level03\Ben.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level03\level03.wav">
+    <Content Include="sound\stickers\level03\Ben.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sound\stickers\level03\Big Bad Barry.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sound\stickers\level03\Big Bad Barry.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sound\stickers\level03\Daisy and Poppy.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sound\stickers\level03\Daisy and Poppy.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sound\stickers\level03\Daisy.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sound\stickers\level03\Daisy.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sound\stickers\level03\Fairy Mayor.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sound\stickers\level03\Fairy Mayor.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sound\stickers\level03\Fleur.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sound\stickers\level03\Fleur.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sound\stickers\level03\Gaston.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sound\stickers\level03\Gaston.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sound\stickers\level03\Holly.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sound\stickers\level03\Holly.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sound\stickers\level03\King.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sound\stickers\level03\King.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sound\stickers\level03\Lucy.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sound\stickers\level03\Lucy.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sound\stickers\level03\Mr Gnome.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sound\stickers\level03\Mr Gnome.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="sound\stickers\level03\Nanny Plum.png">
@@ -466,22 +538,16 @@
     <Content Include="sound\stickers\level03\Nanny Plum.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level03\Princess Holly.png">
+    <Content Include="sound\stickers\level03\Queen.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level03\Princess Holly.wav">
+    <Content Include="sound\stickers\level03\Queen.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level03\Queen Thistle.png">
+    <Content Include="sound\stickers\level03\Wise Old Elf.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level03\Queen Thistle.wav">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="sound\stickers\level03\The Wise Old Elf.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="sound\stickers\level03\The Wise Old Elf.wav">
+    <Content Include="sound\stickers\level03\Wise Old Elf.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="sound\stickers\level04\Dr. Antel.png">
