@@ -49,7 +49,7 @@ namespace ToanCongTruNhanChia
         private const int DEBUG_STICKER_POINT_STEP = 1;
 
         // 2) Số sticker được tặng mỗi lần lên 1 level
-        private const int DEBUG_STICKERS_PER_LEVEL = 20;
+        private const int DEBUG_STICKERS_PER_LEVEL = 10;
 
         // Đại diện cho 1 phép cộng
         private class AdditionCase
@@ -1127,6 +1127,10 @@ namespace ToanCongTruNhanChia
                     FileName = fileNameWithoutExt + ".png"
                 });
             }
+
+            // 2) Hiện text NGAY LẬP TỨC
+            lblStickerSound.Visible = true;
+            lblStickerSound.Text = fileNameWithoutExt;
 
             // Phát âm thanh sticker
             SoundManager.PlayStickerSound(level, fileNameWithoutExt);

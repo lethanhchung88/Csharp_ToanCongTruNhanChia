@@ -343,11 +343,12 @@
             // lblStickerSound
             // 
             this.lblStickerSound.AutoSize = true;
-            this.lblStickerSound.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStickerSound.Location = new System.Drawing.Point(993, 248);
+            this.lblStickerSound.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStickerSound.ForeColor = System.Drawing.Color.Black;
+            this.lblStickerSound.Location = new System.Drawing.Point(937, 248);
             this.lblStickerSound.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblStickerSound.Name = "lblStickerSound";
-            this.lblStickerSound.Size = new System.Drawing.Size(223, 39);
+            this.lblStickerSound.Size = new System.Drawing.Size(263, 46);
             this.lblStickerSound.TabIndex = 19;
             this.lblStickerSound.Text = "Sticker sound";
             // 
@@ -472,7 +473,7 @@
             // 
             // panel1
             // 
-            this.panel1.Location = new System.Drawing.Point(488, 24);
+            this.panel1.Location = new System.Drawing.Point(510, 24);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(821, 140);
             this.panel1.TabIndex = 23;
