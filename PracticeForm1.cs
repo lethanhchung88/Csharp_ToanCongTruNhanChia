@@ -10,6 +10,7 @@ using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing.Drawing2D;
 
 namespace ToanCongTruNhanChia
 {
@@ -22,6 +23,8 @@ namespace ToanCongTruNhanChia
             Multiplication,
             Division
         }
+
+        private const int StickerBoxSize = 72;
 
         public OperationType InitialOperation { get; set; } = OperationType.Addition;
 
@@ -49,7 +52,7 @@ namespace ToanCongTruNhanChia
         private const int DEBUG_STICKER_POINT_STEP = 1;
 
         // 2) Số sticker được tặng mỗi lần lên 1 level
-        private const int DEBUG_STICKERS_PER_LEVEL = 10;
+        private const int DEBUG_STICKERS_PER_LEVEL = 1;
 
         // Đại diện cho 1 phép cộng
         private class AdditionCase
@@ -553,7 +556,7 @@ namespace ToanCongTruNhanChia
         private void UpdateScoreLabels()
         {
             // Tổng điểm: dùng icon sao nổi bật (⭐)
-            lblTotalScore.Text = $"{_totalScore}⭐";
+            lblTotalScore.Text = $"{_totalScore}";
 
             // Điểm từng phép toán: dùng sao đơn giản (★)
             lblScoreAdd.Text = $"{_scoreAdd}★";
@@ -1036,32 +1039,72 @@ namespace ToanCongTruNhanChia
                 if (string.IsNullOrEmpty(levelFolderPath))
                     continue;
 
-                string pngPath = Path.Combine(levelFolderPath, st.FileName);
-                if (!File.Exists(pngPath))
+                string[] pngFiles = Directory.GetFiles(levelFolderPath, "*.png");
+                if (pngFiles == null || pngFiles.Length == 0)
                     continue;
+
+                var orderedPngFiles = pngFiles
+                    .OrderBy(p => Path.GetFileName(p), StringComparer.CurrentCultureIgnoreCase)
+                    .ToArray();
+
+                // ===== TÍNH STT (1-based) =====
+                int seq = st.Index;   // dữ liệu mới
+
+                // Tương thích dữ liệu cũ: nếu Index chưa có, thử map theo FileName
+                if (seq <= 0)
+                {
+                    if (!string.IsNullOrEmpty(st.FileName))
+                    {
+                        int foundIdx = Array.FindIndex(
+                            orderedPngFiles,
+                            p => string.Equals(
+                                Path.GetFileName(p),
+                                st.FileName,
+                                StringComparison.CurrentCultureIgnoreCase)
+                        );
+                        if (foundIdx >= 0)
+                            seq = foundIdx + 1;   // 1-based
+                    }
+
+                    // Nếu vẫn không xác định được thì cho về 1
+                    if (seq <= 0)
+                        seq = 1;
+                }
+
+                // seq > số file thì quay vòng: ví dụ 5 file, seq=6 -> lấy lại file 1
+                int zeroBasedIndex = (seq - 1) % orderedPngFiles.Length;
+                string pngPath = orderedPngFiles[zeroBasedIndex];
 
                 string fileNameWithoutExt = Path.GetFileNameWithoutExtension(pngPath);
 
-                var pb = new PictureBox
-                {
-                    Width = 80,
-                    Height = 80,
-                    SizeMode = PictureBoxSizeMode.Zoom,
-                    Margin = new Padding(3),
-                    Cursor = Cursors.Hand,
-                    Image = Image.FromFile(pngPath),
-                    Tag = new StickerTagInfo
-                    {
-                        Level = st.Level,
-                        FileName = fileNameWithoutExt
-                    }
-                };
+                var pb = CreateStickerPictureBox(pngPath, st.Level);
 
                 CenterStickerInColumn(flp, pb);
 
                 pb.Click += Sticker_Click;
                 flp.Controls.Add(pb);
             }
+        }
+
+        private string GetLevelFolderPath(int level)
+        {
+            // Root: ...\sound\stickers
+            string stickersRoot = Path.Combine(
+                AppDomain.CurrentDomain.BaseDirectory,
+                "sound", "stickers"
+            );
+
+            // Tiền tố chuẩn: level01, level02, ...
+            string levelPrefix = $"level{level:00}";
+
+            // Lấy tất cả thư mục bắt đầu bằng levelXX*, rồi sắp xếp ABC theo tên thư mục
+            var dirs = Directory
+                .GetDirectories(stickersRoot, levelPrefix + "*")
+                .OrderBy(p => Path.GetFileName(p), StringComparer.CurrentCultureIgnoreCase)
+                .ToArray();
+
+            // Nếu không tìm thấy thì trả về null
+            return dirs.FirstOrDefault();
         }
 
         private void GiveStickerForLevel(int level)
@@ -1082,38 +1125,27 @@ namespace ToanCongTruNhanChia
             if (pngFiles == null || pngFiles.Length == 0)
                 return;
 
-            int index = _random.Next(0, pngFiles.Length);
-            string pngPath = pngFiles[index];
+            // Sắp xếp theo ABC dựa trên tên file
+            var orderedPngFiles = pngFiles
+                .OrderBy(p => Path.GetFileName(p), StringComparer.CurrentCultureIgnoreCase)
+                .ToArray();
+
+            // Chọn random 1 file trong danh sách đã sắp xếp
+            int index = _random.Next(0, orderedPngFiles.Length);   // 0-based
+            string pngPath = orderedPngFiles[index];
             string fileNameWithoutExt = Path.GetFileNameWithoutExtension(pngPath);
 
-            var pb = new PictureBox
-            {
-                Width = 80,
-                Height = 80,
-                SizeMode = PictureBoxSizeMode.Zoom,
-                Cursor = Cursors.Hand,
-                Image = Image.FromFile(pngPath),
-                Tag = new StickerTagInfo
-                {
-                    Level = level,
-                    FileName = fileNameWithoutExt
-                }
-            };
+            var pb = CreateStickerPictureBox(pngPath, level);
 
             CenterStickerInColumn(flp, pb);
 
             pb.Click += Sticker_Click;
             flp.Controls.Add(pb);
 
-            // 🟢 GỌI ANIMATION KHI STICKER VỪA ĐƯỢC TẶNG
+            // Animation khi tặng
             AnimateStickerAward(pb);
 
-            //// Nếu muốn debug thì bật lại:
-            //Debug.WriteLine(
-            //    $"[GiveStickerForLevel] Level={level}, flpWidth={flp.ClientSize.Width}, leftMargin={leftMargin}, Height={flp.Height}, StickerCount={flp.Controls.Count}"
-            //);
-
-            // lưu vào config
+            // Lưu vào config
             if (_config != null)
             {
                 if (_config.Sticker == null)
@@ -1124,15 +1156,14 @@ namespace ToanCongTruNhanChia
                 _config.Sticker.EarnedStickers.Add(new EarnedStickerInfo
                 {
                     Level = level,
-                    FileName = fileNameWithoutExt + ".png"
+                    Index = index + 1,                        // lưu 1-based
+                    FileName = Path.GetFileName(pngPath)      // optional, để tương thích ngược
                 });
             }
 
-            // 2) Hiện text NGAY LẬP TỨC
+            // Hiện text + phát âm thanh
             lblStickerSound.Visible = true;
             lblStickerSound.Text = fileNameWithoutExt;
-
-            // Phát âm thanh sticker
             SoundManager.PlayStickerSound(level, fileNameWithoutExt);
         }
 
@@ -2604,6 +2635,55 @@ namespace ToanCongTruNhanChia
             }
             pb.Margin = new Padding(leftMargin, 3, 3, 3);
         }
+
+        private PictureBox CreateStickerPictureBox(string pngPath, int level)
+        {
+            var original = Image.FromFile(pngPath); // KHÔNG dùng using, để còn hiển thị
+
+            var pb = new PictureBox
+            {
+                Width = StickerBoxSize,
+                Height = StickerBoxSize,
+                Margin = new Padding(3),
+                Cursor = Cursors.Hand,
+                Tag = new StickerTagInfo
+                {
+                    Level = level,
+                    FileName = Path.GetFileNameWithoutExtension(pngPath)
+                }
+            };
+
+            // Ảnh nhỏ hơn hoặc bằng 72x72 => giữ nguyên, không phóng to
+            if (original.Width <= StickerBoxSize && original.Height <= StickerBoxSize)
+            {
+                pb.SizeMode = PictureBoxSizeMode.CenterImage;
+                pb.Image = original;       // giữ nguyên ảnh
+                return pb;
+            }
+
+            // Ảnh lớn hơn => thu nhỏ theo tỉ lệ, max 72x72
+            float scale = Math.Min(
+                (float)StickerBoxSize / original.Width,
+                (float)StickerBoxSize / original.Height);
+
+            int newW = (int)Math.Round(original.Width * scale);
+            int newH = (int)Math.Round(original.Height * scale);
+
+            var resized = new Bitmap(newW, newH);
+            using (var g = Graphics.FromImage(resized))
+            {
+                g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                g.DrawImage(original, 0, 0, newW, newH);
+            }
+
+            original.Dispose(); // đã có bản thu nhỏ, hủy bản gốc
+
+            pb.SizeMode = PictureBoxSizeMode.CenterImage;
+            pb.Image = resized;
+
+            return pb;
+        }
+
 
     }
 }

@@ -53,8 +53,13 @@ namespace ToanCongTruNhanChia
 
     public class EarnedStickerInfo
     {
-        public int Level { get; set; }      // Level 1..10
-        public string FileName { get; set; } // Tên file .png (ví dụ: "peppa_01.png")
+        public int Level { get; set; }
+
+        // STT (1-based) trong danh sách file .png sắp xếp theo ABC
+        public int Index { get; set; }
+
+        // Giữ lại để tương thích ngược (có thể dùng hoặc bỏ)
+        public string FileName { get; set; }
     }
 
 
