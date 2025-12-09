@@ -412,19 +412,23 @@ namespace ToanCongTruNhanChia
             string levelWav = Path.Combine(levelFolderPath, $"level{level:00}.wav");
             PlaySyncSafe(levelWav);
 
-            // 5) Tìm file intro: levelXX-intro*.wav
-            string[] introCandidates = Directory.GetFiles(
-                levelFolderPath,
-                $"level{level:00}-intro*.wav",
-                SearchOption.TopDirectoryOnly
-            );
+            // 5) Tìm tất cả file có chữ "intro" trong tên (.wav)
+            //   - không cần chứa levelXX
+            //   - chỉ cần có "intro" (không phân biệt hoa/thường)
+            //   - sort theo ABC rồi lấy file đầu tiên
+            var introCandidates = Directory.GetFiles(levelFolderPath, "*.wav")
+                .Where(p => Path.GetFileName(p)
+                    .IndexOf("intro", StringComparison.OrdinalIgnoreCase) >= 0)
+                .OrderBy(p => Path.GetFileName(p), StringComparer.CurrentCultureIgnoreCase)
+                .ToArray();
 
             if (introCandidates.Length > 0)
             {
-                // Lấy file đầu tiên tìm thấy
+                // Lấy file đầu tiên sau khi sort
                 string introFile = introCandidates[0];
                 PlaySyncSafe(introFile);
             }
+
         }
 
         public static void PlayLevelPin(int level)

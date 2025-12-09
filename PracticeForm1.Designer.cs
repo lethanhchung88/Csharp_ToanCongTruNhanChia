@@ -54,6 +54,7 @@
             this.flpLevel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.lblStickerSound = new System.Windows.Forms.Label();
             this.grpOperations = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.lblMode = new System.Windows.Forms.Label();
             this.cmbMode = new System.Windows.Forms.ComboBox();
             this.chkDiv = new System.Windows.Forms.CheckBox();
@@ -63,17 +64,18 @@
             this.btnSkip = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pnlStickers.SuspendLayout();
             this.tblStickers.SuspendLayout();
             this.grpOperations.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // lblExpression
             // 
             this.lblExpression.AutoSize = true;
             this.lblExpression.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblExpression.Location = new System.Drawing.Point(397, 43);
+            this.lblExpression.Location = new System.Drawing.Point(373, 78);
             this.lblExpression.Name = "lblExpression";
             this.lblExpression.Size = new System.Drawing.Size(240, 55);
             this.lblExpression.TabIndex = 0;
@@ -82,7 +84,7 @@
             // txtAnswer
             // 
             this.txtAnswer.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAnswer.Location = new System.Drawing.Point(618, 40);
+            this.txtAnswer.Location = new System.Drawing.Point(594, 75);
             this.txtAnswer.Name = "txtAnswer";
             this.txtAnswer.Size = new System.Drawing.Size(115, 62);
             this.txtAnswer.TabIndex = 4;
@@ -168,21 +170,21 @@
             // 
             // lblAnswer
             // 
-            this.lblAnswer.AutoSize = true;
             this.lblAnswer.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAnswer.ForeColor = System.Drawing.Color.Blue;
-            this.lblAnswer.Location = new System.Drawing.Point(798, 54);
+            this.lblAnswer.Location = new System.Drawing.Point(383, 18);
             this.lblAnswer.Name = "lblAnswer";
-            this.lblAnswer.Size = new System.Drawing.Size(187, 37);
+            this.lblAnswer.Size = new System.Drawing.Size(385, 44);
             this.lblAnswer.TabIndex = 14;
             this.lblAnswer.Text = "Keep going!";
+            this.lblAnswer.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblResult
             // 
             this.lblResult.AutoSize = true;
             this.lblResult.Font = new System.Drawing.Font("Wingdings", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
             this.lblResult.ForeColor = System.Drawing.Color.Red;
-            this.lblResult.Location = new System.Drawing.Point(739, 45);
+            this.lblResult.Location = new System.Drawing.Point(715, 80);
             this.lblResult.Name = "lblResult";
             this.lblResult.Size = new System.Drawing.Size(53, 53);
             this.lblResult.TabIndex = 15;
@@ -195,7 +197,6 @@
             this.prgSticker.Name = "prgSticker";
             this.prgSticker.Size = new System.Drawing.Size(1580, 23);
             this.prgSticker.TabIndex = 16;
-            this.prgSticker.Value = 20;
             // 
             // pnlStickers
             // 
@@ -319,14 +320,14 @@
             // 
             // lblStickerSound
             // 
-            this.lblStickerSound.AutoSize = true;
-            this.lblStickerSound.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStickerSound.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblStickerSound.ForeColor = System.Drawing.Color.Black;
-            this.lblStickerSound.Location = new System.Drawing.Point(703, 202);
+            this.lblStickerSound.Location = new System.Drawing.Point(8, 212);
             this.lblStickerSound.Name = "lblStickerSound";
-            this.lblStickerSound.Size = new System.Drawing.Size(211, 37);
+            this.lblStickerSound.Size = new System.Drawing.Size(793, 54);
             this.lblStickerSound.TabIndex = 19;
             this.lblStickerSound.Text = "Sticker sound";
+            this.lblStickerSound.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // grpOperations
             // 
@@ -348,6 +349,17 @@
             this.grpOperations.TabIndex = 20;
             this.grpOperations.TabStop = false;
             this.grpOperations.Text = "Math operations";
+            // 
+            // label1
+            // 
+            this.label1.Font = new System.Drawing.Font("Segoe UI Emoji", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Red;
+            this.label1.Location = new System.Drawing.Point(6, 64);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(87, 38);
+            this.label1.TabIndex = 24;
+            this.label1.Text = "⭐";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblMode
             // 
@@ -440,29 +452,27 @@
             // 
             // panel1
             // 
-            this.panel1.Location = new System.Drawing.Point(382, 20);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Location = new System.Drawing.Point(366, 19);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(616, 114);
+            this.panel1.Size = new System.Drawing.Size(402, 114);
             this.panel1.TabIndex = 23;
             this.panel1.Visible = false;
             // 
-            // label1
+            // pictureBox1
             // 
-            this.label1.Font = new System.Drawing.Font("Segoe UI Emoji", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Red;
-            this.label1.Location = new System.Drawing.Point(6, 64);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(87, 38);
-            this.label1.TabIndex = 24;
-            this.label1.Text = "⭐";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.pictureBox1.Location = new System.Drawing.Point(801, 14);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(254, 254);
+            this.pictureBox1.TabIndex = 24;
+            this.pictureBox1.TabStop = false;
             // 
             // PracticeForm1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1443, 831);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnSkip);
@@ -485,6 +495,7 @@
             this.tblStickers.ResumeLayout(false);
             this.grpOperations.ResumeLayout(false);
             this.grpOperations.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -528,5 +539,6 @@
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

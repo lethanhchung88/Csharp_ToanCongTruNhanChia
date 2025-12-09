@@ -4,13 +4,14 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics; // debug Debug.WriteLine($"_currentOperation = {_currentOperation}");
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Drawing.Drawing2D;
 
 namespace ToanCongTruNhanChia
 {
@@ -25,6 +26,11 @@ namespace ToanCongTruNhanChia
         }
 
         private const int StickerBoxSize = 72;
+        private const int MIN_LEVEL = 1;
+        private const int MAX_LEVEL = 20;
+
+        private const int StickerPreviewMaxSize = 254;
+        private PictureBox picStickerPreview;
 
         public OperationType InitialOperation { get; set; } = OperationType.Addition;
 
@@ -178,39 +184,55 @@ namespace ToanCongTruNhanChia
 
         private void ConfigureStickerTable()
         {
-            // 1 hàng, 10 cột
+            int levelCount = GetStickerLevelCount();
+            if (levelCount < MIN_LEVEL) levelCount = MIN_LEVEL;
+            if (levelCount > MAX_LEVEL) levelCount = MAX_LEVEL;
+
+            tblStickers.SuspendLayout();
+
+            // QUAN TRỌNG: clear controls cũ để add lại đúng số cột
+            tblStickers.Controls.Clear();
+
+            // 1 hàng, N cột
             tblStickers.RowCount = 1;
-            tblStickers.ColumnCount = 10;
+            tblStickers.ColumnCount = levelCount;
 
             // Table tự giãn chiều CAO theo nội dung
             tblStickers.AutoSize = true;
             tblStickers.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            tblStickers.Dock = DockStyle.Top;     // Nằm trên cùng trong pnlStickers
 
-            // Đặt ở trên cùng trong pnlStickers, để khi nó cao hơn panel thì panel sẽ cuộn
-            tblStickers.Dock = DockStyle.Top;
+            // ❗ Không set Dock Top ở đây nữa
+            // Dock đã xử lý ở Load (tblStickers.Dock = Fill)
+            // tblStickers.Dock = DockStyle.Fill;
 
             // ❗ Bỏ viền và khe hở của bảng
             tblStickers.CellBorderStyle = TableLayoutPanelCellBorderStyle.None;
             tblStickers.Margin = new Padding(0);
             tblStickers.Padding = new Padding(0);
-            tblStickers.BorderStyle = BorderStyle.None;   // nếu muốn không có viền ngoài luôn
+            tblStickers.BorderStyle = BorderStyle.None;
 
-            // Xóa style cũ, set 10 cột đều nhau
+            // Xóa style cũ, set N cột đều nhau
             tblStickers.ColumnStyles.Clear();
-            for (int i = 0; i < 10; i++)
+            float w = 100f / levelCount;
+            for (int i = 0; i < levelCount; i++)
             {
-                tblStickers.ColumnStyles.Add(
-                    new ColumnStyle(SizeType.Percent, 10f) // 10 cột, mỗi cột 10%
-                );
+                tblStickers.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, w));
             }
 
             tblStickers.RowStyles.Clear();
-            tblStickers.RowStyles.Add(
-                new RowStyle(SizeType.AutoSize) // HÀNG: rất quan trọng – phải để AutoSize (mới xuất hiện thanh cuộn), KHÔNG để Percent
-            );
-        }
+            tblStickers.RowStyles.Add(new RowStyle(SizeType.AutoSize));
 
+            // ✅ Add đủ panel level 1..N vào từng cột
+            for (int level = MIN_LEVEL; level <= levelCount; level++)
+            {
+                if (_levelPanels.TryGetValue(level, out var flp) && flp != null)
+                {
+                    tblStickers.Controls.Add(flp, level - MIN_LEVEL, 0);
+                }
+            }
+
+            tblStickers.ResumeLayout();
+        }
 
         private void PracticeForm1_Load(object sender, EventArgs e)
         {
@@ -222,6 +244,7 @@ namespace ToanCongTruNhanChia
             //lblScoreSub.Visible = false;
             //lblScoreMul.Visible = false;
             //lblScoreDiv.Visible = false;
+            pictureBox1.Visible = false;
 
             // ⭐ Tổng điểm: font to, nổi bật
             lblTotalScore.Font = new Font("Segoe UI Emoji", 22f, FontStyle.Bold);
@@ -233,6 +256,7 @@ namespace ToanCongTruNhanChia
             lblScoreDiv.Font = new Font("Segoe UI", 8f, FontStyle.Regular);
 
             lblStickerSound.Text = "";
+            InitStickerPreviewBox();
 
             _currentOperation = InitialOperation;
 
@@ -288,17 +312,42 @@ namespace ToanCongTruNhanChia
 
             // Panel bao ngoài chịu trách nhiệm cuộn
             pnlStickers.AutoScroll = true;
-            pnlStickers.BackColor = Color.LightGreen;   // màu Panel bao ngoài vùng sticker
+            pnlStickers.BackColor = Color.LightGreen;
             pnlStickers.BorderStyle = BorderStyle.FixedSingle;
 
-            tblStickers.BackColor = Color.LightYellow;  // TableLayoutPanel chứa 10 cột
+            tblStickers.BackColor = Color.LightYellow;
             tblStickers.BorderStyle = BorderStyle.FixedSingle;
 
-            // Table bên trong Panel, cấu hình số dòng, số cột, ... table
-            ConfigureStickerTable();
+            // ===== BẮT ĐẦU: Sắp xếp lại layout trong pnlStickers =====
+            if (prgSticker != null && tblStickers != null)
+            {
+                // Đảm bảo cả 2 control đều thuộc pnlStickers
+                if (prgSticker.Parent != pnlStickers)
+                    prgSticker.Parent?.Controls.Remove(prgSticker);
+                if (tblStickers.Parent != pnlStickers)
+                    tblStickers.Parent?.Controls.Remove(tblStickers);
 
-            // Các FlowLayoutPanel chứa sticker trong mỗi ô
-            InitStickerPanels();
+                // Xóa hết control hiện có trong pnlStickers để tránh dock loạn
+                pnlStickers.Controls.Clear();
+
+                // THỨ TỰ ADD QUAN TRỌNG:
+                // 1) Add tblStickers trước
+                // 2) Add prgSticker sau
+                pnlStickers.Controls.Add(tblStickers);
+                pnlStickers.Controls.Add(prgSticker);
+
+                // Dock: thanh progress nằm trên cùng, bảng chiếm phần còn lại
+                prgSticker.Dock = DockStyle.Top;
+                prgSticker.Height = 24;
+                prgSticker.Visible = true;
+
+                tblStickers.Dock = DockStyle.Fill;
+            }
+            // ===== KẾT THÚC layout =====
+
+            // 🔹 THỨ TỰ GỌI HÀM: tạo panel level trước, rồi mới set bảng
+            InitStickerPanels(); // Các FlowLayoutPanel chứa sticker trong mỗi ô
+            ConfigureStickerTable();
 
             LoadStickersFromConfig();
             InitStickerProgressBar();
@@ -851,42 +900,30 @@ namespace ToanCongTruNhanChia
 
         private void InitStickerPanels()
         {
-            _levelPanels = new Dictionary<int, FlowLayoutPanel>
-    {
-        { 1, flpLevel1 },
-        { 2, flpLevel2 },
-        { 3, flpLevel3 },
-        { 4, flpLevel4 },
-        { 5, flpLevel5 },
-        { 6, flpLevel6 },
-        { 7, flpLevel7 },
-        { 8, flpLevel8 },
-        { 9, flpLevel9 },
-        { 10, flpLevel10 },
-    };
+            _levelPanels = new Dictionary<int, FlowLayoutPanel>();
 
-            // 🎨 10 màu pastel cho 10 level
+            // 🎨 10 màu pastel (xoay vòng cho các level > 10)
             Color[] levelColors =
             {
-        Color.FromArgb(255, 235, 238), // 1 - hồng nhạt
-        Color.FromArgb(255, 243, 224), // 2 - cam kem
-        Color.FromArgb(255, 253, 231), // 3 - vàng kem
-        Color.FromArgb(232, 245, 233), // 4 - xanh lá nhạt
-        Color.FromArgb(225, 245, 254), // 5 - xanh cyan nhạt
-        Color.FromArgb(227, 242, 253), // 6 - xanh dương nhạt
-        Color.FromArgb(232, 234, 246), // 7 - tím indigo nhạt
-        Color.FromArgb(248, 240, 255), // 8 - tím lavender
-        Color.FromArgb(255, 236, 239), // 9 - hồng đào
-        Color.FromArgb(241, 248, 233), // 10 - xanh lá non
-    };
+                Color.FromArgb(255, 235, 238), // 1 - hồng nhạt
+                Color.FromArgb(255, 243, 224), // 2 - cam kem
+                Color.FromArgb(255, 253, 231), // 3 - vàng kem
+                Color.FromArgb(232, 245, 233), // 4 - xanh lá nhạt
+                Color.FromArgb(225, 245, 254), // 5 - xanh cyan nhạt
+                Color.FromArgb(227, 242, 253), // 6 - xanh dương nhạt
+                Color.FromArgb(232, 234, 246), // 7 - tím indigo nhạt
+                Color.FromArgb(248, 240, 255), // 8 - tím lavender
+                Color.FromArgb(255, 236, 239), // 9 - hồng đào
+                Color.FromArgb(241, 248, 233), // 10 - xanh lá non
+            };
 
-            int i = 0;
-
-            // Duyệt theo Key/Value để biết được level
-            foreach (var kvp in _levelPanels)
+            for (int level = MIN_LEVEL; level <= MAX_LEVEL; level++)
             {
-                int level = kvp.Key;
-                var flp = kvp.Value;
+                // ✅ Ưu tiên lấy panel có sẵn trong Designer (nếu tồn tại)
+                FlowLayoutPanel flp = TryGetDesignerLevelPanel(level) ?? new FlowLayoutPanel();
+
+                flp.Name = $"flpLevel{level}";
+                flp.Tag = level;
 
                 // Cho flp tự cao lên theo số sticker
                 flp.AutoSize = true;
@@ -900,27 +937,36 @@ namespace ToanCongTruNhanChia
                 // ❗ Không chừa khe hở / viền giữa các cột
                 flp.Margin = new Padding(0);
                 flp.Padding = new Padding(0);
-                flp.BorderStyle = BorderStyle.None;
 
-                // Màu nền cho từng cột
-                flp.BackColor = levelColors[i % levelColors.Length];
+                // Màu nền cho từng level (xoay vòng)
+                flp.BackColor = levelColors[(level - MIN_LEVEL) % levelColors.Length];
 
                 // đường viền
-                flp.BorderStyle = BorderStyle.FixedSingle; 
+                flp.BorderStyle = BorderStyle.FixedSingle;
 
                 // Luôn thấy rõ vùng màu kể cả khi chưa có sticker
                 flp.MinimumSize = new Size(0, 676);     // bạn có thể tăng/giảm chiều cao này
-
-                // Gắn level để sau này cần dùng (nếu muốn)
-                flp.Tag = level;
 
                 // 👉 Cho phép double–click vào vùng này để đổi màu
                 flp.DoubleClick -= FlpSticker_DoubleClick; // tránh gắn trùng nếu gọi lại
                 flp.DoubleClick += FlpSticker_DoubleClick;
 
-                i++;
+                // Add vào dictionary
+                _levelPanels[level] = flp;
             }
         }
+
+        private FlowLayoutPanel TryGetDesignerLevelPanel(int level)
+        {
+            // Tự động lấy flpLevel1..flpLevel10 nếu bạn đã tạo sẵn trong Designer
+            var fi = GetType().GetField(
+                $"flpLevel{level}",
+                BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public
+            );
+
+            return fi?.GetValue(this) as FlowLayoutPanel;
+        }
+
 
         private void RedPin_Click(object sender, EventArgs e)
         {
@@ -938,10 +984,14 @@ namespace ToanCongTruNhanChia
             if (_stickerPointStep <= 0)
                 _stickerPointStep = 10;
 
+            int levelCount = GetActiveStickerLevelCount();
+
             prgSticker.Minimum = 0;
-            prgSticker.Maximum = _stickerPointStep * 10;
+            prgSticker.Maximum = _stickerPointStep * levelCount;
+
             UpdateStickerProgressBar();
         }
+
 
         private void UpdateStickerProgressBar()
         {
@@ -951,7 +1001,9 @@ namespace ToanCongTruNhanChia
             if (_stickerPointStep <= 0)
                 _stickerPointStep = 10;
 
-            int max = _stickerPointStep * 10;
+            int levelCount = GetActiveStickerLevelCount();
+            int max = _stickerPointStep * levelCount;
+
             if (max <= 0)
             {
                 prgSticker.Minimum = 0;
@@ -963,9 +1015,10 @@ namespace ToanCongTruNhanChia
             prgSticker.Minimum = 0;
             prgSticker.Maximum = max;
 
-            int scoreInCycle = _totalScore % max; // sau mỗi 10 level quay lại 0
+            int scoreInCycle = _totalScore % max; // sau mỗi N level quay lại 0
             prgSticker.Value = scoreInCycle;
         }
+
 
         private async void HandleStickerLevelUp(int previousMaxScore)
         {
@@ -973,52 +1026,44 @@ namespace ToanCongTruNhanChia
                 _stickerPointStep = 10;
 
             int step = _stickerPointStep;
-            int max = step * 10;
+            int levelCount = GetActiveStickerLevelCount();
+            int max = step * levelCount;
 
             if (step <= 0 || max <= 0)
                 return;
 
             // 1) Cập nhật thanh progress trước
             UpdateStickerProgressBar();
+            prgSticker?.Refresh();
 
-            if (prgSticker != null)
-            {
-                prgSticker.Refresh(); // vẽ lại ngay
-            }
-
-            // 2) Chỉ xem xét khi điểm đang nằm đúng mốc (10,20,30,...)
+            // 2) Chỉ xem xét khi điểm đang nằm đúng mốc
             if (_totalScore <= 0 || _totalScore % step != 0)
                 return;
 
-            // 🔴 Quan trọng: chỉ thưởng nếu mốc này LỚN HƠN mọi điểm từng đạt trước đó
-            // → tránh trường hợp 10 → (sai) 9 → (đúng) 10 rồi ăn thêm sticker
+            // chống farm
             if (_totalScore <= previousMaxScore)
                 return;
 
-            int levelIndex = _totalScore / step;              // lần thứ mấy đạt mốc
-            int levelInCycle = ((levelIndex - 1) % 10) + 1;     // 1..10 rồi lặp lại
+            int levelIndex = _totalScore / step;
+            int levelInCycle = ((levelIndex - 1) % levelCount) + 1;  // 1..N
 
             // 3) Phát nhạc level-up
+            // Nếu audio của bạn chỉ chuẩn bị 10 level thì dùng modulo 10 cho sound:
+            int soundIndex = ((levelIndex - 1) % 10) + 1;
+
             await Task.Run(() =>
             {
-                SoundManager.PlayStickerLevelUpSequence(levelInCycle);
+                SoundManager.PlayStickerLevelUpSequence(soundIndex);
             });
 
-            // 4) Tặng sticker(s)
-            // - DEBUG_STICKER_MODE = true  → dùng DEBUG_STICKERS_PER_LEVEL
-            // - DEBUG_STICKER_MODE = false → luôn 1 sticker mỗi mốc level
+            // 4) Tặng sticker
             int stickersPerLevel = DEBUG_STICKER_MODE ? DEBUG_STICKERS_PER_LEVEL : 1;
-
-            // Nếu vì lý do nào đó giá trị <= 0 thì an toàn gán lại = 1
-            if (stickersPerLevel <= 0)
-                stickersPerLevel = 1;
+            if (stickersPerLevel <= 0) stickersPerLevel = 1;
 
             for (int i = 0; i < stickersPerLevel; i++)
-            {
                 GiveStickerForLevel(levelInCycle);
-            }
-
         }
+
 
         private void LoadStickersFromConfig()
         {
@@ -1142,6 +1187,9 @@ namespace ToanCongTruNhanChia
             pb.Click += Sticker_Click;
             flp.Controls.Add(pb);
 
+            // Hiển thị lên khung lớn ngay khi được thưởng
+            ShowStickerLarge(pngPath, level);
+
             // Animation khi tặng
             AnimateStickerAward(pb);
 
@@ -1180,7 +1228,12 @@ namespace ToanCongTruNhanChia
                 lblStickerSound.Visible = true;
                 lblStickerSound.Text = info.FileName;   // hoặc "🎵 " + info.FileName
 
-                // 3) Phát âm thanh (đã sửa SoundManager để click nhiều lần là restart)
+                // 3) Hiển thị ảnh lên khung preview
+                //ShowStickerPreview(info);
+                string pngPath = FindStickerPngPath(info.Level, info.FileName);
+                ShowStickerLarge(pngPath, info.Level);
+
+                // 4) Phát âm thanh (đã sửa SoundManager để click nhiều lần là restart)
                 SoundManager.PlayStickerSoundAsync(info.Level, info.FileName);
             }
         }
@@ -2683,6 +2736,200 @@ namespace ToanCongTruNhanChia
 
             return pb;
         }
+
+        private int GetStickerLevelCount()
+        {
+            string stickersRoot = Path.Combine(
+                AppDomain.CurrentDomain.BaseDirectory,
+                "sound", "stickers"
+            );
+
+            if (!Directory.Exists(stickersRoot))
+                return MIN_LEVEL;
+
+            var levels = Directory
+                .GetDirectories(stickersRoot, "level*")
+                .Select(path => Path.GetFileName(path))
+                .Select(name =>
+                {
+                    string digits = new string(
+                        name.Skip(5).TakeWhile(char.IsDigit).ToArray()
+                    );
+                    if (int.TryParse(digits, out int lv))
+                        return lv;
+                    return -1;
+                })
+                .Where(lv => lv >= MIN_LEVEL)
+                .Distinct()
+                .OrderBy(lv => lv)
+                .ToList();
+
+            int count = levels.Count;
+
+            if (count < MIN_LEVEL)
+                return MIN_LEVEL;
+
+            if (count > MAX_LEVEL)
+                return MAX_LEVEL;
+
+            return count;
+        }
+
+        private int GetActiveStickerLevelCount()
+        {
+            // Ưu tiên số cột đang hiển thị trên UI
+            int levelCount = tblStickers?.ColumnCount ?? 0;
+
+            // Nếu chưa set bảng thì fallback sang số folder
+            if (levelCount <= 0)
+                levelCount = GetStickerLevelCount();
+
+            if (levelCount < MIN_LEVEL) levelCount = MIN_LEVEL;
+            if (levelCount > MAX_LEVEL) levelCount = MAX_LEVEL;
+
+            return levelCount;
+        }
+
+        private void InitStickerPreviewBox()
+        {
+            if (picStickerPreview != null && !picStickerPreview.IsDisposed)
+                return;
+
+            picStickerPreview = new PictureBox
+            {
+                Name = "picStickerPreview",
+                Location = new Point(801, 10),
+                Size = new Size(StickerPreviewMaxSize, StickerPreviewMaxSize),
+                SizeMode = PictureBoxSizeMode.Zoom,          // giữ tỉ lệ + tự phóng/thu theo khung
+                BorderStyle = BorderStyle.None,              // ✅ không viền
+                BackColor = Color.Transparent,               // ✅ nền trong suốt
+                Visible = true,
+                Anchor = AnchorStyles.Top | AnchorStyles.Right
+            };
+
+            this.Controls.Add(picStickerPreview);
+
+            // Đảm bảo trong suốt theo nền form
+            picStickerPreview.Parent = this;
+            picStickerPreview.BringToFront();
+        }
+
+
+        private string ResolveStickerPngPath(int level, string fileNameWithoutExt)
+        {
+            string stickersRoot = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "sound", "stickers");
+            if (!Directory.Exists(stickersRoot))
+                return null;
+
+            string levelFolderName = $"level{level:00}";
+            string levelFolderPath = Directory
+                .GetDirectories(stickersRoot, levelFolderName + "*")
+                .FirstOrDefault();
+
+            if (string.IsNullOrEmpty(levelFolderPath))
+                return null;
+
+            // Ưu tiên đúng tên file
+            string direct = Path.Combine(levelFolderPath, fileNameWithoutExt + ".png");
+            if (File.Exists(direct))
+                return direct;
+
+            // Fallback: tìm theo tên không đuôi
+            return Directory.GetFiles(levelFolderPath, "*.png")
+                .FirstOrDefault(p =>
+                    string.Equals(
+                        Path.GetFileNameWithoutExtension(p),
+                        fileNameWithoutExt,
+                        StringComparison.CurrentCultureIgnoreCase
+                    )
+                );
+        }
+
+        private Image LoadImageNoLock(string path)
+        {
+            using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+            using (var img = Image.FromStream(fs))
+            {
+                return new Bitmap(img);
+            }
+        }
+
+        private void ShowStickerPreview(StickerTagInfo info)
+        {
+            if (info == null)
+                return;
+
+            InitStickerPreviewBox();
+
+            string pngPath = ResolveStickerPngPath(info.Level, info.FileName);
+            if (string.IsNullOrEmpty(pngPath) || !File.Exists(pngPath))
+                return;
+
+            Image newImg = null;
+            try
+            {
+                newImg = LoadImageNoLock(pngPath);
+            }
+            catch
+            {
+                return;
+            }
+
+            var old = picStickerPreview.Image;
+            picStickerPreview.Image = newImg;
+            old?.Dispose();
+        }
+
+        private void ShowStickerLarge(string pngPath, int level)
+        {
+            if (string.IsNullOrEmpty(pngPath) || !File.Exists(pngPath))
+                return;
+
+            // Lấy màu nền theo level để đồng bộ với cột
+            if (_levelPanels != null && _levelPanels.TryGetValue(level, out var flp) && flp != null)
+            {
+                picStickerPreview.BackColor = Color.Transparent;
+            }
+            else
+            {
+                picStickerPreview.BackColor = Color.Transparent;
+            }
+
+            picStickerPreview.SizeMode = PictureBoxSizeMode.Zoom;
+
+            // Tránh lock file ảnh
+            try
+            {
+                using (var fs = new FileStream(pngPath, FileMode.Open, FileAccess.Read))
+                using (var img = Image.FromStream(fs))
+                {
+                    picStickerPreview.Image?.Dispose();
+                    picStickerPreview.Image = new Bitmap(img);
+                }
+            }
+            catch
+            {
+                // ignore
+            }
+        }
+
+        private string FindStickerPngPath(int level, string fileNameWithoutExt)
+        {
+            string levelFolderPath = GetLevelFolderPath(level);
+            if (string.IsNullOrEmpty(levelFolderPath))
+                return null;
+
+            string exact = Path.Combine(levelFolderPath, fileNameWithoutExt + ".png");
+            if (File.Exists(exact))
+                return exact;
+
+            // fallback: tìm gần đúng
+            var files = Directory.GetFiles(levelFolderPath, "*.png");
+            return files.FirstOrDefault(p =>
+                string.Equals(Path.GetFileNameWithoutExtension(p), fileNameWithoutExt,
+                              StringComparison.CurrentCultureIgnoreCase));
+        }
+
 
 
     }
