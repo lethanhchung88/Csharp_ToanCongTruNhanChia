@@ -157,6 +157,10 @@ namespace ToanCongTruNhanChia
         private int _stickerPointStep; // mốc điểm lên 1 level (10,20,...)
         private Dictionary<int, FlowLayoutPanel> _levelPanels;
 
+        // Sticker đang hiển thị ở khung preview lớn
+        private int _currentPreviewLevel = 0;
+        private string _currentPreviewFileName = null;
+
         private AppConfig _config;
 
         // Prevent recursive events when we change controls in code
@@ -1187,6 +1191,10 @@ namespace ToanCongTruNhanChia
             pb.Click += Sticker_Click;
             flp.Controls.Add(pb);
 
+            // Cập nhật thông tin sticker đang hiển thị ở preview
+            _currentPreviewLevel = level;
+            _currentPreviewFileName = fileNameWithoutExt;
+
             // Hiển thị lên khung lớn ngay khi được thưởng
             ShowStickerLarge(pngPath, level);
 
@@ -1227,6 +1235,20 @@ namespace ToanCongTruNhanChia
                 // 2) Hiện text NGAY LẬP TỨC
                 lblStickerSound.Visible = true;
                 lblStickerSound.Text = info.FileName;   // hoặc "🎵 " + info.FileName
+
+                // 2.b) Copy tên file vào Clipboard
+                try
+                {
+                    Clipboard.SetText(info.FileName);
+                }
+                catch
+                {
+                    // tránh app crash nếu Clipboard lỗi (Remote Desktop, quyền hạn...)
+                }
+
+                // cập nhật sticker hiện tại cho preview
+                _currentPreviewLevel = info.Level;
+                _currentPreviewFileName = info.FileName;
 
                 // 3) Hiển thị ảnh lên khung preview
                 //ShowStickerPreview(info);
@@ -2804,8 +2826,11 @@ namespace ToanCongTruNhanChia
                 BorderStyle = BorderStyle.None,              // ✅ không viền
                 BackColor = Color.Transparent,               // ✅ nền trong suốt
                 Visible = true,
-                Anchor = AnchorStyles.Top | AnchorStyles.Right
+                Anchor = AnchorStyles.Top | AnchorStyles.Left,
+                Cursor = Cursors.Hand
             };
+
+            picStickerPreview.Click += PicStickerPreview_Click;
 
             this.Controls.Add(picStickerPreview);
 
@@ -2885,26 +2910,37 @@ namespace ToanCongTruNhanChia
             if (string.IsNullOrEmpty(pngPath) || !File.Exists(pngPath))
                 return;
 
-            // Lấy màu nền theo level để đồng bộ với cột
-            if (_levelPanels != null && _levelPanels.TryGetValue(level, out var flp) && flp != null)
-            {
-                picStickerPreview.BackColor = Color.Transparent;
-            }
-            else
-            {
-                picStickerPreview.BackColor = Color.Transparent;
-            }
+            // Lấy màu nền theo level để đồng bộ với cột (hiện tại đều Transparent)
+            picStickerPreview.BackColor = Color.Transparent;
 
-            picStickerPreview.SizeMode = PictureBoxSizeMode.Zoom;
+            // Không dùng Zoom/Center nữa, để Normal cho vẽ đúng tại góc trên-trái,
+            // sau đó dùng Padding để đẩy ảnh xuống sát đáy.
+            picStickerPreview.SizeMode = PictureBoxSizeMode.Normal;
 
-            // Tránh lock file ảnh
             try
             {
                 using (var fs = new FileStream(pngPath, FileMode.Open, FileAccess.Read))
                 using (var img = Image.FromStream(fs))
                 {
+                    // Tạo ảnh preview có giới hạn (<= StickerPreviewMaxSize, vd 254)
+                    var preview = CreatePreviewImage(img);
+
+                    // Gán ảnh mới
                     picStickerPreview.Image?.Dispose();
-                    picStickerPreview.Image = new Bitmap(img);
+                    picStickerPreview.Image = preview;
+
+                    // Căn TRÁI + DƯỚI:
+                    //   - Normal: ảnh vẽ ở top-left
+                    //   - muốn sát bottom: tăng Padding.Top = heightPicBox - heightImage
+                    int topPad = picStickerPreview.Height - preview.Height;
+                    if (topPad < 0) topPad = 0; // nếu lỡ ảnh cao hơn khung (không nên, vì đã resize), tránh âm
+
+                    picStickerPreview.Padding = new Padding(
+                        0,       // Left = 0  -> sát trái
+                        topPad,  // Top       -> đẩy ảnh xuống dưới
+                        0,       // Right
+                        0        // Bottom
+                    );
                 }
             }
             catch
@@ -2912,6 +2948,7 @@ namespace ToanCongTruNhanChia
                 // ignore
             }
         }
+
 
         private string FindStickerPngPath(int level, string fileNameWithoutExt)
         {
@@ -2928,6 +2965,49 @@ namespace ToanCongTruNhanChia
             return files.FirstOrDefault(p =>
                 string.Equals(Path.GetFileNameWithoutExtension(p), fileNameWithoutExt,
                               StringComparison.CurrentCultureIgnoreCase));
+        }
+
+        private void PicStickerPreview_Click(object sender, EventArgs e)
+        {
+            // Không có sticker nào được nhớ thì thôi
+            if (_currentPreviewLevel <= 0 || string.IsNullOrEmpty(_currentPreviewFileName))
+                return;
+
+            // Hiện text giống Sticker_Click
+            lblStickerSound.Visible = true;
+            lblStickerSound.Text = _currentPreviewFileName;
+
+            // Phát âm thanh giống Sticker_Click
+            SoundManager.PlayStickerSoundAsync(_currentPreviewLevel, _currentPreviewFileName);
+        }
+
+        private Image CreatePreviewImage(Image original)
+        {
+            // Nếu ảnh nhỏ hơn 254x254 → giữ nguyên
+            if (original.Width <= StickerPreviewMaxSize &&
+                original.Height <= StickerPreviewMaxSize)
+            {
+                return new Bitmap(original);
+            }
+
+            // Nếu ảnh lớn → thu nhỏ theo tỉ lệ
+            float scale = Math.Min(
+                (float)StickerPreviewMaxSize / original.Width,
+                (float)StickerPreviewMaxSize / original.Height);
+
+            int newW = (int)Math.Round(original.Width * scale);
+            int newH = (int)Math.Round(original.Height * scale);
+
+            var resized = new Bitmap(newW, newH);
+
+            using (var g = Graphics.FromImage(resized))
+            {
+                g.InterpolationMode =
+                    System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                g.DrawImage(original, 0, 0, newW, newH);
+            }
+
+            return resized;
         }
 
 

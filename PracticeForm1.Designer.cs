@@ -73,13 +73,13 @@
             // 
             // lblExpression
             // 
-            this.lblExpression.AutoSize = true;
             this.lblExpression.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblExpression.Location = new System.Drawing.Point(373, 78);
+            this.lblExpression.Location = new System.Drawing.Point(327, 78);
             this.lblExpression.Name = "lblExpression";
-            this.lblExpression.Size = new System.Drawing.Size(240, 55);
+            this.lblExpression.Size = new System.Drawing.Size(269, 55);
             this.lblExpression.TabIndex = 0;
-            this.lblExpression.Text = "99 + 99 = ";
+            this.lblExpression.Text = "99 + 99 =";
+            this.lblExpression.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // txtAnswer
             // 
