@@ -30,6 +30,9 @@ namespace ToanCongTruNhanChia
         private const int MAX_LEVEL = 20;
 
         private const int StickerPreviewMaxSize = 254;
+
+        // Ưu tiên định dạng ảnh sticker theo thứ tự (đứng trước sẽ được tìm trước)
+        private static readonly string[] StickerImageExtensions = { ".gif", ".png" };
         private PictureBox picStickerPreview;
 
         public OperationType InitialOperation { get; set; } = OperationType.Addition;
@@ -55,7 +58,7 @@ namespace ToanCongTruNhanChia
 
         // Khi DEBUG_STICKER_MODE = true:
         // 1) Mốc điểm để lên 1 level sticker (ví dụ 5 điểm là lên level 1 lần)
-        private const int DEBUG_STICKER_POINT_STEP = 1;
+        private const int DEBUG_STICKER_POINT_STEP = 3;
 
         // 2) Số sticker được tặng mỗi lần lên 1 level
         private const int DEBUG_STICKERS_PER_LEVEL = 1;
@@ -175,6 +178,15 @@ namespace ToanCongTruNhanChia
 
         private OperationChangeMode _changeMode = OperationChangeMode.Manual;
 
+        private Button btnPlayMusic;
+        private bool _currentPreviewIsMusicSticker = false;
+
+        private static bool IsPlayMusicStickerName(string name)
+        {
+            return !string.IsNullOrEmpty(name)
+                && name.IndexOf("play music", StringComparison.OrdinalIgnoreCase) >= 0;
+        }
+
         public PracticeForm1()
         {
             InitializeComponent();
@@ -184,6 +196,7 @@ namespace ToanCongTruNhanChia
 
         private void PracticeForm1_SizeChanged(object sender, EventArgs e)
         {
+            FixStickerBottomGap();
         }
 
         private void ConfigureStickerTable()
@@ -261,6 +274,10 @@ namespace ToanCongTruNhanChia
 
             lblStickerSound.Text = "";
             InitStickerPreviewBox();
+
+            EnsurePlayMusicButton();
+            UpdatePlayMusicButtonUI();
+
 
             _currentOperation = InitialOperation;
 
@@ -345,7 +362,7 @@ namespace ToanCongTruNhanChia
                 prgSticker.Height = 24;
                 prgSticker.Visible = true;
 
-                tblStickers.Dock = DockStyle.Fill;
+                tblStickers.Dock = DockStyle.Top;   // ✅ để bảng có thể cao hơn pnlStickers => hiện scroll
             }
             // ===== KẾT THÚC layout =====
 
@@ -355,6 +372,9 @@ namespace ToanCongTruNhanChia
 
             LoadStickersFromConfig();
             InitStickerProgressBar();
+
+            FixStickerBottomGap();
+
 
             // ✅ Sau khi Panel & Sticker đã sẵn sàng → khôi phục trạng thái PracticeForm
             LoadPracticeStateFromConfig();
@@ -540,6 +560,8 @@ namespace ToanCongTruNhanChia
 
         private void PracticeForm1_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if (SoundManager.IsMusicPlaying)
+                SoundManager.StopStickerMusicLoop();
             SavePracticeStateToConfig();
         }
 
@@ -1088,13 +1110,9 @@ namespace ToanCongTruNhanChia
                 if (string.IsNullOrEmpty(levelFolderPath))
                     continue;
 
-                string[] pngFiles = Directory.GetFiles(levelFolderPath, "*.png");
-                if (pngFiles == null || pngFiles.Length == 0)
+                var orderedStickerFiles = GetOrderedStickerFiles(levelFolderPath);
+                if (orderedStickerFiles == null || orderedStickerFiles.Length == 0)
                     continue;
-
-                var orderedPngFiles = pngFiles
-                    .OrderBy(p => Path.GetFileName(p), StringComparer.CurrentCultureIgnoreCase)
-                    .ToArray();
 
                 // ===== TÍNH STT (1-based) =====
                 int seq = st.Index;   // dữ liệu mới
@@ -1105,7 +1123,7 @@ namespace ToanCongTruNhanChia
                     if (!string.IsNullOrEmpty(st.FileName))
                     {
                         int foundIdx = Array.FindIndex(
-                            orderedPngFiles,
+                            orderedStickerFiles,
                             p => string.Equals(
                                 Path.GetFileName(p),
                                 st.FileName,
@@ -1121,8 +1139,8 @@ namespace ToanCongTruNhanChia
                 }
 
                 // seq > số file thì quay vòng: ví dụ 5 file, seq=6 -> lấy lại file 1
-                int zeroBasedIndex = (seq - 1) % orderedPngFiles.Length;
-                string pngPath = orderedPngFiles[zeroBasedIndex];
+                int zeroBasedIndex = (seq - 1) % orderedStickerFiles.Length;
+                string pngPath = orderedStickerFiles[zeroBasedIndex];
 
                 string fileNameWithoutExt = Path.GetFileNameWithoutExtension(pngPath);
 
@@ -1156,6 +1174,33 @@ namespace ToanCongTruNhanChia
             return dirs.FirstOrDefault();
         }
 
+        private string[] GetOrderedStickerFiles(string levelFolderPath)
+        {
+            if (string.IsNullOrEmpty(levelFolderPath) || !Directory.Exists(levelFolderPath))
+                return Array.Empty<string>();
+
+            var result = new List<string>();
+
+            // Ưu tiên theo thứ tự định dạng trong StickerImageExtensions
+            foreach (var ext in StickerImageExtensions)
+            {
+                try
+                {
+                    var files = Directory.GetFiles(levelFolderPath, "*" + ext)
+                        .OrderBy(p => Path.GetFileName(p), StringComparer.CurrentCultureIgnoreCase);
+
+                    result.AddRange(files);
+                }
+                catch
+                {
+                    // bỏ qua lỗi truy cập file/folder
+                }
+            }
+
+            return result.ToArray();
+        }
+
+
         private void GiveStickerForLevel(int level)
         {
             if (_levelPanels == null || !_levelPanels.TryGetValue(level, out var flp) || flp == null)
@@ -1170,18 +1215,14 @@ namespace ToanCongTruNhanChia
             if (string.IsNullOrEmpty(levelFolderPath))
                 return;
 
-            string[] pngFiles = Directory.GetFiles(levelFolderPath, "*.png");
-            if (pngFiles == null || pngFiles.Length == 0)
+            var orderedStickerFiles = GetOrderedStickerFiles(levelFolderPath);
+
+            if (orderedStickerFiles == null || orderedStickerFiles.Length == 0)
                 return;
 
-            // Sắp xếp theo ABC dựa trên tên file
-            var orderedPngFiles = pngFiles
-                .OrderBy(p => Path.GetFileName(p), StringComparer.CurrentCultureIgnoreCase)
-                .ToArray();
-
             // Chọn random 1 file trong danh sách đã sắp xếp
-            int index = _random.Next(0, orderedPngFiles.Length);   // 0-based
-            string pngPath = orderedPngFiles[index];
+            int index = _random.Next(0, orderedStickerFiles.Length);   // 0-based
+            string pngPath = orderedStickerFiles[index];
             string fileNameWithoutExt = Path.GetFileNameWithoutExtension(pngPath);
 
             var pb = CreateStickerPictureBox(pngPath, level);
@@ -1191,9 +1232,14 @@ namespace ToanCongTruNhanChia
             pb.Click += Sticker_Click;
             flp.Controls.Add(pb);
 
+            FixStickerBottomGap();
+
             // Cập nhật thông tin sticker đang hiển thị ở preview
             _currentPreviewLevel = level;
             _currentPreviewFileName = fileNameWithoutExt;
+
+            _currentPreviewIsMusicSticker = IsPlayMusicStickerName(fileNameWithoutExt);
+            UpdatePlayMusicButtonUI();
 
             // Hiển thị lên khung lớn ngay khi được thưởng
             ShowStickerLarge(pngPath, level);
@@ -1220,45 +1266,49 @@ namespace ToanCongTruNhanChia
             // Hiện text + phát âm thanh
             lblStickerSound.Visible = true;
             lblStickerSound.Text = fileNameWithoutExt;
-            SoundManager.PlayStickerSound(level, fileNameWithoutExt);
+            //SoundManager.PlayStickerSound(level, fileNameWithoutExt);
+            SoundManager.PlayStickerSoundAsync(level, fileNameWithoutExt);
         }
 
 
         private void Sticker_Click(object sender, EventArgs e)
         {
+            if (!(sender is PictureBox pb) || !(pb.Tag is StickerTagInfo info))
+                return;
 
-            if (sender is PictureBox pb && pb.Tag is StickerTagInfo info)
+            // 1) Animation khi click
+            AnimateStickerClick(pb);
+
+            // 2) Cập nhật trạng thái sticker đang preview (PHẢI LÀM TRƯỚC)
+            _currentPreviewLevel = info.Level;
+            _currentPreviewFileName = info.FileName;
+            _currentPreviewIsMusicSticker = IsPlayMusicStickerName(info.FileName);
+
+            // 3) Hiện text ngay
+            lblStickerSound.Visible = true;
+            lblStickerSound.Text = info.FileName;
+
+            // 4) Copy tên file vào Clipboard (optional)
+            try { Clipboard.SetText(info.FileName); } catch { }
+
+            // 5) Hiển thị ảnh lên khung preview
+            string imgPath = FindStickerPngPath(info.Level, info.FileName);
+            ShowStickerLarge(imgPath, info.Level);
+
+            // 6) Nếu sticker thường: tắt nhạc loop (nếu có) và phát tiếng sticker
+            if (!_currentPreviewIsMusicSticker)
             {
-                // 1) Animation khi click (nhúc nhích + viền nổi)
-                AnimateStickerClick(pb);
+                if (SoundManager.IsMusicPlaying)
+                    SoundManager.StopStickerMusicLoop();
 
-                // 2) Hiện text NGAY LẬP TỨC
-                lblStickerSound.Visible = true;
-                lblStickerSound.Text = info.FileName;   // hoặc "🎵 " + info.FileName
-
-                // 2.b) Copy tên file vào Clipboard
-                try
-                {
-                    Clipboard.SetText(info.FileName);
-                }
-                catch
-                {
-                    // tránh app crash nếu Clipboard lỗi (Remote Desktop, quyền hạn...)
-                }
-
-                // cập nhật sticker hiện tại cho preview
-                _currentPreviewLevel = info.Level;
-                _currentPreviewFileName = info.FileName;
-
-                // 3) Hiển thị ảnh lên khung preview
-                //ShowStickerPreview(info);
-                string pngPath = FindStickerPngPath(info.Level, info.FileName);
-                ShowStickerLarge(pngPath, info.Level);
-
-                // 4) Phát âm thanh (đã sửa SoundManager để click nhiều lần là restart)
                 SoundManager.PlayStickerSoundAsync(info.Level, info.FileName);
             }
+            // Nếu sticker "play music": KHÔNG auto play, chỉ hiện nút play
+
+            // 7) Cuối cùng mới update UI nút play
+            UpdatePlayMusicButtonUI();
         }
+
 
 
         #endregion
@@ -2840,7 +2890,7 @@ namespace ToanCongTruNhanChia
         }
 
 
-        private string ResolveStickerPngPath(int level, string fileNameWithoutExt)
+        private string ResolveStickerImagePath(int level, string fileNameWithoutExt)
         {
             string stickersRoot = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "sound", "stickers");
             if (!Directory.Exists(stickersRoot))
@@ -2854,20 +2904,36 @@ namespace ToanCongTruNhanChia
             if (string.IsNullOrEmpty(levelFolderPath))
                 return null;
 
-            // Ưu tiên đúng tên file
-            string direct = Path.Combine(levelFolderPath, fileNameWithoutExt + ".png");
-            if (File.Exists(direct))
-                return direct;
+            // Ưu tiên đúng tên file theo thứ tự định dạng (ví dụ: .gif -> .png)
+            foreach (var ext in StickerImageExtensions)
+            {
+                string direct = Path.Combine(levelFolderPath, fileNameWithoutExt + ext);
+                if (File.Exists(direct))
+                    return direct;
+            }
 
-            // Fallback: tìm theo tên không đuôi
-            return Directory.GetFiles(levelFolderPath, "*.png")
-                .FirstOrDefault(p =>
-                    string.Equals(
-                        Path.GetFileNameWithoutExtension(p),
-                        fileNameWithoutExt,
-                        StringComparison.CurrentCultureIgnoreCase
-                    )
-                );
+            // Fallback: tìm theo tên không đuôi (vẫn ưu tiên theo thứ tự định dạng)
+            foreach (var ext in StickerImageExtensions)
+            {
+                var found = Directory.GetFiles(levelFolderPath, "*" + ext)
+                    .FirstOrDefault(p =>
+                        string.Equals(
+                            Path.GetFileNameWithoutExtension(p),
+                            fileNameWithoutExt,
+                            StringComparison.CurrentCultureIgnoreCase
+                        )
+                    );
+
+                if (!string.IsNullOrEmpty(found))
+                    return found;
+            }
+
+            return null;
+        }
+
+        private string ResolveStickerPngPath(int level, string fileNameWithoutExt)
+        {
+            return ResolveStickerImagePath(level, fileNameWithoutExt);
         }
 
         private Image LoadImageNoLock(string path)
@@ -2952,19 +3018,7 @@ namespace ToanCongTruNhanChia
 
         private string FindStickerPngPath(int level, string fileNameWithoutExt)
         {
-            string levelFolderPath = GetLevelFolderPath(level);
-            if (string.IsNullOrEmpty(levelFolderPath))
-                return null;
-
-            string exact = Path.Combine(levelFolderPath, fileNameWithoutExt + ".png");
-            if (File.Exists(exact))
-                return exact;
-
-            // fallback: tìm gần đúng
-            var files = Directory.GetFiles(levelFolderPath, "*.png");
-            return files.FirstOrDefault(p =>
-                string.Equals(Path.GetFileNameWithoutExtension(p), fileNameWithoutExt,
-                              StringComparison.CurrentCultureIgnoreCase));
+            return ResolveStickerImagePath(level, fileNameWithoutExt);
         }
 
         private void PicStickerPreview_Click(object sender, EventArgs e)
@@ -2976,6 +3030,15 @@ namespace ToanCongTruNhanChia
             // Hiện text giống Sticker_Click
             lblStickerSound.Visible = true;
             lblStickerSound.Text = _currentPreviewFileName;
+
+            _currentPreviewIsMusicSticker = IsPlayMusicStickerName(_currentPreviewFileName);
+            UpdatePlayMusicButtonUI();
+
+            if (_currentPreviewIsMusicSticker)
+            {
+                // không play 1 phát ở đây; để bé bấm nút Play
+                return;
+            }
 
             // Phát âm thanh giống Sticker_Click
             SoundManager.PlayStickerSoundAsync(_currentPreviewLevel, _currentPreviewFileName);
@@ -3009,6 +3072,73 @@ namespace ToanCongTruNhanChia
 
             return resized;
         }
+
+        private void FixStickerBottomGap()
+        {
+            if (pnlStickers == null || tblStickers == null) return;
+
+            int reservedTop = (prgSticker != null && prgSticker.Visible) ? prgSticker.Height : 0;
+            int visibleContentH = Math.Max(0, pnlStickers.ClientSize.Height - reservedTop);
+
+            // Bảng AutoSize nên chỉ cao theo nội dung -> lộ nền pnlStickers ở dưới.
+            // Ép bảng tối thiểu cao bằng vùng nhìn thấy.
+            tblStickers.MinimumSize = new Size(0, visibleContentH);
+
+            // (Tuỳ chọn) để vùng scroll tính theo chiều cao "thật" của nội dung, không bị lệch
+            int realContentH = Math.Max(tblStickers.PreferredSize.Height, visibleContentH);
+            pnlStickers.AutoScrollMinSize = new Size(0, reservedTop + realContentH + 2);
+        }
+
+        private void EnsurePlayMusicButton()
+        {
+            if (picStickerPreview == null) return;
+            if (btnPlayMusic != null) return;
+
+            btnPlayMusic = new Button();
+            btnPlayMusic.Name = "btnPlayMusic";
+            btnPlayMusic.Text = "▶";
+            btnPlayMusic.Font = new Font("Segoe UI Emoji", 14f, FontStyle.Bold);
+            btnPlayMusic.Size = new Size(44, 44);
+
+            // đặt đè lên góc phải-dưới của preview cho gọn
+            btnPlayMusic.Parent = picStickerPreview;
+            btnPlayMusic.Location = new Point(
+                picStickerPreview.Width - btnPlayMusic.Width - 6,
+                picStickerPreview.Height - btnPlayMusic.Height - 6);
+            btnPlayMusic.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+
+            btnPlayMusic.Visible = false;
+            btnPlayMusic.Enabled = false;
+
+            btnPlayMusic.Click += BtnPlayMusic_Click;
+            btnPlayMusic.BringToFront();
+        }
+
+        private void UpdatePlayMusicButtonUI()
+        {
+            EnsurePlayMusicButton();
+            if (btnPlayMusic == null) return;
+
+            btnPlayMusic.Visible = _currentPreviewIsMusicSticker;
+            btnPlayMusic.Enabled = _currentPreviewIsMusicSticker;
+            btnPlayMusic.Text = SoundManager.IsMusicPlaying ? "⏹" : "▶";
+        }
+
+        private void BtnPlayMusic_Click(object sender, EventArgs e)
+        {
+            if (_currentPreviewLevel <= 0) return;
+            if (string.IsNullOrEmpty(_currentPreviewFileName)) return;
+            if (!_currentPreviewIsMusicSticker) return;
+
+            if (SoundManager.IsMusicPlaying)
+                SoundManager.StopStickerMusicLoop();
+            else
+                SoundManager.StartStickerMusicLoop(_currentPreviewLevel, _currentPreviewFileName);
+
+            UpdatePlayMusicButtonUI();
+        }
+
+
 
 
 

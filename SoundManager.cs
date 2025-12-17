@@ -17,6 +17,67 @@ namespace ToanCongTruNhanChia
         private static readonly SoundPlayer _stickerPlayer = new SoundPlayer();
         private static readonly object _stickerLock = new object();
 
+        // ===== MUSIC LOOP (sticker "play music") =====
+        private static readonly SoundPlayer _musicPlayer = new SoundPlayer();
+        private static readonly object _musicLock = new object();
+        private static volatile bool _musicPlaying = false;
+
+        // Chỉ mute đúng/sai (praise/tryagain) khi nhạc đang chạy
+        private static volatile bool _answerFeedbackEnabled = true;
+
+        public static bool IsMusicPlaying => _musicPlaying;
+
+        public static void SetAnswerFeedbackEnabled(bool enabled)
+        {
+            _answerFeedbackEnabled = enabled;
+        }
+
+        public static void StartStickerMusicLoop(int level, string fileNameWithoutExt)
+        {
+            try
+            {
+                string levelFolderName = $"level{level:00}";
+                string levelFolderPath = Directory
+                    .GetDirectories(StickersBasePath, levelFolderName + "*")
+                    .FirstOrDefault();
+
+                if (string.IsNullOrEmpty(levelFolderPath))
+                    return;
+
+                string wavPath = Path.Combine(levelFolderPath, fileNameWithoutExt + ".wav");
+                if (!File.Exists(wavPath))
+                    return;
+
+                lock (_musicLock)
+                {
+                    _musicPlayer.Stop();
+                    _musicPlayer.SoundLocation = wavPath;
+                    _musicPlayer.Load();
+                    _musicPlayer.PlayLooping();
+
+                    _musicPlaying = true;
+                    SetAnswerFeedbackEnabled(false); // đang phát nhạc -> tắt âm đúng/sai
+                }
+            }
+            catch { }
+        }
+
+        public static void StopStickerMusicLoop()
+        {
+            try
+            {
+                lock (_musicLock)
+                {
+                    _musicPlayer.Stop();
+                    _musicPlaying = false;
+                    SetAnswerFeedbackEnabled(true); // dừng nhạc -> bật lại âm đúng/sai
+                }
+            }
+            catch { }
+        }
+
+
+
         private static string BasePath =>
             Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "sound", "en");
 
@@ -282,6 +343,8 @@ namespace ToanCongTruNhanChia
 
         public static bool PlayPraise(out string praiseText)
         {
+            if (!_answerFeedbackEnabled) { praiseText = ""; return false; }
+
             praiseText = string.Empty;
 
             try
@@ -345,6 +408,8 @@ namespace ToanCongTruNhanChia
 
         public static bool PlayTryAgain(out string tryAgainText)
         {
+            if (!_answerFeedbackEnabled) { tryAgainText = ""; return false; }
+
             tryAgainText = string.Empty;
 
             try
@@ -447,16 +512,20 @@ namespace ToanCongTruNhanChia
 
         public static void PlayStickerSound(int level, string fileNameWithoutExt)
         {
-            string levelFolderName = $"level{level:00}";
-            string levelFolderPath = Directory
-                .GetDirectories(StickersBasePath, levelFolderName + "*")
-                .FirstOrDefault();
+            //string levelFolderName = $"level{level:00}";
+            //string levelFolderPath = Directory
+            //    .GetDirectories(StickersBasePath, levelFolderName + "*")
+            //    .FirstOrDefault();
 
-            if (string.IsNullOrEmpty(levelFolderPath))
-                return;
+            //if (string.IsNullOrEmpty(levelFolderPath))
+            //    return;
 
-            string wavPath = Path.Combine(levelFolderPath, fileNameWithoutExt + ".wav");
-            Play(wavPath);
+            //string wavPath = Path.Combine(levelFolderPath, fileNameWithoutExt + ".wav");
+            //Play(wavPath);
+
+            // chuyển sang kênh sticker riêng để không bị _player (đúng/sai) đè
+            PlayStickerSoundAsync(level, fileNameWithoutExt);
+
         }
 
         public static string PlayStickerSoundAndReturnText(int level, string fileNameWithoutExt)
@@ -549,8 +618,6 @@ namespace ToanCongTruNhanChia
                 // nuốt lỗi, tránh crash app
             }
         }
-
-
 
 
     }

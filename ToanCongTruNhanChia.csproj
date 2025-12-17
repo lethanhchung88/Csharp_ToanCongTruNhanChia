@@ -157,1894 +157,1891 @@
     <Content Include="sound\en\tryagain\You can do better.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level-up-music.wav">
+    <Content Include="sound\stickers\level-up-music %28chua dung den%29.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Abedayo.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\000 Hey Duggee intro.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Abedayo.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Abedayo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Admiral Grandad.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Abedayo.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Admiral Grandad.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Admiral Grandad.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Agnes and Thora.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Admiral Grandad.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Agnes and Thora.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Agnes and Thora.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Alain L%27Odeur.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Agnes and Thora.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Alain L%27Odeur.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Alain L%27Odeur.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Alligator.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Alain L%27Odeur.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Alligator.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Alligator.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Amma.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Alligator.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Amma.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Amma.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Angry Bull.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Amma.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Angry Bull.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Angry Bull.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Ants.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Angry Bull.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Ants.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Ants.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Avi.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Ants.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Avi.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Avi.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Badger.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Avi.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Badger.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Badger.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Bear.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Badger.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Bear.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Bear.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Berna.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Bear.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Berna.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Berna.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Beryl.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Berna.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Beryl.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Beryl.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Betty%27s Mum.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Beryl.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Betty%27s Mum.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Betty%27s Mum.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Betty.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Betty%27s Mum.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Betty.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Betty.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Birds.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Betty.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Birds.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Birds.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Blonde Monkey.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Birds.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Blonde Monkey.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Blonde Monkey.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Blue Whale.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Blonde Monkey.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Blue Whale.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Blue Whale.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Border Collie.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Blue Whale.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Border Collie.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Border Collie.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Buffalo.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Border Collie.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Buffalo.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Buffalo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Buggee.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Buffalo.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Buggee.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Buggee.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Bumble.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Buggee.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Bumble.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Bumble.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Bus Driver.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Bumble.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Bus Driver.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Bus Driver.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Camel.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Bus Driver.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Camel.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Camel.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Captain Frank.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Camel.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Captain Frank.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Captain Frank.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Caterpillar.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Captain Frank.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Caterpillar.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Caterpillar.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Cave Frogs.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Caterpillar.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Cave Frogs.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Cave Frogs.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Chad.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Cave Frogs.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Chad.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Chad.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Chew Chew.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Chad.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Chew Chew.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Chew Chew.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Chicken.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Chew Chew.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Chicken.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Chicken.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Chippo Cheetah.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Chicken.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Chippo Cheetah.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Chippo Cheetah.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Chuck and Pam.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Chippo Cheetah.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Chuck and Pam.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Chuck and Pam.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Clarence.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Chuck and Pam.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Clarence.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Clarence.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Cosey.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Clarence.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Cosey.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Cosey.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Deer.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Cosey.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Deer.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Deer.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Delivery Chipmunk.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Deer.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Delivery Chipmunk.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Delivery Chipmunk.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Dog.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Delivery Chipmunk.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Dog.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Dog.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Doorman.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Dog.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Doorman.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Doorman.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Duggee%27s Great Grandmama.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Doorman.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Duggee%27s Great Grandmama.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Duggee%27s Great Grandmama.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Duggee%27s Mum.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Duggee%27s Great Grandmama.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Duggee%27s Mum.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Duggee%27s Mum.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Duggee.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Duggee%27s Mum.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Duggee.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Duggee.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Duggly.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Duggee.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Duggly.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Duggly.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Emu and Big Egg.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Duggly.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Emu and Big Egg.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Emu and Big Egg.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Enid.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Emu and Big Egg.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Enid.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Enid.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Eric.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Enid.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Eric.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Eric.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Ethel.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Eric.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Ethel.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Ethel.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Eugene.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Ethel.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Eugene.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Eugene.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Finbar.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Eugene.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Finbar.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Finbar.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Florian.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Finbar.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Florian.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Florian.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Fox.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Florian.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Fox.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Fox.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Frog.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Fox.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Frog.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Frog.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Gerbils.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Frog.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Gerbils.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Gerbils.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Gerby.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Gerbils.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Gerby.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Gerby.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Giraffe.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Gerby.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Giraffe.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Giraffe.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Giselle.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Giraffe.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Giselle.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Giselle.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Gloria.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Giselle.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Gloria.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Gloria.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Gogo.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Gloria.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Gogo.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Gogo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Goldfish.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Gogo.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Goldfish.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Goldfish.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Gorilla.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Goldfish.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Gorilla.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Gorilla.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Happy%27s Gran.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Gorilla.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Happy%27s Gran.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Happy%27s Gran.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Happy%27s Mum.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Happy%27s Gran.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Happy%27s Mum.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Happy%27s Mum.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Happy.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Happy%27s Mum.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Happy.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Happy.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Hatsu Kimara.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Happy.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Hatsu Kimara.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Hatsu Kimara.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Hedgley.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Hatsu Kimara.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Hedgley.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Hedgley.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Hennie.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Hedgley.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Hennie.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Hennie.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Heron.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Hennie.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Heron.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Heron.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Hey Duggee intro %28cut%29.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Heron.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Hey Duggee intro.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Hey Duggee theme song %28play music%29.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Hey Duggee.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Hey Duggee theme song %28play music%29.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Hey Duggee.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Hippo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Hippo.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Hippo.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Hippo.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Hippy Rabbit.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Hippy Rabbit.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Hippy Rabbit.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Hippy Rabbit.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Honey Bear.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Honey Bear.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Honey Bear.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Honey Bear.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Horse.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Horse.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Horse.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Horse.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Ivor.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Ivor.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Ivor.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Ivor.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Jet Rocket Dog.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Jet Rocket Dog.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Jet Rocket Dog.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Jet Rocket Dog.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Jobsworth Bee.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Jobsworth Bee.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Jobsworth Bee.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Jobsworth Bee.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\John Crab.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\John Crab.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\John Crab.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\John Crab.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\John.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\John.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\John.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\John.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Johnny and the Naughty Mice.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Johnny and the Naughty Mice.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Johnny and the Naughty Mice.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Johnny and the Naughty Mice.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Joy and Jay.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Joy and Jay.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Joy and Jay.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Joy and Jay.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Juanita and the Cows.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Juanita and the Cows.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Juanita and the Cows.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Juanita and the Cows.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Katerina.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Katerina.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Katerina.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Katerina.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\King Tiger.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\King Tiger.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\King Tiger.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\King Tiger.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Ladybird.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Ladybird.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Ladybird.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Ladybird.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Lion.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Lion.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Lion.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Lion.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Little Egg.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Little Egg.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Little Egg.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Little Egg.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Little Snail.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Little Snail.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Little Snail.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Little Snail.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Llama.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Llama.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Llama.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Llama.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Lord Fingal.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Lord Fingal.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Lord Fingal.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Lord Fingal.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Marga.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Marga.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Marga.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Marga.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Mawk.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Mawk.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Mawk.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Mawk.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Merry.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Merry.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Merry.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Merry.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Mo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Mo.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Mo.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Mo.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Mole.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Mole.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Mole.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Mole.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Mother Duck and Ducklings.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Mother Duck and Ducklings.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Mother Duck and Ducklings.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Mother Duck and Ducklings.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Mountain Goat.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Mountain Goat.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Mountain Goat.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Mountain Goat.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Mouse.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Mouse.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Mouse.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Mouse.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Mr. Tortoise.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Mr. Tortoise.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Mr. Tortoise.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Mr. Tortoise.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Mrs Weaver.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Mrs Weaver.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Mrs Weaver.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Mrs Weaver.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Nala.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Nala.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Nala.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Nala.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Nancy.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Nancy.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Nancy.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Nancy.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Narrator.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Narrator.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Narrator.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Narrator.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Naughty Monkey.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Naughty Monkey.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Naughty Monkey.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Naughty Monkey.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Nigel Crab.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Nigel Crab.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Nigel Crab.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Nigel Crab.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Norrie%27s Dad.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Norrie%27s Dad.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Norrie%27s Dad.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Norrie%27s Dad.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Norrie%27s Gran.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Norrie%27s Gran.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Norrie%27s Gran.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Norrie%27s Gran.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Norrie%27s Mum.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Norrie%27s Mum.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Norrie%27s Mum.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Norrie%27s Mum.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Norrie%27s siblings.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Norrie%27s siblings.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Norrie%27s siblings.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Norrie%27s siblings.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Norrie.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Norrie.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Norrie.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Norrie.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Ottie.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Ottie.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Ottie.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Ottie.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Peggee.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Peggee.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Peggee.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Peggee.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Penguins.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Penguins.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Penguins.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Penguins.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Phileas Frog.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Phileas Frog.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Phileas Frog.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Phileas Frog.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Pig.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Pig.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Pig.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Pig.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Pip.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Pip.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Pip.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Pip.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Pizza Delivery Chipmunk.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Pizza Delivery Chipmunk.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Pizza Delivery Chipmunk.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Pizza Delivery Chipmunk.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Polar Bear.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Polar Bear.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Polar Bear.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Polar Bear.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Professor Jeanie.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Professor Jeanie.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Professor Jeanie.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Professor Jeanie.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Queen Bee.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Queen Bee.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Queen Bee.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Queen Bee.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Rochelle Koala.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Rochelle Koala.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Rochelle Koala.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Rochelle Koala.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Rodeo Horse.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Rodeo Horse.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Rodeo Horse.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Rodeo Horse.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Roly%27s Dad.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Roly%27s Dad.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Roly%27s Dad.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Roly%27s Dad.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Roly%27s Grandad.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Roly%27s Grandad.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Roly%27s Grandad.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Roly%27s Grandad.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Roly%27s Mum.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Roly%27s Mum.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Roly%27s Mum.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Roly%27s Mum.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Roly.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Roly.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Roly.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Roly.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Seagull.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Seagull.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Seagull.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Seagull.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Sergeant Ant and Soldier Ants.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Sergeant Ant and Soldier Ants.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Sergeant Ant and Soldier Ants.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Sergeant Ant and Soldier Ants.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Sheep.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Sheep.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Sheep.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Sheep.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Slug.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Slug.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Slug.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Slug.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Small Monkey.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Small Monkey.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Small Monkey.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Small Monkey.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Snail.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Snail.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Snail.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Snail.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Snakes.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Snakes.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Snakes.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Snakes.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Snard.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Snard.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Snard.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Snard.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Spider.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Spider.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Spider.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Spider.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Square-Monkey.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Square-Monkey.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Square-Monkey.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Square-Monkey.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Squirrel.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Squirrel.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Squirrel.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Squirrel.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Stick.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Stick.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Stick.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Stick.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Tadpoles.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Tadpoles.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Tadpoles.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Tadpoles.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Tag%27s Gran.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Tag%27s Gran.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Tag%27s Gran.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Tag%27s Gran.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Tag%27s Mum.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Tag%27s Mum.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Tag%27s Mum.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Tag%27s Mum.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Tag.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Tag.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Tag.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Tag.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Tall-Monkey.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Tall-Monkey.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Tall-Monkey.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Tall-Monkey.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Tino.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Tino.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Tino.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Tino.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Toucans.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Toucans.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Toucans.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Toucans.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Tuesday.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Tuesday.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Tuesday.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Tuesday.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Vole.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Vole.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Vole.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Vole.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Warthog.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Warthog.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Warthog.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Warthog.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Whale.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Whale.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Whale.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Whale.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Worm.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Worm.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Worm.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Worm.wav">
+    <Content Include="sound\stickers\level01 Hey Duggee\Zebra.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Zebra.png">
+    <Content Include="sound\stickers\level01 Hey Duggee\Zebra.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level01\Zebra.wav">
+    <Content Include="sound\stickers\level02 Peppa Pig\Daddy Pig.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level02\Daddy Pig.png">
+    <Content Include="sound\stickers\level02 Peppa Pig\Daddy Pig.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level02\Daddy Pig.wav">
+    <Content Include="sound\stickers\level02 Peppa Pig\Evie Pig.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level02\Evie Pig.png">
+    <Content Include="sound\stickers\level02 Peppa Pig\Evie Pig.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level02\Evie Pig.wav">
+    <Content Include="sound\stickers\level02 Peppa Pig\George Pig.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level02\George Pig.png">
+    <Content Include="sound\stickers\level02 Peppa Pig\George Pig.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level02\George Pig.wav">
+    <Content Include="sound\stickers\level02 Peppa Pig\Grandpa Pig.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level02\Grandpa Pig.png">
+    <Content Include="sound\stickers\level02 Peppa Pig\Grandpa Pig.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level02\Grandpa Pig.wav">
+    <Content Include="sound\stickers\level02 Peppa Pig\Granny Pig.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level02\Granny Pig.png">
+    <Content Include="sound\stickers\level02 Peppa Pig\Granny Pig.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level02\Granny Pig.wav">
+    <Content Include="sound\stickers\level02 Peppa Pig\level02-intro.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level02\level02-intro.wav">
+    <Content Include="sound\stickers\level02 Peppa Pig\level02.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level02\level02.wav">
+    <Content Include="sound\stickers\level02 Peppa Pig\Madame Gazelle.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level02\Madame Gazelle.png">
+    <Content Include="sound\stickers\level02 Peppa Pig\Madame Gazelle.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level02\Madame Gazelle.wav">
+    <Content Include="sound\stickers\level02 Peppa Pig\Miss Rabbit.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level02\Miss Rabbit.png">
+    <Content Include="sound\stickers\level02 Peppa Pig\Miss Rabbit.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level02\Miss Rabbit.wav">
+    <Content Include="sound\stickers\level02 Peppa Pig\Mr Potato.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level02\Mr Potato.png">
+    <Content Include="sound\stickers\level02 Peppa Pig\Mr Potato.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level02\Mr Potato.wav">
+    <Content Include="sound\stickers\level02 Peppa Pig\Mummy Pig.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level02\Mummy Pig.png">
+    <Content Include="sound\stickers\level02 Peppa Pig\Mummy Pig.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level02\Mummy Pig.wav">
+    <Content Include="sound\stickers\level02 Peppa Pig\Peppa Pig.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level02\Peppa Pig.png">
+    <Content Include="sound\stickers\level02 Peppa Pig\Peppa Pig.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level02\Peppa Pig.wav">
+    <Content Include="sound\stickers\level02 Peppa Pig\Rebecca.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level02\Rebecca.png">
+    <Content Include="sound\stickers\level02 Peppa Pig\Rebecca.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level02\Rebecca.wav">
+    <Content Include="sound\stickers\level02 Peppa Pig\Richard.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level02\Richard.png">
+    <Content Include="sound\stickers\level02 Peppa Pig\Richard.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level02\Richard.wav">
+    <Content Include="sound\stickers\level02 Peppa Pig\Suzy.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level02\Suzy.png">
+    <Content Include="sound\stickers\level02 Peppa Pig\Suzy.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level02\Suzy.wav">
+    <Content Include="sound\stickers\level02 Peppa Pig\Zoe.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level02\Zoe.png">
+    <Content Include="sound\stickers\level02 Peppa Pig\Zoe.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level02\Zoe.wav">
+    <Content Include="sound\stickers\level03 Ben and Holly\Ben.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level03\Ben.png">
+    <Content Include="sound\stickers\level03 Ben and Holly\Ben.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level03\Ben.wav">
+    <Content Include="sound\stickers\level03 Ben and Holly\Big Bad Barry.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level03\Big Bad Barry.png">
+    <Content Include="sound\stickers\level03 Ben and Holly\Big Bad Barry.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level03\Big Bad Barry.wav">
+    <Content Include="sound\stickers\level03 Ben and Holly\Daisy and Poppy.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level03\Daisy and Poppy.png">
+    <Content Include="sound\stickers\level03 Ben and Holly\Daisy and Poppy.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level03\Daisy and Poppy.wav">
+    <Content Include="sound\stickers\level03 Ben and Holly\Daisy.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level03\Daisy.png">
+    <Content Include="sound\stickers\level03 Ben and Holly\Daisy.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level03\Daisy.wav">
+    <Content Include="sound\stickers\level03 Ben and Holly\Fairy Mayor.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level03\Fairy Mayor.png">
+    <Content Include="sound\stickers\level03 Ben and Holly\Fairy Mayor.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level03\Fairy Mayor.wav">
+    <Content Include="sound\stickers\level03 Ben and Holly\Fleur.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level03\Fleur.png">
+    <Content Include="sound\stickers\level03 Ben and Holly\Fleur.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level03\Fleur.wav">
+    <Content Include="sound\stickers\level03 Ben and Holly\Gaston.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level03\Gaston.png">
+    <Content Include="sound\stickers\level03 Ben and Holly\Gaston.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level03\Gaston.wav">
+    <Content Include="sound\stickers\level03 Ben and Holly\Holly.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level03\Holly.png">
+    <Content Include="sound\stickers\level03 Ben and Holly\Holly.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level03\Holly.wav">
+    <Content Include="sound\stickers\level03 Ben and Holly\King.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level03\King.png">
+    <Content Include="sound\stickers\level03 Ben and Holly\King.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level03\King.wav">
+    <Content Include="sound\stickers\level03 Ben and Holly\level03-intro.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level03\level03-intro.wav">
+    <Content Include="sound\stickers\level03 Ben and Holly\level03.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level03\level03.wav">
+    <Content Include="sound\stickers\level03 Ben and Holly\Lucy.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level03\Lucy.png">
+    <Content Include="sound\stickers\level03 Ben and Holly\Lucy.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level03\Lucy.wav">
+    <Content Include="sound\stickers\level03 Ben and Holly\Mr Gnome.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level03\Mr Gnome.png">
+    <Content Include="sound\stickers\level03 Ben and Holly\Mr Gnome.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level03\Mr Gnome.wav">
+    <Content Include="sound\stickers\level03 Ben and Holly\Nanny Plum.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level03\Nanny Plum.png">
+    <Content Include="sound\stickers\level03 Ben and Holly\Nanny Plum.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level03\Nanny Plum.wav">
+    <Content Include="sound\stickers\level03 Ben and Holly\Queen.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level03\Queen.png">
+    <Content Include="sound\stickers\level03 Ben and Holly\Queen.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level03\Queen.wav">
+    <Content Include="sound\stickers\level03 Ben and Holly\Wise Old Elf.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level03\Wise Old Elf.png">
+    <Content Include="sound\stickers\level03 Ben and Holly\Wise Old Elf.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level03\Wise Old Elf.wav">
+    <Content Include="sound\stickers\level04 Sheriff Labrador\Black Mamba.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level04\Black Mamba.png">
+    <Content Include="sound\stickers\level04 Sheriff Labrador\Black Mamba.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level04\Black Mamba.wav">
+    <Content Include="sound\stickers\level04 Sheriff Labrador\Brother Chick.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level04\Brother Chick.png">
+    <Content Include="sound\stickers\level04 Sheriff Labrador\Brother Chick.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level04\Brother Chick.wav">
+    <Content Include="sound\stickers\level04 Sheriff Labrador\Dobie.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level04\Dobie.png">
+    <Content Include="sound\stickers\level04 Sheriff Labrador\Dobie.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level04\Dobie.wav">
+    <Content Include="sound\stickers\level04 Sheriff Labrador\Dodo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level04\Dodo.png">
+    <Content Include="sound\stickers\level04 Sheriff Labrador\Dodo.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level04\Dodo.wav">
+    <Content Include="sound\stickers\level04 Sheriff Labrador\Dr. Antel.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level04\Dr. Antel.png">
+    <Content Include="sound\stickers\level04 Sheriff Labrador\Dr. Antel.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level04\Dr. Antel.wav">
+    <Content Include="sound\stickers\level04 Sheriff Labrador\Gray.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level04\Gray.png">
+    <Content Include="sound\stickers\level04 Sheriff Labrador\Gray.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level04\Gray.wav">
+    <Content Include="sound\stickers\level04 Sheriff Labrador\level04-intro.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level04\level04-intro.wav">
+    <Content Include="sound\stickers\level04 Sheriff Labrador\level04.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level04\level04.wav">
+    <Content Include="sound\stickers\level04 Sheriff Labrador\Little Bear.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level04\Little Bear.png">
+    <Content Include="sound\stickers\level04 Sheriff Labrador\Little Bear.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level04\Little Bear.wav">
+    <Content Include="sound\stickers\level04 Sheriff Labrador\Little Chick.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level04\Little Chick.png">
+    <Content Include="sound\stickers\level04 Sheriff Labrador\Little Chick.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level04\Little Chick.wav">
+    <Content Include="sound\stickers\level04 Sheriff Labrador\Little Flying Squirrel.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level04\Little Flying Squirrel.png">
+    <Content Include="sound\stickers\level04 Sheriff Labrador\Little Flying Squirrel.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level04\Little Flying Squirrel.wav">
+    <Content Include="sound\stickers\level04 Sheriff Labrador\Little Rabbit.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level04\Little Rabbit.png">
+    <Content Include="sound\stickers\level04 Sheriff Labrador\Little Rabbit.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level04\Little Rabbit.wav">
+    <Content Include="sound\stickers\level04 Sheriff Labrador\Little Rhino.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level04\Little Rhino.png">
+    <Content Include="sound\stickers\level04 Sheriff Labrador\Little Rhino.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level04\Little Rhino.wav">
+    <Content Include="sound\stickers\level04 Sheriff Labrador\Mighty Max.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level04\Mighty Max.png">
+    <Content Include="sound\stickers\level04 Sheriff Labrador\Mighty Max.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level04\Mighty Max.wav">
+    <Content Include="sound\stickers\level04 Sheriff Labrador\Mr. Armadillo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level04\Mr. Armadillo.png">
+    <Content Include="sound\stickers\level04 Sheriff Labrador\Mr. Armadillo.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level04\Mr. Armadillo.wav">
+    <Content Include="sound\stickers\level04 Sheriff Labrador\Mr. Baboon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level04\Mr. Baboon.png">
+    <Content Include="sound\stickers\level04 Sheriff Labrador\Mr. Baboon.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level04\Mr. Baboon.wav">
+    <Content Include="sound\stickers\level04 Sheriff Labrador\Mr. Bear.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level04\Mr. Bear.png">
+    <Content Include="sound\stickers\level04 Sheriff Labrador\Mr. Bear.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level04\Mr. Bear.wav">
+    <Content Include="sound\stickers\level04 Sheriff Labrador\Mr. Beaver.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level04\Mr. Beaver.png">
+    <Content Include="sound\stickers\level04 Sheriff Labrador\Mr. Beaver.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level04\Mr. Beaver.wav">
+    <Content Include="sound\stickers\level04 Sheriff Labrador\Mr. Buffalo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level04\Mr. Buffalo.png">
+    <Content Include="sound\stickers\level04 Sheriff Labrador\Mr. Buffalo.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level04\Mr. Buffalo.wav">
+    <Content Include="sound\stickers\level04 Sheriff Labrador\Mr. Fox.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level04\Mr. Fox.png">
+    <Content Include="sound\stickers\level04 Sheriff Labrador\Mr. Fox.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level04\Mr. Fox.wav">
+    <Content Include="sound\stickers\level04 Sheriff Labrador\Mr. Monitor Lizard.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level04\Mr. Monitor Lizard.png">
+    <Content Include="sound\stickers\level04 Sheriff Labrador\Mr. Monitor Lizard.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level04\Mr. Monitor Lizard.wav">
+    <Content Include="sound\stickers\level04 Sheriff Labrador\Mr. Penguin.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level04\Mr. Penguin.png">
+    <Content Include="sound\stickers\level04 Sheriff Labrador\Mr. Penguin.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level04\Mr. Penguin.wav">
+    <Content Include="sound\stickers\level04 Sheriff Labrador\Mr. Polar Bear.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level04\Mr. Polar Bear.png">
+    <Content Include="sound\stickers\level04 Sheriff Labrador\Mr. Polar Bear.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level04\Mr. Polar Bear.wav">
+    <Content Include="sound\stickers\level04 Sheriff Labrador\Mr. Wolf.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level04\Mr. Wolf.png">
+    <Content Include="sound\stickers\level04 Sheriff Labrador\Mr. Wolf.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level04\Mr. Wolf.wav">
+    <Content Include="sound\stickers\level04 Sheriff Labrador\Mrs. Mole.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level04\Mrs. Mole.png">
+    <Content Include="sound\stickers\level04 Sheriff Labrador\Mrs. Mole.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level04\Mrs. Mole.wav">
+    <Content Include="sound\stickers\level04 Sheriff Labrador\Papillon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level04\Papillon.png">
+    <Content Include="sound\stickers\level04 Sheriff Labrador\Papillon.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level04\Papillon.wav">
+    <Content Include="sound\stickers\level04 Sheriff Labrador\Sheriff Cane Corso.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level04\Sheriff Cane Corso.png">
+    <Content Include="sound\stickers\level04 Sheriff Labrador\Sheriff Cane Corso.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level04\Sheriff Cane Corso.wav">
+    <Content Include="sound\stickers\level04 Sheriff Labrador\Sheriff Labrador.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level04\Sheriff Labrador.png">
+    <Content Include="sound\stickers\level04 Sheriff Labrador\Sheriff Labrador.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level04\Sheriff Labrador.wav">
+    <Content Include="sound\stickers\level04 Sheriff Labrador\Tanrobot.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level04\Tanrobot.png">
+    <Content Include="sound\stickers\level04 Sheriff Labrador\Tanrobot.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level04\Tanrobot.wav">
+    <Content Include="sound\stickers\level04 Sheriff Labrador\Thief Weasel.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level04\Thief Weasel.png">
+    <Content Include="sound\stickers\level04 Sheriff Labrador\Thief Weasel.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level04\Thief Weasel.wav">
+    <Content Include="sound\stickers\level04 Sheriff Labrador\Woodpecker.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level04\Woodpecker.png">
+    <Content Include="sound\stickers\level04 Sheriff Labrador\Woodpecker.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level04\Woodpecker.wav">
+    <Content Include="sound\stickers\level05 Insects\Ant.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level05\Ant.png">
+    <Content Include="sound\stickers\level05 Insects\Ant.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level05\Ant.wav">
+    <Content Include="sound\stickers\level05 Insects\Butterfly.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level05\Butterfly.png">
+    <Content Include="sound\stickers\level05 Insects\Butterfly.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level05\Butterfly.wav">
+    <Content Include="sound\stickers\level05 Insects\Caterpillar.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level05\Caterpillar.png">
+    <Content Include="sound\stickers\level05 Insects\Caterpillar.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level05\Caterpillar.wav">
+    <Content Include="sound\stickers\level05 Insects\Dragonfly.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level05\Dragonfly.png">
+    <Content Include="sound\stickers\level05 Insects\Dragonfly.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level05\Dragonfly.wav">
+    <Content Include="sound\stickers\level05 Insects\Firefly.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level05\Firefly.png">
+    <Content Include="sound\stickers\level05 Insects\Firefly.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level05\Firefly.wav">
+    <Content Include="sound\stickers\level05 Insects\Fly.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level05\Fly.png">
+    <Content Include="sound\stickers\level05 Insects\Fly.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level05\Fly.wav">
+    <Content Include="sound\stickers\level05 Insects\Grasshopper.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level05\Grasshopper.png">
+    <Content Include="sound\stickers\level05 Insects\Grasshopper.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level05\Grasshopper.wav">
+    <Content Include="sound\stickers\level05 Insects\Honey bee.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level05\Honey bee.png">
+    <Content Include="sound\stickers\level05 Insects\Honey bee.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level05\Honey bee.wav">
+    <Content Include="sound\stickers\level05 Insects\Hover fly.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level05\Hover fly.png">
+    <Content Include="sound\stickers\level05 Insects\Hover fly.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level05\Hover fly.wav">
+    <Content Include="sound\stickers\level05 Insects\Jewel Beetle.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level05\Jewel Beetle.png">
+    <Content Include="sound\stickers\level05 Insects\Jewel Beetle.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level05\Jewel Beetle.wav">
+    <Content Include="sound\stickers\level05 Insects\Ladybug.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level05\Ladybug.png">
+    <Content Include="sound\stickers\level05 Insects\Ladybug.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level05\Ladybug.wav">
+    <Content Include="sound\stickers\level05 Insects\Leaf Insect.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level05\Leaf Insect.png">
+    <Content Include="sound\stickers\level05 Insects\Leaf Insect.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level05\Leaf Insect.wav">
+    <Content Include="sound\stickers\level05 Insects\level05-intro.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level05\level05-intro.wav">
+    <Content Include="sound\stickers\level05 Insects\level05.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level05\level05.wav">
+    <Content Include="sound\stickers\level05 Insects\Moth.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level05\Moth.png">
+    <Content Include="sound\stickers\level05 Insects\Moth.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level05\Moth.wav">
+    <Content Include="sound\stickers\level05 Insects\Praying Mantis.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level05\Praying Mantis.png">
+    <Content Include="sound\stickers\level05 Insects\Praying Mantis.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level05\Praying Mantis.wav">
+    <Content Include="sound\stickers\level05 Insects\Rhinoceros beetle.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level05\Rhinoceros beetle.png">
+    <Content Include="sound\stickers\level05 Insects\Rhinoceros beetle.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level05\Rhinoceros beetle.wav">
+    <Content Include="sound\stickers\level05 Insects\Stag Beetle.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level05\Stag Beetle.png">
+    <Content Include="sound\stickers\level05 Insects\Stag Beetle.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level05\Stag Beetle.wav">
+    <Content Include="sound\stickers\level05 Insects\Stick Insect.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level05\Stick Insect.png">
+    <Content Include="sound\stickers\level05 Insects\Stick Insect.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level05\Stick Insect.wav">
+    <Content Include="sound\stickers\level06 Disney\Anna.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level06\Anna.png">
+    <Content Include="sound\stickers\level06 Disney\Anna.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level06\Anna.wav">
+    <Content Include="sound\stickers\level06 Disney\Ariel.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level06\Ariel.png">
+    <Content Include="sound\stickers\level06 Disney\Ariel.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level06\Ariel.wav">
+    <Content Include="sound\stickers\level06 Disney\Aurora.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level06\Aurora.png">
+    <Content Include="sound\stickers\level06 Disney\Aurora.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level06\Aurora.wav">
+    <Content Include="sound\stickers\level06 Disney\Belle.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level06\Belle.png">
+    <Content Include="sound\stickers\level06 Disney\Belle.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level06\Belle.wav">
+    <Content Include="sound\stickers\level06 Disney\Cinderella.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level06\Cinderella.png">
+    <Content Include="sound\stickers\level06 Disney\Cinderella.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level06\Cinderella.wav">
+    <Content Include="sound\stickers\level06 Disney\Elsa.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level06\Elsa.png">
+    <Content Include="sound\stickers\level06 Disney\Elsa.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level06\Elsa.wav">
+    <Content Include="sound\stickers\level06 Disney\Jasmine.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level06\Jasmine.png">
+    <Content Include="sound\stickers\level06 Disney\Jasmine.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level06\Jasmine.wav">
+    <Content Include="sound\stickers\level06 Disney\level06-intro.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level06\level06-intro.wav">
+    <Content Include="sound\stickers\level06 Disney\level06.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level06\level06.wav">
+    <Content Include="sound\stickers\level06 Disney\Merida.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level06\Merida.png">
+    <Content Include="sound\stickers\level06 Disney\Merida.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level06\Merida.wav">
+    <Content Include="sound\stickers\level06 Disney\Moana.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level06\Moana.png">
+    <Content Include="sound\stickers\level06 Disney\Moana.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level06\Moana.wav">
+    <Content Include="sound\stickers\level06 Disney\Mulan.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level06\Mulan.png">
+    <Content Include="sound\stickers\level06 Disney\Mulan.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level06\Mulan.wav">
+    <Content Include="sound\stickers\level06 Disney\Pocahontas.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level06\Pocahontas.png">
+    <Content Include="sound\stickers\level06 Disney\Pocahontas.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level06\Pocahontas.wav">
+    <Content Include="sound\stickers\level06 Disney\Rapunzel.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level06\Rapunzel.png">
+    <Content Include="sound\stickers\level06 Disney\Rapunzel.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level06\Rapunzel.wav">
+    <Content Include="sound\stickers\level06 Disney\Raya.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level06\Raya.png">
+    <Content Include="sound\stickers\level06 Disney\Raya.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level06\Raya.wav">
+    <Content Include="sound\stickers\level06 Disney\Snow White.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level06\Snow White.png">
+    <Content Include="sound\stickers\level06 Disney\Snow White.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level06\Snow White.wav">
+    <Content Include="sound\stickers\level06 Disney\Tiana.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level06\Tiana.png">
+    <Content Include="sound\stickers\level06 Disney\Tiana.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level06\Tiana.wav">
+    <Content Include="sound\stickers\level07 Little Princess\Admiral.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level07\Admiral.png">
+    <Content Include="sound\stickers\level07 Little Princess\Admiral.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level07\Admiral.wav">
+    <Content Include="sound\stickers\level07 Little Princess\Algie.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level07\Algie.png">
+    <Content Include="sound\stickers\level07 Little Princess\Algie.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level07\Algie.wav">
+    <Content Include="sound\stickers\level07 Little Princess\Auntie.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level07\Auntie.png">
+    <Content Include="sound\stickers\level07 Little Princess\Auntie.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level07\Auntie.wav">
+    <Content Include="sound\stickers\level07 Little Princess\Baby Cousin.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level07\Baby Cousin.png">
+    <Content Include="sound\stickers\level07 Little Princess\Baby Cousin.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level07\Baby Cousin.wav">
+    <Content Include="sound\stickers\level07 Little Princess\Chef.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level07\Chef.png">
+    <Content Include="sound\stickers\level07 Little Princess\Chef.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level07\Chef.wav">
+    <Content Include="sound\stickers\level07 Little Princess\Gardener.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level07\Gardener.png">
+    <Content Include="sound\stickers\level07 Little Princess\Gardener.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level07\Gardener.wav">
+    <Content Include="sound\stickers\level07 Little Princess\General.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level07\General.png">
+    <Content Include="sound\stickers\level07 Little Princess\General.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level07\General.wav">
+    <Content Include="sound\stickers\level07 Little Princess\Gilbert.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level07\Gilbert.png">
+    <Content Include="sound\stickers\level07 Little Princess\Gilbert.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level07\Gilbert.wav">
+    <Content Include="sound\stickers\level07 Little Princess\Great Aunty.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level07\Great Aunty.png">
+    <Content Include="sound\stickers\level07 Little Princess\Great Aunty.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level07\Great Aunty.wav">
+    <Content Include="sound\stickers\level07 Little Princess\Great Uncle Walter.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level07\Great Uncle Walter.png">
+    <Content Include="sound\stickers\level07 Little Princess\Great Uncle Walter.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level07\Great Uncle Walter.wav">
+    <Content Include="sound\stickers\level07 Little Princess\Horace.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level07\Horace.png">
+    <Content Include="sound\stickers\level07 Little Princess\Horace.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level07\Horace.wav">
+    <Content Include="sound\stickers\level07 Little Princess\King and Queen.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level07\King and Queen.png">
+    <Content Include="sound\stickers\level07 Little Princess\King and Queen.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level07\King and Queen.wav">
+    <Content Include="sound\stickers\level07 Little Princess\King.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level07\King.png">
+    <Content Include="sound\stickers\level07 Little Princess\King.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level07\King.wav">
+    <Content Include="sound\stickers\level07 Little Princess\level07-intro.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level07\level07-intro.wav">
+    <Content Include="sound\stickers\level07 Little Princess\level07.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level07\level07.wav">
+    <Content Include="sound\stickers\level07 Little Princess\Little Princess.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level07\Little Princess.png">
+    <Content Include="sound\stickers\level07 Little Princess\Little Princess.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level07\Little Princess.wav">
+    <Content Include="sound\stickers\level07 Little Princess\Maid.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level07\Maid.png">
+    <Content Include="sound\stickers\level07 Little Princess\Maid.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level07\Maid.wav">
+    <Content Include="sound\stickers\level07 Little Princess\Prime Minister.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level07\Prime Minister.png">
+    <Content Include="sound\stickers\level07 Little Princess\Prime Minister.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level07\Prime Minister.wav">
+    <Content Include="sound\stickers\level07 Little Princess\Professor.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level07\Professor.png">
+    <Content Include="sound\stickers\level07 Little Princess\Professor.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level07\Professor.wav">
+    <Content Include="sound\stickers\level07 Little Princess\Puss.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level07\Puss.png">
+    <Content Include="sound\stickers\level07 Little Princess\Puss.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level07\Puss.wav">
+    <Content Include="sound\stickers\level07 Little Princess\Queen.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level07\Queen.png">
+    <Content Include="sound\stickers\level07 Little Princess\Queen.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level07\Queen.wav">
+    <Content Include="sound\stickers\level07 Little Princess\Scruff.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level07\Scruff.png">
+    <Content Include="sound\stickers\level07 Little Princess\Scruff.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level07\Scruff.wav">
+    <Content Include="sound\stickers\level07 Little Princess\The Dentist.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level07\The Dentist.png">
+    <Content Include="sound\stickers\level07 Little Princess\The Dentist.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level07\The Dentist.wav">
+    <Content Include="sound\stickers\level08 Lingokids\Baby Bot.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level08\Baby Bot.png">
+    <Content Include="sound\stickers\level08 Lingokids\Baby Bot.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level08\Baby Bot.wav">
+    <Content Include="sound\stickers\level08 Lingokids\Billy.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level08\Billy.png">
+    <Content Include="sound\stickers\level08 Lingokids\Billy.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level08\Billy.wav">
+    <Content Include="sound\stickers\level08 Lingokids\Cowy.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level08\Cowy.png">
+    <Content Include="sound\stickers\level08 Lingokids\Cowy.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level08\Cowy.wav">
+    <Content Include="sound\stickers\level08 Lingokids\Elliot.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level08\Elliot.png">
+    <Content Include="sound\stickers\level08 Lingokids\Elliot.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level08\Elliot.wav">
+    <Content Include="sound\stickers\level08 Lingokids\level08-intro.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level08\level08-intro.wav">
+    <Content Include="sound\stickers\level08 Lingokids\level08.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level08\level08.wav">
+    <Content Include="sound\stickers\level08 Lingokids\Lisa.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level08\Lisa.png">
+    <Content Include="sound\stickers\level08 Lingokids\Lisa.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level08\Lisa.wav">
+    <Content Include="sound\stickers\level09 PAW Patrol\Chase.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level09\Chase.png">
+    <Content Include="sound\stickers\level09 PAW Patrol\Chase.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level09\Chase.wav">
+    <Content Include="sound\stickers\level09 PAW Patrol\Everest.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level09\Everest.png">
+    <Content Include="sound\stickers\level09 PAW Patrol\Everest.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level09\Everest.wav">
+    <Content Include="sound\stickers\level09 PAW Patrol\level09-intro.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level09\level09-intro.wav">
+    <Content Include="sound\stickers\level09 PAW Patrol\level09.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level09\level09.wav">
+    <Content Include="sound\stickers\level09 PAW Patrol\Liberty.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level09\Liberty.png">
+    <Content Include="sound\stickers\level09 PAW Patrol\Liberty.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level09\Liberty.wav">
+    <Content Include="sound\stickers\level09 PAW Patrol\Marshall.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level09\Marshall.png">
+    <Content Include="sound\stickers\level09 PAW Patrol\Marshall.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level09\Marshall.wav">
+    <Content Include="sound\stickers\level09 PAW Patrol\paw patrol intro.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level09\paw patrol intro.wav">
+    <Content Include="sound\stickers\level09 PAW Patrol\PAW Patrol.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level09\PAW Patrol.png">
+    <Content Include="sound\stickers\level09 PAW Patrol\PAW Patrol.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level09\PAW Patrol.wav">
+    <Content Include="sound\stickers\level09 PAW Patrol\Rocky.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level09\Rocky.png">
+    <Content Include="sound\stickers\level09 PAW Patrol\Rocky.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level09\Rocky.wav">
+    <Content Include="sound\stickers\level09 PAW Patrol\Rubble.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level09\Rubble.png">
+    <Content Include="sound\stickers\level09 PAW Patrol\Rubble.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level09\Rubble.wav">
+    <Content Include="sound\stickers\level09 PAW Patrol\Ryder.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level09\Ryder.png">
+    <Content Include="sound\stickers\level09 PAW Patrol\Ryder.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level09\Ryder.wav">
+    <Content Include="sound\stickers\level09 PAW Patrol\Skye.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level09\Skye.png">
+    <Content Include="sound\stickers\level09 PAW Patrol\Skye.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level09\Skye.wav">
+    <Content Include="sound\stickers\level09 PAW Patrol\Tracker.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level09\Tracker.png">
+    <Content Include="sound\stickers\level09 PAW Patrol\Tracker.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level09\Tracker.wav">
+    <Content Include="sound\stickers\level09 PAW Patrol\Zuma.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level09\Zuma.png">
+    <Content Include="sound\stickers\level09 PAW Patrol\Zuma.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level09\Zuma.wav">
+    <Content Include="sound\stickers\level10 Bluey\Bingo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level10\Bingo.png">
+    <Content Include="sound\stickers\level10 Bluey\Bingo.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level10\Bingo.wav">
+    <Content Include="sound\stickers\level10 Bluey\Bluey.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level10\Bluey.png">
+    <Content Include="sound\stickers\level10 Bluey\Bluey.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level10\Bluey.wav">
+    <Content Include="sound\stickers\level10 Bluey\Bucky.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level10\Bucky.png">
+    <Content Include="sound\stickers\level10 Bluey\Bucky.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level10\Bucky.wav">
+    <Content Include="sound\stickers\level10 Bluey\Calypso.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level10\Calypso.png">
+    <Content Include="sound\stickers\level10 Bluey\Calypso.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level10\Calypso.wav">
+    <Content Include="sound\stickers\level10 Bluey\Chloe.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level10\Chloe.png">
+    <Content Include="sound\stickers\level10 Bluey\Chloe.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level10\Chloe.wav">
+    <Content Include="sound\stickers\level10 Bluey\Chucky.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level10\Chucky.png">
+    <Content Include="sound\stickers\level10 Bluey\Chucky.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level10\Chucky.wav">
+    <Content Include="sound\stickers\level10 Bluey\Coco.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level10\Coco.png">
+    <Content Include="sound\stickers\level10 Bluey\Coco.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level10\Coco.wav">
+    <Content Include="sound\stickers\level10 Bluey\Dad.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level10\Dad.png">
+    <Content Include="sound\stickers\level10 Bluey\Dad.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level10\Dad.wav">
+    <Content Include="sound\stickers\level10 Bluey\Honey.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level10\Honey.png">
+    <Content Include="sound\stickers\level10 Bluey\Honey.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level10\Honey.wav">
+    <Content Include="sound\stickers\level10 Bluey\Indy.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level10\Indy.png">
+    <Content Include="sound\stickers\level10 Bluey\Indy.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level10\Indy.wav">
+    <Content Include="sound\stickers\level10 Bluey\Jack.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level10\Jack.png">
+    <Content Include="sound\stickers\level10 Bluey\Jack.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level10\Jack.wav">
+    <Content Include="sound\stickers\level10 Bluey\Janelle.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level10\Janelle.png">
+    <Content Include="sound\stickers\level10 Bluey\Janelle.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level10\Janelle.wav">
+    <Content Include="sound\stickers\level10 Bluey\Judo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level10\Judo.png">
+    <Content Include="sound\stickers\level10 Bluey\Judo.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level10\Judo.wav">
+    <Content Include="sound\stickers\level10 Bluey\level10-intro.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level10\level10-intro.wav">
+    <Content Include="sound\stickers\level10 Bluey\level10.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level10\level10.wav">
+    <Content Include="sound\stickers\level10 Bluey\Lila.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level10\Lila.png">
+    <Content Include="sound\stickers\level10 Bluey\Lila.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level10\Lila.wav">
+    <Content Include="sound\stickers\level10 Bluey\Lucky.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level10\Lucky.png">
+    <Content Include="sound\stickers\level10 Bluey\Lucky.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level10\Lucky.wav">
+    <Content Include="sound\stickers\level10 Bluey\Lucky’s Dad.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level10\Lucky’s Dad.png">
+    <Content Include="sound\stickers\level10 Bluey\Lucky’s Dad.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level10\Lucky’s Dad.wav">
+    <Content Include="sound\stickers\level10 Bluey\Mackenzie.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level10\Mackenzie.png">
+    <Content Include="sound\stickers\level10 Bluey\Mackenzie.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level10\Mackenzie.wav">
+    <Content Include="sound\stickers\level10 Bluey\Missy.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level10\Missy.png">
+    <Content Include="sound\stickers\level10 Bluey\Missy.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level10\Missy.wav">
+    <Content Include="sound\stickers\level10 Bluey\Mrs Retriever.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level10\Mrs Retriever.png">
+    <Content Include="sound\stickers\level10 Bluey\Mrs Retriever.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level10\Mrs Retriever.wav">
+    <Content Include="sound\stickers\level10 Bluey\Muffin.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level10\Muffin.png">
+    <Content Include="sound\stickers\level10 Bluey\Muffin.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level10\Muffin.wav">
+    <Content Include="sound\stickers\level10 Bluey\Mum.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level10\Mum.png">
+    <Content Include="sound\stickers\level10 Bluey\Mum.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level10\Mum.wav">
+    <Content Include="sound\stickers\level10 Bluey\Pom Pom.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level10\Pom Pom.png">
+    <Content Include="sound\stickers\level10 Bluey\Pom Pom.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level10\Pom Pom.wav">
+    <Content Include="sound\stickers\level10 Bluey\Rusty.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level10\Rusty.png">
+    <Content Include="sound\stickers\level10 Bluey\Rusty.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level10\Rusty.wav">
+    <Content Include="sound\stickers\level10 Bluey\Snickers.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level10\Snickers.png">
+    <Content Include="sound\stickers\level10 Bluey\Snickers.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level10\Snickers.wav">
+    <Content Include="sound\stickers\level10 Bluey\Socks.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level10\Socks.png">
+    <Content Include="sound\stickers\level10 Bluey\Socks.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level10\Socks.wav">
+    <Content Include="sound\stickers\level10 Bluey\Sparky and Chippy.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level10\Sparky and Chippy.png">
+    <Content Include="sound\stickers\level10 Bluey\Sparky and Chippy.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level10\Sparky and Chippy.wav">
+    <Content Include="sound\stickers\level10 Bluey\The Gnomes.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level10\The Gnomes.png">
+    <Content Include="sound\stickers\level10 Bluey\The Gnomes.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level10\The Gnomes.wav">
+    <Content Include="sound\stickers\level10 Bluey\The Terriers.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level10\The Terriers.png">
+    <Content Include="sound\stickers\level10 Bluey\The Terriers.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level10\The Terriers.wav">
+    <Content Include="sound\stickers\level10 Bluey\Wendy.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level10\Wendy.png">
+    <Content Include="sound\stickers\level10 Bluey\Wendy.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level10\Wendy.wav">
+    <Content Include="sound\stickers\level10 Bluey\Winton.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\stickers\level10\Winton.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="sound\stickers\level10\Winton.wav">
+    <Content Include="sound\stickers\level10 Bluey\Winton.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <EmbeddedResource Include="EditPasswordForm.resx">
