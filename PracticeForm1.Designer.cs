@@ -452,7 +452,7 @@
             // 
             // panel1
             // 
-            this.panel1.Location = new System.Drawing.Point(366, 19);
+            this.panel1.Location = new System.Drawing.Point(390, 142);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(402, 114);

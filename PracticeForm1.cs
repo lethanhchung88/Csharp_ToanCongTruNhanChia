@@ -58,7 +58,7 @@ namespace ToanCongTruNhanChia
 
         // Khi DEBUG_STICKER_MODE = true:
         // 1) Mốc điểm để lên 1 level sticker (ví dụ 5 điểm là lên level 1 lần)
-        private const int DEBUG_STICKER_POINT_STEP = 3;
+        private const int DEBUG_STICKER_POINT_STEP = 2;
 
         // 2) Số sticker được tặng mỗi lần lên 1 level
         private const int DEBUG_STICKERS_PER_LEVEL = 1;
@@ -197,6 +197,9 @@ namespace ToanCongTruNhanChia
         private void PracticeForm1_SizeChanged(object sender, EventArgs e)
         {
             FixStickerBottomGap();
+
+            // gọi trễ 1 nhịp để scrollbar kịp cập nhật
+            BeginInvoke(new Action(FixStickerColumnWidthsEven));
         }
 
         private void ConfigureStickerTable()
@@ -218,37 +221,25 @@ namespace ToanCongTruNhanChia
             tblStickers.AutoSize = true;
             tblStickers.AutoSizeMode = AutoSizeMode.GrowAndShrink;
 
-            // ❗ Không set Dock Top ở đây nữa
-            // Dock đã xử lý ở Load (tblStickers.Dock = Fill)
-            // tblStickers.Dock = DockStyle.Fill;
-
             // ❗ Bỏ viền và khe hở của bảng
             tblStickers.CellBorderStyle = TableLayoutPanelCellBorderStyle.None;
             tblStickers.Margin = new Padding(0);
             tblStickers.Padding = new Padding(0);
             tblStickers.BorderStyle = BorderStyle.None;
 
-            // Xóa style cũ, set N cột đều nhau
-            tblStickers.ColumnStyles.Clear();
-            float w = 100f / levelCount;
-            for (int i = 0; i < levelCount; i++)
-            {
-                tblStickers.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, w));
-            }
-
             tblStickers.RowStyles.Clear();
             tblStickers.RowStyles.Add(new RowStyle(SizeType.AutoSize));
 
-            // ✅ Add đủ panel level 1..N vào từng cột
             for (int level = MIN_LEVEL; level <= levelCount; level++)
             {
                 if (_levelPanels.TryGetValue(level, out var flp) && flp != null)
-                {
                     tblStickers.Controls.Add(flp, level - MIN_LEVEL, 0);
-                }
             }
 
-            tblStickers.ResumeLayout();
+            tblStickers.ResumeLayout(true);
+
+            // Chỉnh cột sau khi add xong + layout ổn định
+            BeginInvoke(new Action(FixStickerColumnWidthsEven));
         }
 
         private void PracticeForm1_Load(object sender, EventArgs e)
@@ -362,7 +353,7 @@ namespace ToanCongTruNhanChia
                 prgSticker.Height = 24;
                 prgSticker.Visible = true;
 
-                tblStickers.Dock = DockStyle.Top;   // ✅ để bảng có thể cao hơn pnlStickers => hiện scroll
+                tblStickers.Dock = DockStyle.Fill;
             }
             // ===== KẾT THÚC layout =====
 
@@ -371,6 +362,13 @@ namespace ToanCongTruNhanChia
             ConfigureStickerTable();
 
             LoadStickersFromConfig();
+            BeginInvoke(new Action(() =>
+            {
+                FixStickerColumnWidthsEven();   // chốt width các cột trước
+                RecenterAllStickers();          // rồi mới canh giữa tất cả sticker đã load
+            }));
+
+
             InitStickerProgressBar();
 
             FixStickerBottomGap();
@@ -425,6 +423,10 @@ namespace ToanCongTruNhanChia
             UpdateScoreLabels();
             ResetResultIcon();
             txtAnswer.Focus();
+
+            BeginInvoke(new Action(FixStickerColumnWidthsEven));
+
+            BeginInvoke(new Action(() => DumpStickerLayout("Shown")));
         }
 
 
@@ -1074,12 +1076,9 @@ namespace ToanCongTruNhanChia
             int levelInCycle = ((levelIndex - 1) % levelCount) + 1;  // 1..N
 
             // 3) Phát nhạc level-up
-            // Nếu audio của bạn chỉ chuẩn bị 10 level thì dùng modulo 10 cho sound:
-            int soundIndex = ((levelIndex - 1) % 10) + 1;
-
             await Task.Run(() =>
             {
-                SoundManager.PlayStickerLevelUpSequence(soundIndex);
+                SoundManager.PlayStickerLevelUpSequence(levelInCycle);
             });
 
             // 4) Tặng sticker
@@ -1146,10 +1145,11 @@ namespace ToanCongTruNhanChia
 
                 var pb = CreateStickerPictureBox(pngPath, st.Level);
 
-                CenterStickerInColumn(flp, pb);
-
                 pb.Click += Sticker_Click;
                 flp.Controls.Add(pb);
+
+                // canh giữa sau khi control đã có parent + layout có cơ hội cập nhật
+                BeginInvoke(new Action(() => CenterStickerInColumn(flp, pb)));
             }
         }
 
@@ -1227,10 +1227,10 @@ namespace ToanCongTruNhanChia
 
             var pb = CreateStickerPictureBox(pngPath, level);
 
-            CenterStickerInColumn(flp, pb);
-
             pb.Click += Sticker_Click;
             flp.Controls.Add(pb);
+
+            CenterStickerInColumn(flp, pb);
 
             FixStickerBottomGap();
 
@@ -2753,12 +2753,11 @@ namespace ToanCongTruNhanChia
 
         private void CenterStickerInColumn(FlowLayoutPanel flp, PictureBox pb)
         {
-            int leftMargin = 0;
-            if (flp.ClientSize.Width > pb.Width)
-            {
-                leftMargin = (flp.ClientSize.Width - pb.Width) / 2;
-            }
-            pb.Margin = new Padding(leftMargin, 3, 3, 3);
+            int free = Math.Max(0, flp.ClientSize.Width - pb.Width);
+            int left = free / 2;
+            int right = free - left; // để không lệch khi width lẻ
+
+            pb.Margin = new Padding(left, pb.Margin.Top, right, pb.Margin.Bottom);
         }
 
         private PictureBox CreateStickerPictureBox(string pngPath, int level)
@@ -3136,6 +3135,91 @@ namespace ToanCongTruNhanChia
                 SoundManager.StartStickerMusicLoop(_currentPreviewLevel, _currentPreviewFileName);
 
             UpdatePlayMusicButtonUI();
+        }
+
+        private void FixStickerColumnWidthsEven()
+        {
+            if (pnlStickers == null || tblStickers == null) return;
+
+            int n = tblStickers.ColumnCount;
+            if (n <= 0) return;
+
+            int available = pnlStickers.ClientSize.Width;
+
+            if (available <= 0) return;
+
+            tblStickers.Anchor = AnchorStyles.Top | AnchorStyles.Left;
+            tblStickers.AutoSize = false;
+            tblStickers.Width = available;
+
+            int baseW = available / n;
+            int rem = available % n;
+
+            tblStickers.SuspendLayout();
+            tblStickers.ColumnStyles.Clear();
+
+            for (int i = 0; i < n; i++)
+            {
+                int w = baseW + (i < rem ? 1 : 0);
+                tblStickers.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, w));
+            }
+            tblStickers.ResumeLayout(true);
+        }
+
+        private void DumpStickerLayout(string tag)
+        {
+            if (pnlStickers == null || tblStickers == null) return;
+
+            // Column widths thực tế
+            int[] cw = tblStickers.GetColumnWidths();
+
+            // Tổng width các cột
+            int sumCols = 0;
+            foreach (var w in cw) sumCols += w;
+
+            System.Diagnostics.Debug.WriteLine("======================================");
+            System.Diagnostics.Debug.WriteLine($"[{tag}]");
+            System.Diagnostics.Debug.WriteLine($"pnlStickers.ClientSize.Width = {pnlStickers.ClientSize.Width}");
+            System.Diagnostics.Debug.WriteLine($"pnlStickers.DisplayRectangle.Width = {pnlStickers.DisplayRectangle.Width}");
+            System.Diagnostics.Debug.WriteLine($"VerticalScroll.Visible = {pnlStickers.VerticalScroll.Visible}  (VScrollW={SystemInformation.VerticalScrollBarWidth})");
+            System.Diagnostics.Debug.WriteLine($"tblStickers.Width = {tblStickers.Width}, ClientSize.Width = {tblStickers.ClientSize.Width}");
+            System.Diagnostics.Debug.WriteLine($"ColumnCount = {tblStickers.ColumnCount}, ColumnStyles.Count = {tblStickers.ColumnStyles.Count}");
+            System.Diagnostics.Debug.WriteLine($"Sum column widths = {sumCols}");
+            System.Diagnostics.Debug.WriteLine($"CellBorderStyle = {tblStickers.CellBorderStyle}");
+
+            for (int i = 0; i < tblStickers.ColumnCount; i++)
+            {
+                string style = (i < tblStickers.ColumnStyles.Count)
+                    ? $"{tblStickers.ColumnStyles[i].SizeType} {tblStickers.ColumnStyles[i].Width}"
+                    : "MISSING_STYLE";
+
+                int w = (i < cw.Length) ? cw[i] : -1;
+                System.Diagnostics.Debug.WriteLine($"Col {i} -> width={w}, style={style}");
+            }
+
+            // Nếu cột đều mà nhìn không đều -> check control bên trong
+            foreach (Control c in tblStickers.Controls)
+            {
+                int col = tblStickers.GetColumn(c);
+                int span = tblStickers.GetColumnSpan(c);
+                System.Diagnostics.Debug.WriteLine(
+                    $"Ctrl={c.Name}, col={col}, span={span}, size={c.Width}x{c.Height}, margin={c.Margin}, dock={c.Dock}, autosize={c.AutoSize}"
+                );
+            }
+        }
+
+        private void RecenterAllStickers()
+        {
+            if (_levelPanels == null) return;
+
+            foreach (var flp in _levelPanels.Values)
+            {
+                if (flp == null) continue;
+
+                foreach (Control c in flp.Controls)
+                    if (c is PictureBox pb)
+                        CenterStickerInColumn(flp, pb);
+            }
         }
 
 
