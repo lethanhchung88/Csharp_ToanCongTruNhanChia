@@ -31,6 +31,16 @@ namespace ToanCongTruNhanChia
 
         private const int StickerPreviewMaxSize = 254;
 
+        private MemoryStream _previewStream;
+        private Image _previewImage;
+        private EventHandler _previewAnimHandler;
+        private int _previewLoadToken = 0;
+        private long _lastPreviewInvalidateTick = 0;
+
+        private PictureBox _picStickerPreviewInner;
+
+
+
         // Ưu tiên định dạng ảnh sticker theo thứ tự (đứng trước sẽ được tìm trước)
         private static readonly string[] StickerImageExtensions = { ".gif", ".png" };
         private PictureBox picStickerPreview;
@@ -355,6 +365,12 @@ namespace ToanCongTruNhanChia
 
                 tblStickers.Dock = DockStyle.Fill;
             }
+
+            pnlStickers.Scroll += (s, ev) => RefreshPrgStickerIfVisible();
+            pnlStickers.MouseWheel += (s, ev) => RefreshPrgStickerIfVisible();
+            pnlStickers.Resize += (s, ev) => RefreshPrgStickerIfVisible();
+
+            HookProgressBarRedrawFix();
             // ===== KẾT THÚC layout =====
 
             // 🔹 THỨ TỰ GỌI HÀM: tạo panel level trước, rồi mới set bảng
@@ -566,6 +582,24 @@ namespace ToanCongTruNhanChia
                 SoundManager.StopStickerMusicLoop();
             SavePracticeStateToConfig();
         }
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            base.OnFormClosing(e);
+
+            if (_previewImage != null && _previewAnimHandler != null && ImageAnimator.CanAnimate(_previewImage))
+            {
+                try { ImageAnimator.StopAnimate(_previewImage, _previewAnimHandler); } catch { }
+            }
+
+            _previewImage?.Dispose();
+            _previewImage = null;
+
+            _previewStream?.Dispose();
+            _previewStream = null;
+        }
+
+
 
         #region Sinh câu hỏi
 
@@ -1244,9 +1278,6 @@ namespace ToanCongTruNhanChia
             // Hiển thị lên khung lớn ngay khi được thưởng
             ShowStickerLarge(pngPath, level);
 
-            // Animation khi tặng
-            AnimateStickerAward(pb);
-
             // Lưu vào config
             if (_config != null)
             {
@@ -1276,9 +1307,6 @@ namespace ToanCongTruNhanChia
             if (!(sender is PictureBox pb) || !(pb.Tag is StickerTagInfo info))
                 return;
 
-            // 1) Animation khi click
-            AnimateStickerClick(pb);
-
             // 2) Cập nhật trạng thái sticker đang preview (PHẢI LÀM TRƯỚC)
             _currentPreviewLevel = info.Level;
             _currentPreviewFileName = info.FileName;
@@ -1292,7 +1320,7 @@ namespace ToanCongTruNhanChia
             try { Clipboard.SetText(info.FileName); } catch { }
 
             // 5) Hiển thị ảnh lên khung preview
-            string imgPath = FindStickerPngPath(info.Level, info.FileName);
+            string imgPath = FindStickerImagePath(info.Level, info.FileName);
             ShowStickerLarge(imgPath, info.Level);
 
             // 6) Nếu sticker thường: tắt nhạc loop (nếu có) và phát tiếng sticker
@@ -2521,223 +2549,6 @@ namespace ToanCongTruNhanChia
             }
         }
 
-
-        // Hiệu ứng khi sticker mới được tặng (thêm vào FlowLayoutPanel)
-        private async void AnimateStickerAward(PictureBox pb)
-        {
-            if (pb == null || pb.IsDisposed)
-                return;
-
-            try
-            {
-                // 1) Pop nhẹ (phóng to rồi thu lại)
-                await PulseAsync(pb, scale: 1.2f, durationMs: 80);
-
-                // 2) Rung nhẹ cho vui
-                await ShakeAsync(pb, amplitude: 3, cycles: 6, delayMs: 22);
-            }
-            catch
-            {
-            }
-        }
-
-
-        // Hiệu ứng khi click sticker (nhúc nhích + viền nổi)
-        private async void AnimateStickerClick(PictureBox pb)
-        {
-            if (pb == null || pb.IsDisposed)
-                return;
-
-            try
-            {
-                //var borderTask = BorderFlashAsync(pb, BorderStyle.FixedSingle, durationMs: 180); // Hiệu ứng viền
-                //var bounceTask = BounceAsync(pb, amplitude: 5, cycles: 6, delayMs: 20); // nhúng
-                //var shakeTask = ShakeAsync(pb, amplitude: 4, cycles: 5, delayMs: 32); // rung
-
-                var shakeTask = ShakeHorizontalAsync(pb, amplitude: 6, cycles: 6, delayMs: 100); // Rung ngang nhẹ khi click
-                await Task.WhenAll(shakeTask);
-            }
-            catch
-            {
-            }
-        }
-
-
-        #region Các hàm tạo hiệu ứng hình ảnh stickers
-        // Hiệu ứng rung ngang (shake)
-        private async Task ShakeAsync(PictureBox pb, int amplitude = 4, int cycles = 6, int delayMs = 25)
-        {
-            if (pb == null || pb.IsDisposed)
-                return;
-
-            var originalMargin = pb.Margin;
-
-            try
-            {
-                for (int i = 0; i < cycles; i++)
-                {
-                    int offset = (i % 2 == 0) ? amplitude : -amplitude;
-
-                    pb.Margin = new Padding(
-                        originalMargin.Left + offset,
-                        originalMargin.Top,
-                        originalMargin.Right,
-                        originalMargin.Bottom
-                    );
-
-                    await Task.Delay(delayMs);
-                }
-            }
-            catch
-            {
-            }
-            finally
-            {
-                if (!pb.IsDisposed)
-                {
-                    pb.Margin = originalMargin;
-                }
-            }
-        }
-
-        // Hiệu ứng phóng to rồi thu lại (pulse)
-        private async Task PulseAsync(PictureBox pb, float scale = 1.15f, int durationMs = 120)
-        {
-            if (pb == null || pb.IsDisposed)
-                return;
-
-            int baseW = pb.Width;
-            int baseH = pb.Height;
-
-            int bigW = (int)(baseW * scale);
-            int bigH = (int)(baseH * scale);
-
-            try
-            {
-                pb.Width = bigW;
-                pb.Height = bigH;
-
-                await Task.Delay(durationMs);
-
-                pb.Width = baseW;
-                pb.Height = baseH;
-            }
-            catch
-            {
-                if (!pb.IsDisposed)
-                {
-                    pb.Width = baseW;
-                    pb.Height = baseH;
-                }
-            }
-        }
-
-        // Hiệu ứng làm nổi viền trong thời gian ngắn (glow border)
-        private async Task BorderFlashAsync(PictureBox pb, BorderStyle highlightStyle, int durationMs = 150)
-        {
-            if (pb == null || pb.IsDisposed)
-                return;
-
-            var originalBorder = pb.BorderStyle;
-
-            try
-            {
-                pb.BorderStyle = highlightStyle;
-                await Task.Delay(durationMs);
-            }
-            catch
-            {
-            }
-            finally
-            {
-                if (!pb.IsDisposed)
-                {
-                    pb.BorderStyle = originalBorder;
-                }
-            }
-        }
-
-        // Hiệu ứng “nhún lên xuống” (bounce theo chiều dọc)
-        private async Task BounceAsync(PictureBox pb, int amplitude = 4, int cycles = 4, int delayMs = 30)
-        {
-            if (pb == null || pb.IsDisposed)
-                return;
-
-            var originalMargin = pb.Margin;
-
-            try
-            {
-                for (int i = 0; i < cycles; i++)
-                {
-                    int offset = (i % 2 == 0) ? -amplitude : amplitude;
-
-                    pb.Margin = new Padding(
-                        originalMargin.Left,
-                        originalMargin.Top + offset,
-                        originalMargin.Right,
-                        originalMargin.Bottom
-                    );
-
-                    await Task.Delay(delayMs);
-                }
-            }
-            catch
-            {
-            }
-            finally
-            {
-                if (!pb.IsDisposed)
-                {
-                    pb.Margin = originalMargin;
-                }
-            }
-        }
-
-        /// <summary>
-        /// Hiệu ứng nhúc nhích trái-phải (shake ngang).
-        /// Không ảnh hưởng sticker khác vì chỉ thay đổi Location.
-        /// </summary>
-        private async Task ShakeHorizontalAsync(PictureBox pb, int amplitude = 6, int cycles = 6, int delayMs = 22)
-        {
-            if (pb == null || pb.IsDisposed)
-                return;
-
-            // Lưu vị trí ban đầu
-            var original = pb.Location;
-
-            try
-            {
-                for (int i = 0; i < cycles; i++)
-                {
-                    // rung qua lại: +amplitude rồi -amplitude
-                    int offset = (i % 2 == 0) ? amplitude : -amplitude;
-
-                    pb.Location = new Point(
-                        original.X + offset,
-                        original.Y
-                    );
-
-                    await Task.Delay(delayMs);
-                }
-            }
-            catch
-            {
-                // tránh crash nếu control đã dispose
-            }
-            finally
-            {
-                if (!pb.IsDisposed)
-                {
-                    pb.Location = original;
-                }
-            }
-        }
-
-
-
-
-        #endregion
-
         private void btnSave_Click(object sender, EventArgs e)
         {
             SavePracticeStateToConfig();
@@ -2760,9 +2571,9 @@ namespace ToanCongTruNhanChia
             pb.Margin = new Padding(left, pb.Margin.Top, right, pb.Margin.Bottom);
         }
 
-        private PictureBox CreateStickerPictureBox(string pngPath, int level)
+        private PictureBox CreateStickerPictureBox(string imgPath, int level)
         {
-            var original = Image.FromFile(pngPath); // KHÔNG dùng using, để còn hiển thị
+            string ext = Path.GetExtension(imgPath);
 
             var pb = new PictureBox
             {
@@ -2773,40 +2584,95 @@ namespace ToanCongTruNhanChia
                 Tag = new StickerTagInfo
                 {
                     Level = level,
-                    FileName = Path.GetFileNameWithoutExtension(pngPath)
+                    FileName = Path.GetFileNameWithoutExtension(imgPath)
                 }
             };
 
-            // Ảnh nhỏ hơn hoặc bằng 72x72 => giữ nguyên, không phóng to
-            if (original.Width <= StickerBoxSize && original.Height <= StickerBoxSize)
+            // ✅ GIF: giữ stream sống đến lúc pb bị dispose
+            if (string.Equals(ext, ".gif", StringComparison.OrdinalIgnoreCase))
             {
-                pb.SizeMode = PictureBoxSizeMode.CenterImage;
-                pb.Image = original;       // giữ nguyên ảnh
+                byte[] bytes = File.ReadAllBytes(imgPath);
+                var ms = new MemoryStream(bytes);
+                Image gif = Image.FromStream(ms);
+
+                pb.SizeMode = PictureBoxSizeMode.Zoom;
+                pb.Image = gif;
+
+                // Dispose cả image + stream khi pb bị hủy
+                pb.Disposed += (s, e) =>
+                {
+                    try
+                    {
+                        var pic = (PictureBox)s;
+                        pic.Image?.Dispose();
+                        pic.Image = null;
+                    }
+                    catch { }
+
+                    try { ms.Dispose(); } catch { }
+                };
+
                 return pb;
             }
 
-            // Ảnh lớn hơn => thu nhỏ theo tỉ lệ, max 72x72
-            float scale = Math.Min(
-                (float)StickerBoxSize / original.Width,
-                (float)StickerBoxSize / original.Height);
-
-            int newW = (int)Math.Round(original.Width * scale);
-            int newH = (int)Math.Round(original.Height * scale);
-
-            var resized = new Bitmap(newW, newH);
-            using (var g = Graphics.FromImage(resized))
+            // ✅ Ảnh tĩnh: dùng using stream, vì ta sẽ "tách" ảnh ra (bitmap/clone) rồi bỏ stream
+            using (var ms = new MemoryStream(File.ReadAllBytes(imgPath)))
+            using (var original = Image.FromStream(ms))
             {
-                g.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                g.DrawImage(original, 0, 0, newW, newH);
+                // Ảnh nhỏ: giữ nguyên nhưng clone để không phụ thuộc stream
+                if (original.Width <= StickerBoxSize && original.Height <= StickerBoxSize)
+                {
+                    pb.SizeMode = PictureBoxSizeMode.Zoom;
+                    pb.Image = (Image)original.Clone(); // tách khỏi stream
+
+                    pb.Disposed += (s, e) =>
+                    {
+                        try
+                        {
+                            var pic = (PictureBox)s;
+                            pic.Image?.Dispose();
+                            pic.Image = null;
+                        }
+                        catch { }
+                    };
+
+                    return pb;
+                }
+
+                // Ảnh lớn: resize -> bitmap (tách khỏi stream)
+                float scale = Math.Min(
+                    (float)StickerBoxSize / original.Width,
+                    (float)StickerBoxSize / original.Height);
+
+                int newW = (int)Math.Round(original.Width * scale);
+                int newH = (int)Math.Round(original.Height * scale);
+
+                var resized = new Bitmap(newW, newH);
+                using (var g = Graphics.FromImage(resized))
+                {
+                    g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                    g.DrawImage(original, 0, 0, newW, newH);
+                }
+
+                pb.SizeMode = PictureBoxSizeMode.Zoom;
+                pb.Image = resized;
+
+                pb.Disposed += (s, e) =>
+                {
+                    try
+                    {
+                        var pic = (PictureBox)s;
+                        pic.Image?.Dispose();
+                        pic.Image = null;
+                    }
+                    catch { }
+                };
+
+                return pb;
             }
-
-            original.Dispose(); // đã có bản thu nhỏ, hủy bản gốc
-
-            pb.SizeMode = PictureBoxSizeMode.CenterImage;
-            pb.Image = resized;
-
-            return pb;
         }
+
+
 
         private int GetStickerLevelCount()
         {
@@ -2871,22 +2737,71 @@ namespace ToanCongTruNhanChia
                 Name = "picStickerPreview",
                 Location = new Point(801, 10),
                 Size = new Size(StickerPreviewMaxSize, StickerPreviewMaxSize),
-                SizeMode = PictureBoxSizeMode.Zoom,          // giữ tỉ lệ + tự phóng/thu theo khung
-                BorderStyle = BorderStyle.None,              // ✅ không viền
-                BackColor = Color.Transparent,               // ✅ nền trong suốt
+                SizeMode = PictureBoxSizeMode.Normal,     // ✅ quan trọng: mình sẽ tự vẽ
+                BorderStyle = BorderStyle.None,
+                BackColor = Color.Transparent,
                 Visible = true,
                 Anchor = AnchorStyles.Top | AnchorStyles.Left,
                 Cursor = Cursors.Hand
             };
 
+            EnsurePreviewInner();
+
             picStickerPreview.Click += PicStickerPreview_Click;
 
             this.Controls.Add(picStickerPreview);
 
-            // Đảm bảo trong suốt theo nền form
             picStickerPreview.Parent = this;
             picStickerPreview.BringToFront();
         }
+
+        private void EnsurePreviewInner()
+        {
+            if (_picStickerPreviewInner != null && !_picStickerPreviewInner.IsDisposed) return;
+
+            _picStickerPreviewInner = new PictureBox
+            {
+                Name = "picStickerPreviewInner",
+                BackColor = Color.Transparent,
+                BorderStyle = BorderStyle.None,
+                SizeMode = PictureBoxSizeMode.Normal,
+                Location = new Point(0, 0)
+            };
+
+            // Important: inner nằm trong khung preview lớn
+            picStickerPreview.Controls.Add(_picStickerPreviewInner);
+            _picStickerPreviewInner.BringToFront();
+        }
+
+
+        private void picStickerPreview_Paint(object sender, PaintEventArgs e)
+        {
+            if (_previewImage == null) return;
+
+            if (ImageAnimator.CanAnimate(_previewImage))
+                ImageAnimator.UpdateFrames(_previewImage);
+
+            int boxW = picStickerPreview.ClientSize.Width;
+            int boxH = picStickerPreview.ClientSize.Height;
+
+            int limitW = Math.Min(boxW, StickerPreviewMaxSize);
+            int limitH = Math.Min(boxH, StickerPreviewMaxSize);
+
+            float scale = Math.Min((float)limitW / _previewImage.Width, (float)limitH / _previewImage.Height);
+            if (scale > 1f) scale = 1f;
+
+            int drawW = (int)Math.Round(_previewImage.Width * scale);
+            int drawH = (int)Math.Round(_previewImage.Height * scale);
+
+            int x = 0;
+            int y = boxH - drawH;
+            if (y < 0) y = 0;
+
+            e.Graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+            e.Graphics.DrawImage(_previewImage, new Rectangle(x, y, drawW, drawH));
+        }
+
+
 
 
         private string ResolveStickerImagePath(int level, string fileNameWithoutExt)
@@ -2970,52 +2885,77 @@ namespace ToanCongTruNhanChia
             old?.Dispose();
         }
 
-        private void ShowStickerLarge(string pngPath, int level)
+        private void ShowStickerLarge(string imgPath, int level)
         {
-            if (string.IsNullOrEmpty(pngPath) || !File.Exists(pngPath))
+            ClearPreview();
+
+            if (string.IsNullOrEmpty(imgPath) || !File.Exists(imgPath))
                 return;
 
-            // Lấy màu nền theo level để đồng bộ với cột (hiện tại đều Transparent)
-            picStickerPreview.BackColor = Color.Transparent;
+            EnsurePreviewInner();
 
-            // Không dùng Zoom/Center nữa, để Normal cho vẽ đúng tại góc trên-trái,
-            // sau đó dùng Padding để đẩy ảnh xuống sát đáy.
-            picStickerPreview.SizeMode = PictureBoxSizeMode.Normal;
+            // Load giống sticker nhỏ: giữ stream sống để GIF animate
+            byte[] bytes = File.ReadAllBytes(imgPath);
+            var ms = new MemoryStream(bytes);
+            var img = Image.FromStream(ms);
 
-            try
+            _previewStream = ms;
+            _previewImage = img;
+
+            int boxW = picStickerPreview.ClientSize.Width;
+            int boxH = picStickerPreview.ClientSize.Height;
+
+            // Gán ảnh cho inner (để PictureBox tự animate GIF)
+            _picStickerPreviewInner.Image = img;
+
+            if (img.Width > boxW || img.Height > boxH)
             {
-                using (var fs = new FileStream(pngPath, FileMode.Open, FileAccess.Read))
-                using (var img = Image.FromStream(fs))
-                {
-                    // Tạo ảnh preview có giới hạn (<= StickerPreviewMaxSize, vd 254)
-                    var preview = CreatePreviewImage(img);
-
-                    // Gán ảnh mới
-                    picStickerPreview.Image?.Dispose();
-                    picStickerPreview.Image = preview;
-
-                    // Căn TRÁI + DƯỚI:
-                    //   - Normal: ảnh vẽ ở top-left
-                    //   - muốn sát bottom: tăng Padding.Top = heightPicBox - heightImage
-                    int topPad = picStickerPreview.Height - preview.Height;
-                    if (topPad < 0) topPad = 0; // nếu lỡ ảnh cao hơn khung (không nên, vì đã resize), tránh âm
-
-                    picStickerPreview.Padding = new Padding(
-                        0,       // Left = 0  -> sát trái
-                        topPad,  // Top       -> đẩy ảnh xuống dưới
-                        0,       // Right
-                        0        // Bottom
-                    );
-                }
+                // Ảnh lớn -> Zoom vừa khung
+                _picStickerPreviewInner.SizeMode = PictureBoxSizeMode.Zoom;
+                _picStickerPreviewInner.Bounds = new Rectangle(0, 0, boxW, boxH);
             }
-            catch
+            else
             {
-                // ignore
+                // Ảnh nhỏ -> giữ nguyên kích thước, đặt trái-dưới
+                _picStickerPreviewInner.SizeMode = PictureBoxSizeMode.Normal;
+                int x = 0;
+                int y = boxH - img.Height;
+                if (y < 0) y = 0;
+
+                _picStickerPreviewInner.Bounds = new Rectangle(x, y, img.Width, img.Height);
             }
         }
 
 
-        private string FindStickerPngPath(int level, string fileNameWithoutExt)
+
+
+
+        private void ClearPreview()
+        {
+            // stop animate cũ
+            if (_previewImage != null && _previewAnimHandler != null && ImageAnimator.CanAnimate(_previewImage))
+            {
+                try { ImageAnimator.StopAnimate(_previewImage, _previewAnimHandler); } catch { }
+            }
+            _previewAnimHandler = null;
+
+            picStickerPreview.Image = null;
+
+            // reset vị trí về mặc định (ví dụ góc trên-trái ban đầu)
+            picStickerPreview.Location = new Point(801, 10); // đúng vị trí bạn set trong Init
+
+            _previewImage?.Dispose();
+            _previewImage = null;
+
+            _previewStream?.Dispose();
+            _previewStream = null;
+
+
+            if (_picStickerPreviewInner != null && !_picStickerPreviewInner.IsDisposed)
+                _picStickerPreviewInner.Image = null;
+        }
+
+        private string FindStickerImagePath(int level, string fileNameWithoutExt)
         {
             return ResolveStickerImagePath(level, fileNameWithoutExt);
         }
@@ -3222,7 +3162,43 @@ namespace ToanCongTruNhanChia
             }
         }
 
+        private void RefreshPrgStickerIfVisible()
+        {
+            if (prgSticker == null || prgSticker.IsDisposed) return;
 
+            // Khi cuộn lên gần top -> prgSticker vừa lộ ra
+            if (pnlStickers.VerticalScroll.Value <= prgSticker.Height + 2)
+            {
+                // 🔥 ép redraw NGAY, không chờ message queue
+                prgSticker.Invalidate(true);
+                prgSticker.Update();
+
+                // 👉 thêm 1 phát cho chắc (native control hay "lì")
+                prgSticker.Refresh();
+            }
+        }
+
+        private void HookProgressBarRedrawFix()
+        {
+            if (prgSticker == null || prgSticker.IsDisposed)
+                return;
+
+            // 🔥 Khi progress bar vừa hiện lại → ép redraw NGAY
+            prgSticker.VisibleChanged += (s, e) =>
+            {
+                if (prgSticker.Visible)
+                {
+                    prgSticker.Invalidate(true);
+                    prgSticker.Update();
+                    prgSticker.Refresh();
+                }
+            };
+
+            // 🔥 Khi scroll panel → nếu prgSticker sắp lộ ra thì redraw
+            pnlStickers.Scroll += (s, e) => RefreshPrgStickerIfVisible();
+            pnlStickers.MouseWheel += (s, e) => RefreshPrgStickerIfVisible();
+            pnlStickers.Resize += (s, e) => RefreshPrgStickerIfVisible();
+        }
 
 
 
