@@ -12,6 +12,8 @@ using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing.Imaging;
+
 
 namespace ToanCongTruNhanChia
 {
@@ -42,7 +44,7 @@ namespace ToanCongTruNhanChia
 
 
         // Ưu tiên định dạng ảnh sticker theo thứ tự (đứng trước sẽ được tìm trước)
-        private static readonly string[] StickerImageExtensions = { ".gif", ".png" };
+        private static readonly string[] StickerImageExtensions = { ".gif", ".png", ".jpg", ".jpeg" };
         private PictureBox picStickerPreview;
 
         public OperationType InitialOperation { get; set; } = OperationType.Addition;
@@ -2588,32 +2590,53 @@ namespace ToanCongTruNhanChia
                 }
             };
 
-            // ✅ GIF: giữ stream sống đến lúc pb bị dispose
+            // ✅ GIF (nhỏ): chỉ lấy frame đầu và resize làm thumbnail (NHẸ), KHÔNG giữ stream sống
             if (string.Equals(ext, ".gif", StringComparison.OrdinalIgnoreCase))
             {
-                byte[] bytes = File.ReadAllBytes(imgPath);
-                var ms = new MemoryStream(bytes);
-                Image gif = Image.FromStream(ms);
-
-                pb.SizeMode = PictureBoxSizeMode.Zoom;
-                pb.Image = gif;
-
-                // Dispose cả image + stream khi pb bị hủy
-                pb.Disposed += (s, e) =>
+                using (var ms = new MemoryStream(File.ReadAllBytes(imgPath)))
+                using (var gif = Image.FromStream(ms))
                 {
+                    // cố gắng chọn frame đầu (nếu là animated gif)
                     try
                     {
-                        var pic = (PictureBox)s;
-                        pic.Image?.Dispose();
-                        pic.Image = null;
+                        var dim = new FrameDimension(gif.FrameDimensionsList[0]);
+                        gif.SelectActiveFrame(dim, 0);
                     }
-                    catch { }
+                    catch { /* không sao */ }
 
-                    try { ms.Dispose(); } catch { }
-                };
+                    // resize về StickerBoxSize
+                    float scale = Math.Min(
+                        (float)StickerBoxSize / gif.Width,
+                        (float)StickerBoxSize / gif.Height);
 
-                return pb;
+                    int newW = Math.Max(1, (int)Math.Round(gif.Width * scale));
+                    int newH = Math.Max(1, (int)Math.Round(gif.Height * scale));
+
+                    var thumb = new Bitmap(newW, newH);
+                    using (var g = Graphics.FromImage(thumb))
+                    {
+                        g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                        g.DrawImage(gif, 0, 0, newW, newH);
+                    }
+
+                    pb.SizeMode = PictureBoxSizeMode.CenterImage; // hoặc Zoom nếu bạn thích
+                    pb.Image = thumb;
+
+                    pb.Disposed += (s, e) =>
+                    {
+                        try
+                        {
+                            var pic = (PictureBox)s;
+                            pic.Image?.Dispose();
+                            pic.Image = null;
+                        }
+                        catch { }
+                    };
+
+                    return pb;
+                }
             }
+
 
             // ✅ Ảnh tĩnh: dùng using stream, vì ta sẽ "tách" ảnh ra (bitmap/clone) rồi bỏ stream
             using (var ms = new MemoryStream(File.ReadAllBytes(imgPath)))
